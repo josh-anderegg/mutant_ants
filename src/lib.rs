@@ -58,7 +58,7 @@ mod test {
     const COLONY_COUNT : usize  = 10;
     const COLONY_SIZE : usize = 50;
     const EPSILON : f64 = 1e-50; // Small epsilon onto which we desire accuracy
-    const MAX_ITERATIONS : usize = 100_00;
+    const MAX_ITERATIONS : usize = 10_000;
 
     use crate::find_minimum;
 
