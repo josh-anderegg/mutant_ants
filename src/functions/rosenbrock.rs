@@ -41,7 +41,7 @@ impl Function for Rosenbrock {
 
 mod test {
     use super::*;
-
+    
     #[test]
     fn min() {
         let rose = Rosenbrock;

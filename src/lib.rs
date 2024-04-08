@@ -9,13 +9,13 @@ use functions::rastrigin::Rastrigin;
 use functions::ackley::Ackley;
 use functions::{Function, Point};
 
-const EPSILON : f64 = 1e-150; // Small epsilon onto which we desire accuracy
 pub enum FunctionType {
     Rosenbrock,
     Parabolla,
     Ackley,
     Rastrigin
 }
+
 
 pub fn find_minimum(function : FunctionType, colony_nr : usize, colony_size : usize, max_iterations : usize) -> (Point, f64){
     let function_obj: &dyn Function = match function {
@@ -28,8 +28,8 @@ pub fn find_minimum(function : FunctionType, colony_nr : usize, colony_size : us
 
     let mut handles = Vec::new();
     let mut colonies = Vec::new();
-    for _ in 0..colony_nr {
-        let colony = Colony::new(colony_size, function_obj);
+    for id in 0..colony_nr {
+        let colony = Colony::new(id, colony_size, function_obj);
         let colony_reference = Arc::new(Mutex::new(colony));
         let handle = {
             let colony_reference = Arc::clone(&colony_reference);
@@ -55,7 +55,12 @@ pub fn find_minimum(function : FunctionType, colony_nr : usize, colony_size : us
 
 #[cfg(test)]
 mod test {
-    use crate::{find_minimum, EPSILON};
+    const COLONY_COUNT : usize  = 10;
+    const COLONY_SIZE : usize = 50;
+    const EPSILON : f64 = 1e-50; // Small epsilon onto which we desire accuracy
+    const MAX_ITERATIONS : usize = 100_00;
+
+    use crate::find_minimum;
 
     fn solution_diff(target : ((f64, f64), f64), solution : ((f64, f64), f64)) -> f64 {
         vec![(target.0.0 - solution.0.0).abs(), (target.0.1 - solution.0.1).abs(), (target.1 - solution.1).abs()]
@@ -63,8 +68,17 @@ mod test {
     }
 
     #[test]
+    fn single_colony(){
+        let solution = find_minimum(crate::FunctionType::Parabolla, 1, 10, 100);
+        let target = ((0.0,0.0), 0.0);
+        let diff = solution_diff(target, solution);
+        println!("{target:?} {solution:?} {diff}");        
+        assert!(diff <= EPSILON)
+    }
+    
+    #[test]
     fn parabolla() {
-        let solution = find_minimum(crate::FunctionType::Parabolla, 50, 50, 10000);
+        let solution = find_minimum(crate::FunctionType::Parabolla, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -73,7 +87,7 @@ mod test {
 
     #[test]
     fn rosenbrock() {
-        let solution = find_minimum(crate::FunctionType::Rosenbrock, 50, 50, 10000);
+        let solution = find_minimum(crate::FunctionType::Rosenbrock, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,);
         let target = ((1.0,1.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -83,7 +97,7 @@ mod test {
 
     #[test]
     fn ackley(){
-        let solution = find_minimum(crate::FunctionType::Ackley, 50, 50, 10000);
+        let solution = find_minimum(crate::FunctionType::Ackley, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -92,7 +106,7 @@ mod test {
 
     #[test]
     fn rastrigin() {
-        let solution = find_minimum(crate::FunctionType::Rastrigin, 50, 50, 10000);
+        let solution = find_minimum(crate::FunctionType::Rastrigin, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        

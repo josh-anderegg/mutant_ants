@@ -6,7 +6,7 @@ pub mod parabolla;
 pub type Point = (f64, f64);
 pub type Domain = [[f64;2];2];
 // Set the domain to a million, as otherwise the random function has issues
-const MAX_DOMAIN : f64 = 1_000_000_000.0;
+const MAX_DOMAIN : f64 = 1_000_000_000_000.0;
 
 pub trait Function: Sync {
     fn minimum(&self) -> Point;

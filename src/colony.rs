@@ -8,14 +8,18 @@ use self::genes::Genes;
 use std::sync::{Arc, Mutex};
 
 pub struct Colony {
+    id : usize,
     workers : Vec<Worker>,
     bulletin : Arc<Mutex<(Point, f64)>>
 }
+const STARVE_PERCENTAGE : f64 = 0.1; // The worst % of workers may starve
+const REPRODUCE_PERCENTAGE : f64 = 0.1; // The best % of workers may reproduce (actually clone)
 
 impl Colony {
     pub fn solve(&mut self, max_iterations : usize) {
         for _ in 0..max_iterations{
-            self.iterate()
+            self.iterate();
+            // println!("Colony: {} best value: {}", self.id, self.get_best().1);
         }    
     }
 
@@ -23,10 +27,15 @@ impl Colony {
         self.workers.iter_mut()
             .for_each(|worker|{
                 worker.iterate()
+                // println!("Worker {}", worker.id);
+                // println!("Before descend: {:?}", worker.pos_val());
+                // worker.gradient_descend();
+                // println!("After descend: {:?}", worker.pos_val());
+                
             });
     }
 
-    pub fn new(pop_count : usize, function : &'static dyn Function) -> Colony {
+    pub fn new(id : usize, pop_count : usize, function : &'static dyn Function) -> Colony {
         let mut workers = Vec::new();
         let mut rng = rand::thread_rng();
         let [[x_min, x_max], [y_min, y_max]] = function.domain();
@@ -34,10 +43,10 @@ impl Colony {
         let colony_center = (rng.gen_range(x_min..=x_max), rng.gen_range(y_min..=y_max));
         let center_val = function.eval(colony_center).unwrap(); 
         let bulletin = Arc::new(Mutex::new((colony_center, center_val)));
-        for _ in 0..pop_count {
-            workers.push(Worker::new(colony_center, &mut rng, 0.001, function, &colony_gene_pool, Arc::clone(&bulletin)));
+        for id in 0..pop_count {
+            workers.push(Worker::new(id, colony_center, &mut rng, 10.0, function, &colony_gene_pool, Arc::clone(&bulletin)));
         }
-        Colony {workers, bulletin}
+        Colony {id, workers, bulletin}
     }
 
     pub fn get_best(&self) -> (Point, f64) {
