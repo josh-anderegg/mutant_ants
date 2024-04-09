@@ -9,30 +9,55 @@ use std::sync::{Arc, Mutex};
 
 pub struct Colony {
     id : usize,
+    highest_worker_id : usize,
     workers : Vec<Worker>,
-    bulletin : Arc<Mutex<(Point, f64)>>
+    bulletin : Arc<Mutex<(Point, f64)>>,
+    graveyard : Vec<Worker>
 }
-const STARVE_PERCENTAGE : f64 = 0.1; // The worst % of workers may starve
+const STARVE_PERCENTAGE : f64 = 0.4; // The worst % of workers may starve
 const REPRODUCE_PERCENTAGE : f64 = 0.1; // The best % of workers may reproduce (actually clone)
-
+const MAX_AGE : usize = 20;
+const MAX_COLONY_SIZE : usize = 100;
 impl Colony {
     pub fn solve(&mut self, max_iterations : usize) {
         for _ in 0..max_iterations{
             self.iterate();
-            // println!("Colony: {} best value: {}", self.id, self.get_best().1);
         }    
     }
 
     fn iterate(&mut self) {
-        self.workers.iter_mut()
-            .for_each(|worker|{
-                worker.iterate()
-                // println!("Worker {}", worker.id);
-                // println!("Before descend: {:?}", worker.pos_val());
-                // worker.gradient_descend();
-                // println!("After descend: {:?}", worker.pos_val());
-                
-            });
+        // Sort the workers by their current value
+        self.workers.sort_by_key(|worker| worker.cur_val.partial_cmp(&worker.cur_val).unwrap());
+        let mut rng = rand::thread_rng();
+        let starving_nrs = self.workers.len() - self.lower_bracket();
+        let mut new_borns: Vec<Worker> = Vec::new();
+        let upper_bracket = self.upper_bracket();
+        for (nr, worker) in self.workers.iter_mut().enumerate(){
+            worker.iterate();
+            if nr < upper_bracket {
+                let id = self.highest_worker_id;
+                self.highest_worker_id += 1;
+                let offspring = worker.reproduce(id, &mut rng);
+                new_borns.push(offspring);
+            } else if nr >= starving_nrs {
+                worker.remaining_age -= 1;
+            }
+        }
+
+        // Remove dead workers ot the graveyard
+        let mut i = 0 ;
+        while i < self.workers.len(){
+            if self.workers[i].remaining_age == 0 {
+                self.graveyard.push(self.workers.remove(i));
+            } else {
+                i += 1
+            }
+        }
+
+        // Add newborn workers
+        while self.workers.len() < MAX_COLONY_SIZE && new_borns.len() > 0{
+            self.workers.push(new_borns.pop().unwrap())
+        }
     }
 
     pub fn new(id : usize, pop_count : usize, function : &'static dyn Function) -> Colony {
@@ -43,10 +68,19 @@ impl Colony {
         let colony_center = (rng.gen_range(x_min..=x_max), rng.gen_range(y_min..=y_max));
         let center_val = function.eval(colony_center).unwrap(); 
         let bulletin = Arc::new(Mutex::new((colony_center, center_val)));
+
         for id in 0..pop_count {
             workers.push(Worker::new(id, colony_center, &mut rng, 10.0, function, &colony_gene_pool, Arc::clone(&bulletin)));
         }
-        Colony {id, workers, bulletin}
+        Colony {id, highest_worker_id : pop_count -1, workers, bulletin, graveyard : vec![]}
+    }
+
+    fn lower_bracket(&self) -> usize {
+        (self.workers.len() as f64 * STARVE_PERCENTAGE) as usize
+    }
+
+    fn upper_bracket(&self) -> usize {
+        (self.workers.len() as f64 * REPRODUCE_PERCENTAGE) as usize
     }
 
     pub fn get_best(&self) -> (Point, f64) {

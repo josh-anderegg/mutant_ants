@@ -1,16 +1,18 @@
-use std::sync::{Arc, Mutex};
+use std::{char::MAX, sync::{Arc, Mutex}};
 
 use crate::functions::{Function, Point};
 use super::genes::Genes;
 use rand::{rngs::ThreadRng, thread_rng, Rng};
+use super::MAX_AGE;
 pub struct Worker {
     pub id : usize,
-    position : Point,
+    pub position : Point,
     genes : Genes,
     function : &'static dyn Function,
     bulletin : Arc<Mutex<(Point, f64)>>,
     momentum : [f64 ;2],
-    cur_val : f64
+    pub cur_val : f64,
+    pub remaining_age : usize
 }
 
 impl Worker {
@@ -85,6 +87,7 @@ impl Worker {
             Some(val) => val,
             None => std::f64::INFINITY,
         };
+        let starting_age = rng.gen_range(1..MAX_AGE);
         Worker {
             id,
             position: start_position,
@@ -92,8 +95,13 @@ impl Worker {
             function,
             bulletin,
             momentum:  [0.0,0.0],
-            cur_val: start_val
+            cur_val: start_val,
+            remaining_age : starting_age
         }
+    }
+
+    pub fn reproduce(&self, id : usize, rng : &mut ThreadRng) -> Worker {
+        Worker::new(id,self.position, rng, 0.01, self.function, &self.genes, self.bulletin.clone())
     }
 }
 
