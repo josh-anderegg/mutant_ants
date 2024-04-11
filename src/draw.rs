@@ -1,5 +1,24 @@
 use super::*;
 use plotters::prelude::*;
+const colony_color_map : [RGBColor; 16] = 
+[
+    RGBColor{0: 0, 1: 0, 2: 0},
+    RGBColor{0: 0, 1: 255, 2: 0},
+    RGBColor{0: 0, 1: 0, 2: 255},
+    RGBColor{0: 0, 1: 255, 2: 255},
+    RGBColor{0: 255, 1: 0, 2: 255},
+    RGBColor{0: 255, 1: 255, 2: 0},
+    RGBColor{0: 255, 1: 165, 2: 0},
+    RGBColor{0: 128, 1: 0, 2: 128},
+    RGBColor{0: 0, 1: 128, 2: 128},
+    RGBColor{0: 0, 1: 0, 2: 128},
+    RGBColor{0: 128, 1: 128, 2: 0},
+    RGBColor{0: 128, 1: 0, 2: 0},
+    RGBColor{0: 0, 1: 128, 2: 0},
+    RGBColor{0: 255, 1: 0, 2: 128},
+    RGBColor{0: 0, 1: 255, 2: 128},
+    RGBColor{0: 135, 1: 206, 2: 235}
+  ]; 
 
 pub fn draw_history(function : &'static dyn Function, history : &History, iteration_count: usize) {   
     let file_name = format!("outputs/example.gif");
@@ -40,11 +59,11 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
             plotting_area.draw_pixel((*x,*y), &MandelbrotHSL::get_color((val / max)*0.9)).unwrap()
         }
 
-        for colony in history.data.iter(){
+        for (id, colony) in history.data.iter().enumerate(){
             let workers: Vec<(f64,f64)> = colony.get(ite).unwrap().iter()
                 .map(|(_, pos)| *pos).collect();
             chart.draw_series(workers.iter()
-                    .map(|(x,y)| Circle::new((*x,*y), 2, WHITE.filled())))
+                    .map(|(x,y)| Circle::new((*x,*y), 2, colony_color_map[id].filled())))
                 .unwrap();
         }
         drawing_area.present().unwrap();
