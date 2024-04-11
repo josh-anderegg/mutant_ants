@@ -25,11 +25,11 @@ fn draw_function_space(function : &dyn Function) -> image::ImageBuffer<image::Rg
     return imgbuf
 }
 
-const start_color : [u8;3] = [250, 250, 110];
-const end_color : [u8;3] = [42, 72, 88];
+const START_COLOR : [u8;3] = [250, 250, 110];
+const END_COLOR : [u8;3] = [42, 72, 88];
 fn lerp(start : u8, end : u8, ratio : f64) -> image::Rgb<u8> {
-    let r = (start_color[0] as f64 * (1.0 - ratio) + end_color[0] as f64 * ratio) as u8;
-    let g = (start_color[1] as f64 * (1.0 - ratio) + end_color[1] as f64 * ratio) as u8;
-    let b = (start_color[2] as f64 * (1.0 - ratio) + end_color[2] as f64 * ratio) as u8;
+    let r = (START_COLOR[0] as f64 * (1.0 - ratio) + END_COLOR[0] as f64 * ratio) as u8;
+    let g = (START_COLOR[1] as f64 * (1.0 - ratio) + END_COLOR[1] as f64 * ratio) as u8;
+    let b = (START_COLOR[2] as f64 * (1.0 - ratio) + END_COLOR[2] as f64 * ratio) as u8;
     image::Rgb([r,g,b])
 }
