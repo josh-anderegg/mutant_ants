@@ -1,35 +1,79 @@
-use image;
 use super::*;
+use plotters::prelude::*;
 
-const IMAGE_DIM : u32 = 800; // 1600 x 1600 dimensions
+// const IMAGE_DIM : u32 = 800; // 1600 x 1600 dimensions
 pub fn draw_history(function : &dyn Function, history : &History) {   
+    // let function_space = function_space(function);
+    // function_space.save("outputs/function.png").unwrap();
     
 }
 
-fn draw_function_space(function : &dyn Function) -> image::ImageBuffer<image::Rgb<u8>, Vec<u8>> {
+fn plot_function(function: &'static dyn Function, plotname: &str) {
+    let file_name = format!("outputs/{}.png", plotname);
+    let drawing_area = BitMapBackend::new(file_name.as_str(), (800, 800))
+            .into_drawing_area();
+    drawing_area.fill(&WHITE).unwrap();
+
     let [[x_min, x_max], [y_min, y_max]] = function.domain();
-    let [min_val, max_val] = function.range();
-    let color_scalar = (255.0) / max_val;
-    // Define the step size at which to evaluate the function
-    let dx = ((x_max - x_min).abs() as f64) / (IMAGE_DIM as f64); 
-    let dy = ((y_max - y_min).abs() as f64) / (IMAGE_DIM as f64);
-    let mut imgbuf = image::ImageBuffer::new(IMAGE_DIM, IMAGE_DIM);
-    for (x,y,pixel) in imgbuf.enumerate_pixels_mut(){
-        let point = (x_min + (x as f64) * dx, y_min + (y as f64) * dy);
-        let value = function.eval(point).unwrap() * color_scalar;
-        let ratio = (value - min_val) / (value - max_val);
+    let mut chart = ChartBuilder::on(&drawing_area)
+        .margin(20)
+        .x_label_area_size(30)
+        .y_label_area_size(30)
+        .build_cartesian_2d(x_min..x_max, y_min..y_max).unwrap();
+    chart.configure_mesh().draw().unwrap();
 
-        let r = value as u8;
-        *pixel = image::Rgb([r, 112, 112]);
-    }   
-    return imgbuf
+    let plotting_area = chart.plotting_area();
+    let range = plotting_area.get_pixel_range();
+
+    let max = function_set(function, range.0.end - range.0.start, range.1.end - range.1.start)
+        .into_iter()
+        .map(|(_,_,a)| a)
+        .max_by(|a, b| a.total_cmp(&b)).unwrap();
+    
+    for (x,y,val) in function_set(function, range.0.end - range.0.start, range.1.end - range.1.start) {
+        plotting_area.draw_pixel((x,y), &MandelbrotHSL::get_color(val / max)).unwrap()
+    }
+
+    drawing_area.present().unwrap();
 }
+fn function_set(
+    function : &'static dyn Function,
+    plotwidth: i32,
+    plotheight: i32, 
+) -> impl Iterator<Item = (f64, f64, f64)> {
+    let [[x_min, x_max], [y_min, y_max]] = function.domain();
+    let step = (
+        (x_max - x_min) / plotwidth as f64,
+        (y_max - y_min) / plotheight as f64,
+    );
+    (0..(plotwidth * plotheight)).map(move |k| {
+        let c = (
+            x_min + step.0 * (k % plotwidth) as f64,
+            y_min + step.1 * (k / plotwidth) as f64,
+        );
+        let val = function.eval(c).unwrap();
+        (c.0, c.1, val)
+    })
+}
+mod test {
+    
+    use std::ops::Range;
+    use crate::functions::parabolla::Parabolla;
+    use self::{rastrigin::Rastrigin, rosenbrock::Rosenbrock};
 
-const START_COLOR : [u8;3] = [250, 250, 110];
-const END_COLOR : [u8;3] = [42, 72, 88];
-fn lerp(start : u8, end : u8, ratio : f64) -> image::Rgb<u8> {
-    let r = (START_COLOR[0] as f64 * (1.0 - ratio) + END_COLOR[0] as f64 * ratio) as u8;
-    let g = (START_COLOR[1] as f64 * (1.0 - ratio) + END_COLOR[1] as f64 * ratio) as u8;
-    let b = (START_COLOR[2] as f64 * (1.0 - ratio) + END_COLOR[2] as f64 * ratio) as u8;
-    image::Rgb([r,g,b])
+    use super::{function_set, functions::*, plot_function};
+    #[test]
+    fn parabolla() {
+        plot_function(&Parabolla, "parabolla")
+    }   
+
+    #[test]
+    fn rastrigin(){
+        plot_function(&Rastrigin, "rastrigin")
+    }
+
+    #[test]
+fn rosenbrock(){
+        plot_function(&Rosenbrock, "rosenbrock")
+    }
 }

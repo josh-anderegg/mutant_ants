@@ -91,14 +91,13 @@ mod test {
     const MAX_ITERATIONS : usize = 10_000;
 
     use crate::find_minimum;
-
     fn solution_diff(target : ((f64, f64), f64), solution : ((f64, f64), f64)) -> f64 {
         vec![(target.0.0 - solution.0.0).abs(), (target.0.1 - solution.0.1).abs(), (target.1 - solution.1).abs()]
         .into_iter().max_by(|a,b|a.total_cmp(&b)).unwrap()
     }
 
     #[test]
-    fn single_colony(){
+    fn single_colony_parabolla(){
         let solution = find_minimum(crate::FunctionType::Parabolla, 1, 10, 100, true);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
