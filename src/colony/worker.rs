@@ -1,5 +1,4 @@
-use std::{char::MAX, sync::{Arc, Mutex}};
-
+use std::sync::{Arc, Mutex};
 use crate::functions::{Function, Point};
 use super::genes::Genes;
 use rand::{rngs::ThreadRng, thread_rng, Rng};
@@ -24,7 +23,8 @@ impl Worker {
         let step = self.determine_direction(tendency);
 
         // Determine next position based on the step calculated above
-        let next_position = (self.position.0 + step[0] + self.momentum[0], self.position.1 + step[1] + self.momentum[1]);
+        let next_position = ((self.position.0 + step[0] + self.momentum[0]) * self.genes.stride, 
+                                         (self.position.1 + step[1] + self.momentum[1]) * self.genes.stride);
         if self.function.domain_check(next_position) {
             self.momentum = [next_position.0 - self.position.0, next_position.1 - self.position.1];
             let val = self.function.eval(next_position).unwrap();
