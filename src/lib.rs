@@ -71,7 +71,7 @@ pub fn find_minimum(function : FunctionType, colony_nr : usize, colony_size : us
     }
 
     if track {
-        draw::draw_history(function_obj, &history.lock().unwrap(), max_iterations);
+        // draw::draw_history(function_obj, &history.lock().unwrap(), max_iterations);
     }
 
     colonies.iter()
