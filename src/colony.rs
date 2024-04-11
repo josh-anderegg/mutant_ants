@@ -28,8 +28,9 @@ impl Colony {
     pub fn solve_and_track(&mut self, max_iterations : usize, history : Arc<Mutex<History>>) {
         for i in 00..max_iterations {
             let mut history = history.lock().unwrap();
-            for worker in self.workers.iter() {
-                history.track(self.id, i, worker.id, worker.position)
+            for worker in self.workers.iter_mut() {
+                history.track(self.id, i, worker.id, worker.position);
+                worker.iterate();
             }
         }
     }
