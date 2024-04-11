@@ -22,13 +22,14 @@ impl Genes {
     }
 
     pub fn mutate(&self, rng : &mut ThreadRng) -> Genes {
-        let stride = match self.cautiousness {
+        let cautiousness = rng.gen_bool(0.5);
+        let stride = match cautiousness {
             true => clamp(self.stride + rng.gen_range((-0.3)..0.3), 0.0, 1.0),
             false => clamp(self.stride + rng.gen_range((-5.0)..5.0), 0.0, 50.0),
         };
         Genes {
             orientation: clamp(self.orientation + rng.gen_range((-0.3)..0.3), 0.0, 1.0),
-            cautiousness: self.cautiousness,
+            cautiousness: cautiousness,
             stride,
             jealousy: clamp(self.jealousy + rng.gen_range((-0.3)..0.3), 0.0, 1.0),
         }
