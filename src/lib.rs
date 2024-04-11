@@ -71,7 +71,7 @@ pub fn find_minimum(function : FunctionType, colony_nr : usize, colony_size : us
     }
 
     if track {
-        draw::draw_history(function_obj, &history.lock().unwrap());
+        draw::draw_history(function_obj, &history.lock().unwrap(), max_iterations);
     }
 
     colonies.iter()
@@ -98,7 +98,7 @@ mod test {
 
     #[test]
     fn single_colony_parabolla(){
-        let solution = find_minimum(crate::FunctionType::Parabolla, 1, 10, 100, true);
+        let solution = find_minimum(crate::FunctionType::Parabolla, 1, 10, 10, true);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
