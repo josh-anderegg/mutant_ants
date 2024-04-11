@@ -38,6 +38,7 @@ impl Function for Rastrigin {
 
 }
 
+#[cfg(test)]
 mod test {
     use crate::functions::rastrigin::Rastrigin;
     use super::Function;

@@ -1,7 +1,6 @@
 use super::*;
 use plotters::prelude::*;
 
-// const IMAGE_DIM : u32 = 800; // 1600 x 1600 dimensions
 pub fn draw_history(function : &'static dyn Function, history : &History, iteration_count: usize) {   
     let file_name = format!("outputs/example.gif");
     let drawing_area = BitMapBackend::gif(file_name.as_str(), (800, 800), 100)
@@ -96,13 +95,13 @@ fn function_set(function : &'static dyn Function, plotwidth: i32, plotheight: i3
         (c.0, c.1, val)
     }).collect()
 }
+
+#[cfg(test)]
 mod test {
     
-    use std::ops::Range;
     use crate::functions::parabolla::Parabolla;
-    use self::{rastrigin::Rastrigin, rosenbrock::Rosenbrock};
 
-    use super::{function_set, functions::*, plot_function};
+    use super::*;
     #[test]
     fn parabolla() {
         plot_function(&Parabolla, "parabolla")
@@ -114,7 +113,7 @@ mod test {
     }
 
     #[test]
-fn rosenbrock(){
+    fn rosenbrock(){
         plot_function(&Rosenbrock, "rosenbrock")
     }
 }

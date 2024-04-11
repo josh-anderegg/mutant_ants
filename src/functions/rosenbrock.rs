@@ -15,7 +15,6 @@ impl Function for Rosenbrock {
     }
 
     fn eval(&self, p : Point) -> Option<f64> {
-        // 20 + x^2 + y^2 - 10 (cos(2PIx) + cos(2PIy))
         if  self.domain_check(p) {
             let val = 100.0 * (p.1 - p.0.powf(2.0)).powf(2.0) + (1.0-p.0).powf(2.0);
             Some(val)
@@ -39,6 +38,7 @@ impl Function for Rosenbrock {
 }
 
 
+#[cfg(test)]
 mod test {
     use super::*;
     
