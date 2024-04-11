@@ -6,7 +6,7 @@ use rand::Rng;
 use crate::functions::{Point, Function};
 use self::genes::Genes;
 use std::sync::{Arc, Mutex};
-
+use super::History;
 pub struct Colony {
     id : usize,
     highest_worker_id : usize,
@@ -23,6 +23,15 @@ impl Colony {
         for _ in 0..max_iterations{
             self.iterate();
         }    
+    }
+
+    pub fn solve_and_track(&mut self, max_iterations : usize, history : Arc<Mutex<History>>) {
+        for i in 00..max_iterations {
+            let mut history = history.lock().unwrap();
+            for worker in self.workers.iter() {
+                history.track(self.id, i, worker.id, worker.position)
+            }
+        }
     }
 
     fn iterate(&mut self) {
