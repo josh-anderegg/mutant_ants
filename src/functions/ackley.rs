@@ -5,7 +5,7 @@ use std::f64::consts::E;
 pub struct Ackley;
 const DOMAIN : Domain = [[-5.0, 5.0], [-5.0, 5.0]];
 const MINIMUM : Point = (0.0, 0.0); 
-
+const RANGE : [f64; 2] = [0.0, 15.0];
 impl Function for Ackley {
     
     fn minimum(&self) -> Point {
@@ -33,5 +33,9 @@ impl Function for Ackley {
         None
     }
 
+    fn range(&self) -> [f64;2] {
+        RANGE
+    }
+    
 }
 
