@@ -1,6 +1,8 @@
 mod functions;
 mod colony;
 mod draw;
+use std::fs::File;
+use std::io::Write;
 use std::sync::{Arc, Mutex};
 use std::thread;
 use colony::Colony;
@@ -21,6 +23,24 @@ impl History {
     fn new(colony_nr : usize, iteration_nr : usize) -> Self {
         let data: Vec<Vec<Vec<(usize, Action)>>> = vec![vec![vec![];iteration_nr];colony_nr];
         History{data}
+    }
+
+    fn log(&self) {
+        let mut log_file = File::create("logs/log.txt").unwrap();
+        for (colony_nr, colony) in self.data.iter().enumerate(){
+            log_file.write(format!("Colony #{}:\n", colony_nr).as_bytes()).unwrap();
+            for (iteration_nr, iteration) in colony.iter().enumerate(){
+                log_file.write(format!("\tIteration #{}\n", iteration_nr).as_bytes()).unwrap();
+                for (worker_id ,worker) in iteration {
+                    let event = match worker {
+                        Action::Born(position) => format!("\t\t#{} was born at {:?}\n", worker_id, position),
+                        Action::Stall(position) => format!("\t\t#{} stalled at {:?}\n", worker_id, position),
+                        Action::Move(from, to) => format!("\t\t#{} moved from {:?} to {:?}\n", worker_id, from, to),
+                    };
+                    log_file.write(event.as_bytes()).unwrap();
+                }
+            }
+        }
     }
 }
 
@@ -54,6 +74,7 @@ pub fn find_minimum(function : &'static dyn Function, colony_nr : usize, colony_
     }
 
     if track {
+        history.lock().unwrap().log();
         draw::draw_history(function, &history.lock().unwrap(), max_iterations, draw::Theme::Neon);
     }
 
