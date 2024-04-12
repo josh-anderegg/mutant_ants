@@ -1,4 +1,7 @@
+use self::colony::worker;
+
 use super::*;
+use image::math;
 use plotters::prelude::*;
 const COLONY_COLOR_MAP : [RGBColor; 16] = 
 [
@@ -38,7 +41,7 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
     };
 
     let file_name = format!("outputs/example.gif");
-    let drawing_area  = BitMapBackend::gif(file_name.as_str(), (WIDTH, HEIGHT), 100)
+    let drawing_area  = BitMapBackend::gif(file_name.as_str(), (WIDTH, HEIGHT), 500)
         .unwrap()
         .into_drawing_area();
 
@@ -69,11 +72,32 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
             plotting_area.draw_pixel((*x,*y), &colors.get_color(val / max)).unwrap()
         }
         for (id, colony) in history.data.iter().enumerate(){
-            let workers: Vec<(f64,f64)> = colony.get(ite).unwrap().iter()
-                .map(|(_, pos)| *pos).collect();
-            chart.draw_series(workers.iter()
-                    .map(|(x,y)| Circle::new((*x,*y), 2, COLONY_COLOR_MAP[id].filled())))
-                .unwrap();
+            let workers = colony.get(ite).unwrap().iter();
+            let births = workers.clone().filter_map(|(_, action)|{
+                match action {
+                    Action::Born(position) => Some(Circle::new(*position, 3, COLONY_COLOR_MAP[id].filled())),
+                    _ => None,
+                }
+            });
+            
+            let stalls = workers.clone().filter_map(|(_, action)|{
+                match action {
+                    Action::Stall(position) => Some(Cross::new(*position, 3, COLONY_COLOR_MAP[id].filled())),
+                    _ => None,
+                }
+            });
+            
+            let moves = workers.filter_map(|(_, action)| {
+                match action {
+                    Action::Move(from, to) => Some((*from , *to)),
+                    _ => None
+                }
+            });
+            chart.draw_series(births).unwrap();
+            chart.draw_series(stalls).unwrap();
+            for (from, to) in moves {
+                chart.draw_series(LineSeries::new([from, to], COLONY_COLOR_MAP[id].filled()).point_size(2)).unwrap();
+            }
         }
         drawing_area.present().unwrap();
     }

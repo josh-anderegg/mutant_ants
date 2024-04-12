@@ -1,4 +1,4 @@
-mod worker;
+pub mod worker;
 mod genes;
 
 use worker::Worker;
@@ -26,12 +26,12 @@ impl Colony {
     }
 
     pub fn solve_and_track(&mut self, max_iterations : usize, history : Arc<Mutex<History>>) {
-        for i in 00..max_iterations {
+        for i in 0..max_iterations {
             let mut history = history.lock().unwrap();
             for worker in self.workers.iter_mut() {
-                history.track(self.id, i, worker.id, worker.position);
-                worker.iterate();
+                history.track(self.id, i, worker.id, worker.last_action.clone());
             }
+            self.iterate()
         }
     }
 
@@ -49,7 +49,7 @@ impl Colony {
                 self.highest_worker_id += 1;
                 let offspring = worker.reproduce(id, &mut rng);
                 new_borns.push(offspring);
-            } else if nr >= starving_nrs {
+            } else if nr >= starving_nrs && worker.remaining_age > 0 {
                 worker.remaining_age -= 1;
             }
         }
@@ -95,7 +95,7 @@ impl Colony {
 
     pub fn get_best(&self) -> (Point, f64) {
         self.workers.iter()
-            .map(|worker| worker.pos_val())
+            .map(|worker| (worker.position, worker.cur_val))
             .min_by(|a,b| a.1.total_cmp(&b.1))
             .unwrap_or(((0.0,0.0),f64::INFINITY))
     }

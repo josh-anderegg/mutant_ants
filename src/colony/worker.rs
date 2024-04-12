@@ -11,9 +11,15 @@ pub struct Worker {
     bulletin : Arc<Mutex<(Point, f64)>>,
     momentum : [f64 ;2],
     pub cur_val : f64,
-    pub remaining_age : usize
+    pub remaining_age : usize,
+    pub last_action : Action
 }
-
+#[derive(Clone)]
+pub enum Action {
+    Born(Point),
+    Stall(Point),
+    Move(Point, Point)
+}
 impl Worker {
     pub fn iterate(&mut self) {
         // General direction into which the ant tries to migrate
@@ -29,7 +35,11 @@ impl Worker {
             self.momentum = [next_position.0 - self.position.0, next_position.1 - self.position.1];
             let val = self.function.eval(next_position).unwrap();
             self.cur_val = val;
+            self.last_action = Action::Move(self.position, next_position);
             self.position = next_position
+        } else if self.remaining_age > 0{
+            self.remaining_age -= 1;
+            self.last_action = Action::Stall(self.position);
         }
     }
 
@@ -48,7 +58,7 @@ impl Worker {
         // If yes, write our value into the register and have no envy
         // If no, the envy is the direction towards the best value
         let envy = match gossip.1 < self.cur_val {
-            true => {*gossip = self.pos_val();[0.0, 0.0]},
+            true => {*gossip = (self.position, self.cur_val);[0.0, 0.0]},
             false => [gossip.0.0 - self.position.0, gossip.0.1 - self.position.1],
         };
 
@@ -75,10 +85,6 @@ impl Worker {
         }
     }
 
-    pub fn pos_val(&self) -> (Point, f64) {
-        (self.position, self.cur_val)
-    }
-
     pub fn new(id : usize, colony_center : Point, rng : &mut ThreadRng, spray : f64, function : &'static dyn Function, colony_gene_pool : &Genes, bulletin : Arc<Mutex<(Point, f64)>>) -> Worker {
         let x_spray = rng.gen_range(-spray..=spray);
         let y_spray = rng.gen_range(-spray..=spray);
@@ -96,7 +102,8 @@ impl Worker {
             bulletin,
             momentum:  [0.0,0.0],
             cur_val: start_val,
-            remaining_age : starting_age
+            remaining_age : starting_age,
+            last_action : Action::Born(start_position)
         }
     }
 

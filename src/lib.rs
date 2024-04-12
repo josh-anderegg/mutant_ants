@@ -5,21 +5,21 @@ use std::sync::{Arc, Mutex};
 use std::thread;
 use colony::Colony;
 use functions::{Function, Point};
-
+use colony::worker::Action;
 
 struct History {
-    data : Vec<Vec<Vec<(usize, Point)>>>, // [colony_id][iteration][points of workers]
+    data : Vec<Vec<Vec<(usize, Action)>>>, // [colony_id][iteration][points of workers]
 }
 
 impl History {
-    fn track(&mut self, colony_id : usize, iteration : usize, worker_id : usize,  position : Point) {
+    fn track(&mut self, colony_id : usize, iteration : usize, worker_id : usize,  action : Action) {
         self.data.get_mut(colony_id).unwrap()
                  .get_mut(iteration).unwrap()
-                 .push((worker_id, position))
+                 .push((worker_id, action))
     }
 
     fn new(colony_nr : usize, iteration_nr : usize) -> Self {
-        let data = vec![vec![vec![];iteration_nr];colony_nr];
+        let data: Vec<Vec<Vec<(usize, Action)>>> = vec![vec![vec![];iteration_nr];colony_nr];
         History{data}
     }
 }
@@ -54,7 +54,7 @@ pub fn find_minimum(function : &'static dyn Function, colony_nr : usize, colony_
     }
 
     if track {
-        draw::draw_history(function, &history.lock().unwrap(), max_iterations);
+        draw::draw_history(function, &history.lock().unwrap(), max_iterations, draw::Theme::Neon);
     }
 
     colonies.iter()
@@ -71,9 +71,9 @@ mod test {
     const COLONY_COUNT : usize  = 10;
     const COLONY_SIZE : usize = 50;
     const EPSILON : f64 = 1e-50; // Small epsilon onto which we desire accuracy
-    const MAX_ITERATIONS : usize = 100;
+    const MAX_ITERATIONS : usize = 10_000;
 
-    use crate::{find_minimum, functions::{parabolla::Parabolla, ackley::Ackley, rosenbrock::Rosenbrock, rastrigin::Rastrigin}};
+    use crate::{find_minimum, functions::{ackley::Ackley, parabolla::Parabolla, rastrigin::Rastrigin, rosenbrock::Rosenbrock, Function}};
     fn solution_diff(target : ((f64, f64), f64), solution : ((f64, f64), f64)) -> f64 {
         vec![(target.0.0 - solution.0.0).abs(), (target.0.1 - solution.0.1).abs(), (target.1 - solution.1).abs()]
         .into_iter().max_by(|a,b|a.total_cmp(&b)).unwrap()
@@ -81,7 +81,7 @@ mod test {
 
     #[test]
     fn single_colony_parabolla(){
-        let solution = find_minimum(&Parabolla, 1, 10, 100, true);
+        let solution = find_minimum(&Parabolla, 1, 10, 10, false);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -90,7 +90,7 @@ mod test {
 
     #[test]
     fn single_colony_ackley() {
-        let solution = find_minimum(&Ackley, 1, 10, 100,false);
+        let solution = find_minimum(&Ackley, 1, 10, 10, true);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -98,7 +98,7 @@ mod test {
     }
     #[test]
     fn parabolla() {
-        let solution = find_minimum(&Parabolla, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
+        let solution = find_minimum(&Parabolla, COLONY_COUNT, COLONY_SIZE, 10,false);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
