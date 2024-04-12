@@ -1,7 +1,4 @@
-use self::colony::worker;
-
 use super::*;
-use image::math;
 use plotters::prelude::*;
 const COLONY_COLOR_MAP : [RGBColor; 16] = 
 [
