@@ -118,8 +118,10 @@ fn function_set(function : &'static dyn Function, plotwidth: i32, plotheight: i3
 #[cfg(test)]
 mod test {
     
+    use crate::functions::rastrigin::Rastrigin;
     use crate::functions::parabolla::Parabolla;
-
+    use crate::functions::rosenbrock::Rosenbrock;
+    use crate::functions::ackley::Ackley;
     use super::*;
     #[test]
     fn parabolla() {
@@ -135,4 +137,8 @@ mod test {
     fn rosenbrock(){
         plot_function(&Rosenbrock, "rosenbrock")
     }
+
+    fn ackley() {
+        plot_function(&Ackley, "ackley")
+    }   
 }
