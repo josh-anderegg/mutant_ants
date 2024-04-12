@@ -21,6 +21,7 @@ const COLONY_COLOR_MAP : [RGBColor; 16] =
   ]; 
 
 pub fn draw_history(function : &'static dyn Function, history : &History, iteration_count: usize) {   
+    let colors = colormap_neon();
     let file_name = format!("outputs/example.gif");
     let drawing_area = BitMapBackend::gif(file_name.as_str(), (800, 800), 100)
         .unwrap()
@@ -56,7 +57,7 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
         let plotting_area = chart.plotting_area();
         
         for (x,y,val) in set.iter(){
-            plotting_area.draw_pixel((*x,*y), &MandelbrotHSL::get_color((val / max)*0.9)).unwrap()
+            plotting_area.draw_pixel((*x,*y), &colors.get_color(val / max)).unwrap()
         }
 
         for (id, colony) in history.data.iter().enumerate(){
@@ -76,7 +77,7 @@ fn plot_function(function: &'static dyn Function, plotname: &str) {
     let drawing_area = BitMapBackend::new(file_name.as_str(), (800, 800))
             .into_drawing_area();
     drawing_area.fill(&WHITE).unwrap();
-
+    let colors = colormap_neon();
     let [[x_min, x_max], [y_min, y_max]] = function.domain();
     let mut chart = ChartBuilder::on(&drawing_area)
         .margin(20)
@@ -94,10 +95,33 @@ fn plot_function(function: &'static dyn Function, plotname: &str) {
         .max_by(|a, b| a.total_cmp(&b)).unwrap();
     
     for (x,y,val) in function_set(function, range.0.end - range.0.start, range.1.end - range.1.start) {
-        plotting_area.draw_pixel((x,y), &MandelbrotHSL::get_color(val / max)).unwrap()
+        plotting_area.draw_pixel((x,y), &colors.get_color(val / max)).unwrap();
     }
 
     drawing_area.present().unwrap();
+}
+
+fn colormap_nord() -> DerivedColorMap<RGBColor> {
+    let blue = RGBColor{0: 37, 1: 51, 2: 67};
+    let yellow = RGBColor{0: 235, 1: 203, 2: 139};
+
+    DerivedColorMap::new(&[blue, yellow])
+}
+fn colormap_bright() -> DerivedColorMap<RGBColor> {
+    let blue = RGBColor{0: 0, 1: 127, 2: 115};
+    let green = RGBColor{0: 76, 1: 205, 2: 153};
+    let orange = RGBColor{0: 255, 1: 199, 2: 0};
+    let yellow = RGBColor{0: 255, 1: 244, 2: 85};
+
+    DerivedColorMap::new(&[blue, green, orange, yellow])
+}
+fn colormap_neon() -> DerivedColorMap<RGBColor> {
+    let blue = RGBColor{0: 29, 1: 43, 2: 83};
+    let green = RGBColor{0: 126, 1: 37, 2: 83};
+    let orange = RGBColor{0: 255, 1: 0, 2: 77};
+    let yellow = RGBColor{0: 250, 1: 239, 2: 93};
+
+    DerivedColorMap::new(&[blue, green, orange, yellow])
 }
 fn function_set(function : &'static dyn Function, plotwidth: i32, plotheight: i32, ) -> Vec<(f64, f64, f64)> {
     let [[x_min, x_max], [y_min, y_max]] = function.domain();
@@ -123,6 +147,7 @@ mod test {
     use crate::functions::rosenbrock::Rosenbrock;
     use crate::functions::ackley::Ackley;
     use super::*;
+    
     #[test]
     fn parabolla() {
         plot_function(&Parabolla, "parabolla")
@@ -138,6 +163,7 @@ mod test {
         plot_function(&Rosenbrock, "rosenbrock")
     }
 
+    #[test]
     fn ackley() {
         plot_function(&Ackley, "ackley")
     }   
