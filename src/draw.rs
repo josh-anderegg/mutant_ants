@@ -2,7 +2,7 @@ use super::*;
 use plotters::prelude::*;
 const COLONY_COLOR_MAP : [RGBColor; 16] = 
 [
-    RGBColor{0: 0, 1: 0, 2: 0},
+    RGBColor{0: 255, 1: 255, 2: 255},
     RGBColor{0: 0, 1: 255, 2: 0},
     RGBColor{0: 0, 1: 0, 2: 255},
     RGBColor{0: 0, 1: 255, 2: 255},
@@ -20,21 +20,31 @@ const COLONY_COLOR_MAP : [RGBColor; 16] =
     RGBColor{0: 135, 1: 206, 2: 235}
   ]; 
 
-pub fn draw_history(function : &'static dyn Function, history : &History, iteration_count: usize) {   
-    let colors = colormap_neon();
+const WIDTH : u32 = 800;
+const HEIGHT : u32 = 800;
+const MARGIN : i32 = 20;
+const LABEL_SIZE : i32 = 30;
+pub enum Theme {
+    Neon,
+    Bright,
+    Nord
+}
+
+pub fn draw_history(function : &'static dyn Function, history : &History, iteration_count: usize, theme : Theme) {    
+    let colors = match theme {
+        Theme::Neon => colormap_neon(),
+        Theme::Bright => colormap_bright(),
+        Theme::Nord => colormap_nord(),
+    };
+
     let file_name = format!("outputs/example.gif");
-    let drawing_area = BitMapBackend::gif(file_name.as_str(), (800, 800), 100)
+    let drawing_area  = BitMapBackend::gif(file_name.as_str(), (WIDTH, HEIGHT), 100)
         .unwrap()
         .into_drawing_area();
 
     let [[x_min, x_max], [y_min, y_max]] = function.domain();
-    let dummy = ChartBuilder::on(&drawing_area)
-        .margin(20)
-        .x_label_area_size(30)
-        .y_label_area_size(30)
-        .build_cartesian_2d(x_min..x_max, y_min..y_max)
-        .unwrap();
-    let range = dummy.plotting_area().get_pixel_range();
+    let range = (MARGIN+LABEL_SIZE..(WIDTH as i32 - MARGIN), MARGIN..(HEIGHT as i32 - MARGIN - LABEL_SIZE));
+
     let (plotwidth, plotheight) = (range.0.end - range.0.start, range.1.end - range.1.start);
     let set = function_set(function, plotwidth, plotheight); 
     let max = set
@@ -55,11 +65,9 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
         chart.configure_mesh().draw().unwrap();
 
         let plotting_area = chart.plotting_area();
-        
         for (x,y,val) in set.iter(){
             plotting_area.draw_pixel((*x,*y), &colors.get_color(val / max)).unwrap()
         }
-
         for (id, colony) in history.data.iter().enumerate(){
             let workers: Vec<(f64,f64)> = colony.get(ite).unwrap().iter()
                 .map(|(_, pos)| *pos).collect();
@@ -72,12 +80,17 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
     
 }
 
-fn plot_function(function: &'static dyn Function, plotname: &str) {
+pub fn plot_function(function: &'static dyn Function, plotname: &str, theme : Theme) {
+    let colors = match theme {
+        Theme::Neon => colormap_neon(),
+        Theme::Bright => colormap_bright(),
+        Theme::Nord => colormap_nord(),
+    };
+
     let file_name = format!("outputs/{}.png", plotname);
     let drawing_area = BitMapBackend::new(file_name.as_str(), (800, 800))
             .into_drawing_area();
     drawing_area.fill(&WHITE).unwrap();
-    let colors = colormap_neon();
     let [[x_min, x_max], [y_min, y_max]] = function.domain();
     let mut chart = ChartBuilder::on(&drawing_area)
         .margin(20)
@@ -150,21 +163,21 @@ mod test {
     
     #[test]
     fn parabolla() {
-        plot_function(&Parabolla, "parabolla")
+        plot_function(&Parabolla, "parabolla", Theme::Neon)
     }   
 
     #[test]
     fn rastrigin(){
-        plot_function(&Rastrigin, "rastrigin")
+        plot_function(&Rastrigin, "rastrigin", Theme::Neon)
     }
 
     #[test]
     fn rosenbrock(){
-        plot_function(&Rosenbrock, "rosenbrock")
+        plot_function(&Rosenbrock, "rosenbrock", Theme::Neon)
     }
 
     #[test]
     fn ackley() {
-        plot_function(&Ackley, "ackley")
+        plot_function(&Ackley, "ackley", Theme::Neon)
     }   
 }
