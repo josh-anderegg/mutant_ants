@@ -71,7 +71,7 @@ pub fn find_minimum(function : FunctionType, colony_nr : usize, colony_size : us
     }
 
     if track {
-        // draw::draw_history(function_obj, &history.lock().unwrap(), max_iterations);
+        draw::draw_history(function_obj, &history.lock().unwrap(), max_iterations);
     }
 
     colonies.iter()
@@ -88,7 +88,7 @@ mod test {
     const COLONY_COUNT : usize  = 10;
     const COLONY_SIZE : usize = 50;
     const EPSILON : f64 = 1e-50; // Small epsilon onto which we desire accuracy
-    const MAX_ITERATIONS : usize = 10_000;
+    const MAX_ITERATIONS : usize = 100;
 
     use crate::find_minimum;
     fn solution_diff(target : ((f64, f64), f64), solution : ((f64, f64), f64)) -> f64 {
@@ -98,7 +98,7 @@ mod test {
 
     #[test]
     fn single_colony_parabolla(){
-        let solution = find_minimum(crate::FunctionType::Parabolla, 1, 10, 10, true);
+        let solution = find_minimum(crate::FunctionType::Parabolla, 1, 10, 100, true);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -107,7 +107,7 @@ mod test {
 
     #[test]
     fn single_colony_ackley() {
-        let solution = find_minimum(crate::FunctionType::Ackley, 1, 10, 100,true);
+        let solution = find_minimum(crate::FunctionType::Ackley, 1, 10, 100,false);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -115,7 +115,7 @@ mod test {
     }
     #[test]
     fn parabolla() {
-        let solution = find_minimum(crate::FunctionType::Parabolla, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,true);
+        let solution = find_minimum(crate::FunctionType::Parabolla, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -124,7 +124,7 @@ mod test {
 
     #[test]
     fn rosenbrock() {
-        let solution = find_minimum(crate::FunctionType::Rosenbrock, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,true);
+        let solution = find_minimum(crate::FunctionType::Rosenbrock, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
         let target = ((1.0,1.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -134,7 +134,7 @@ mod test {
 
     #[test]
     fn ackley(){
-        let solution = find_minimum(crate::FunctionType::Ackley, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,true);
+        let solution = find_minimum(crate::FunctionType::Ackley, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -143,7 +143,7 @@ mod test {
 
     #[test]
     fn rastrigin() {
-        let solution = find_minimum(crate::FunctionType::Rastrigin, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,true);
+        let solution = find_minimum(crate::FunctionType::Rastrigin, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        

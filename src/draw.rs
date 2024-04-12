@@ -1,6 +1,6 @@
 use super::*;
 use plotters::prelude::*;
-const colony_color_map : [RGBColor; 16] = 
+const COLONY_COLOR_MAP : [RGBColor; 16] = 
 [
     RGBColor{0: 0, 1: 0, 2: 0},
     RGBColor{0: 0, 1: 255, 2: 0},
@@ -63,7 +63,7 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
             let workers: Vec<(f64,f64)> = colony.get(ite).unwrap().iter()
                 .map(|(_, pos)| *pos).collect();
             chart.draw_series(workers.iter()
-                    .map(|(x,y)| Circle::new((*x,*y), 2, colony_color_map[id].filled())))
+                    .map(|(x,y)| Circle::new((*x,*y), 2, COLONY_COLOR_MAP[id].filled())))
                 .unwrap();
         }
         drawing_area.present().unwrap();
