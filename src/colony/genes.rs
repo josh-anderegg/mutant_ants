@@ -12,8 +12,8 @@ impl Genes {
         let orientation = rng.gen_range(0.0..1.0);
         let cautiousness = rng.gen_bool(0.5);
         let stride = match cautiousness {
-            true => rng.gen_range(0.0..1.0),
-            false => rng.gen_range(1.0..=5.0),
+            true => rng.gen_range(0.001..1.0),
+            false => rng.gen_range(1.0..=3.0),
         };
         
         let jealousy =  rng.gen_range(0.0..1.0);
@@ -24,8 +24,8 @@ impl Genes {
     pub fn mutate(&self, rng : &mut ThreadRng) -> Genes {
         let cautiousness = rng.gen_bool(0.5);
         let stride = match cautiousness {
-            true => clamp(self.stride + rng.gen_range((-0.3)..0.3), 0.0, 1.0),
-            false => clamp(self.stride + rng.gen_range((-5.0)..5.0), 0.0, 50.0),
+            true => clamp(self.stride + rng.gen_range((-0.3)..0.3), 0.001, 1.0),
+            false => clamp(self.stride + rng.gen_range((-1.0)..1.0), 0.001, 3.0),
         };
         Genes {
             orientation: clamp(self.orientation + rng.gen_range((-0.3)..0.3), 0.0, 1.0),

@@ -1,7 +1,9 @@
 use super::*;
 use plotters::prelude::*;
-const COLONY_COLOR_MAP : [RGBColor; 16] = 
-[
+use std::process::Command;
+
+// The colors of each individual colony
+const COLONY_COLOR_MAP : [RGBColor; 16] = [
     RGBColor{0: 255, 1: 255, 2: 255},
     RGBColor{0: 0, 1: 255, 2: 0},
     RGBColor{0: 0, 1: 0, 2: 255},
@@ -18,7 +20,7 @@ const COLONY_COLOR_MAP : [RGBColor; 16] =
     RGBColor{0: 255, 1: 0, 2: 128},
     RGBColor{0: 0, 1: 255, 2: 128},
     RGBColor{0: 135, 1: 206, 2: 235}
-  ]; 
+]; 
 
 const WIDTH : u32 = 800;
 const HEIGHT : u32 = 800;
@@ -29,19 +31,13 @@ pub enum Theme {
     Bright,
     Nord
 }
-
-pub fn draw_history(function : &'static dyn Function, history : &History, iteration_count: usize, theme : Theme) {    
+pub fn draw_history(function : &'static dyn Function, history : &History, iteration_count: usize, theme : Theme, time: &String) {
     let colors = match theme {
         Theme::Neon => colormap_neon(),
         Theme::Bright => colormap_bright(),
         Theme::Nord => colormap_nord(),
     };
-
-    let file_name = format!("outputs/example.gif");
-    let drawing_area  = BitMapBackend::gif(file_name.as_str(), (WIDTH, HEIGHT), 500)
-        .unwrap()
-        .into_drawing_area();
-
+    
     let [[x_min, x_max], [y_min, y_max]] = function.domain();
     let range = (MARGIN+LABEL_SIZE..(WIDTH as i32 - MARGIN), MARGIN..(HEIGHT as i32 - MARGIN - LABEL_SIZE));
 
@@ -49,26 +45,28 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
     let set = function_set(function, plotwidth, plotheight); 
     let max = set
             .iter()
-            .map(|(_,_,a)| *a)
+            .map(|((_,_),a)| *a)
             .max_by(|a, b| a.total_cmp(&b)).unwrap();
     
     for ite in 0..iteration_count{
+        let file_name = format!("outputs/temp/{ite}.png");
+        let drawing_area = BitMapBackend::new(file_name.as_str(), (WIDTH, HEIGHT))
+            .into_drawing_area();
         drawing_area.fill(&WHITE).unwrap();
-        let caption = format!("iteration: {}", ite);
+        
         let mut chart = ChartBuilder::on(&drawing_area)
-            .caption(caption, ("sans-serif", 20))
-            .margin(20)
-            .x_label_area_size(30)
-            .y_label_area_size(30)
+            .margin(MARGIN)
+            .x_label_area_size(LABEL_SIZE)
+            .y_label_area_size(LABEL_SIZE)
             .build_cartesian_2d(x_min..x_max, y_min..y_max)
             .unwrap();
-        chart.configure_mesh().draw().unwrap();
 
+        chart.configure_mesh().draw().unwrap();
         let plotting_area = chart.plotting_area();
-        for (x,y,val) in set.iter(){
+        for ((x,y),val) in set.iter(){
             plotting_area.draw_pixel((*x,*y), &colors.get_color(val / max)).unwrap()
         }
-        for (id, colony) in history.data.iter().enumerate(){
+        for (id, colony) in history.iter().enumerate(){
             let workers = colony.get(ite).unwrap().iter();
             let births = workers.clone().filter_map(|(_, action)|{
                 match action {
@@ -97,43 +95,60 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
             }
         }
         drawing_area.present().unwrap();
+
+
     }
-    
+    combine_images(time);
 }
 
-pub fn plot_function(function: &'static dyn Function, plotname: &str, theme : Theme) {
-    let colors = match theme {
-        Theme::Neon => colormap_neon(),
-        Theme::Bright => colormap_bright(),
-        Theme::Nord => colormap_nord(),
-    };
-
-    let file_name = format!("outputs/{}.png", plotname);
-    let drawing_area = BitMapBackend::new(file_name.as_str(), (800, 800))
-            .into_drawing_area();
-    drawing_area.fill(&WHITE).unwrap();
-    let [[x_min, x_max], [y_min, y_max]] = function.domain();
-    let mut chart = ChartBuilder::on(&drawing_area)
-        .margin(20)
-        .x_label_area_size(30)
-        .y_label_area_size(30)
-        .build_cartesian_2d(x_min..x_max, y_min..y_max).unwrap();
-    chart.configure_mesh().draw().unwrap();
-
-    let plotting_area = chart.plotting_area();
-    let range = plotting_area.get_pixel_range();
-
-    let max = function_set(function, range.0.end - range.0.start, range.1.end - range.1.start)
-        .into_iter()
-        .map(|(_,_,a)| a)
-        .max_by(|a, b| a.total_cmp(&b)).unwrap();
+fn combine_images(time: &String){
+    // ffmpeg -framerate 30 -i outputs/temp/%d.png -c:v libx264 -r 30 -pix_fmt yuv420p output.mp4
+    // rm outputs/temp/*.png 
+    let ffmpeg_cmd = format!("ffmpeg -framerate 5 -i outputs/temp/%d.png -r 5 -s 800x800 -pix_fmt  yuv420p outputs/{time}.gif\n
+                                        rm outputs/temp/*.png");
+    // Run the command
+    Command::new("sh")
+       .arg("-c")
+       .arg(&ffmpeg_cmd)
+       .stdout(std::process::Stdio::null())
+       .stderr(std::process::Stdio::null())
+       .output()
+       .expect("FFMPEG failed");
     
-    for (x,y,val) in function_set(function, range.0.end - range.0.start, range.1.end - range.1.start) {
-        plotting_area.draw_pixel((x,y), &colors.get_color(val / max)).unwrap();
-    }
-
-    drawing_area.present().unwrap();
 }
+// pub fn plot_function(function: &'static dyn Function, plotname: &str, theme : Theme) {
+//     let colors = match theme {
+//         Theme::Neon => colormap_neon(),
+//         Theme::Bright => colormap_bright(),
+//         Theme::Nord => colormap_nord(),
+//     };
+
+//     let file_name = format!("outputs/{}.png", plotname);
+//     let drawing_area = BitMapBackend::new(file_name.as_str(), (800, 800))
+//             .into_drawing_area();
+//     drawing_area.fill(&WHITE).unwrap();
+//     let [[x_min, x_max], [y_min, y_max]] = function.domain();
+//     let mut chart = ChartBuilder::on(&drawing_area)
+//         .margin(20)
+//         .x_label_area_size(30)
+//         .y_label_area_size(30)
+//         .build_cartesian_2d(x_min..x_max, y_min..y_max).unwrap();
+//     chart.configure_mesh().draw().unwrap();
+
+//     let plotting_area = chart.plotting_area();
+//     let range = plotting_area.get_pixel_range();
+
+//     let max = function_set(function, range.0.end - range.0.start, range.1.end - range.1.start)
+//         .into_iter()
+//         .map(|((_,_),a)| a)
+//         .max_by(|a, b| a.total_cmp(&b)).unwrap();
+    
+//     for ((x,y),val) in function_set(function, range.0.end - range.0.start, range.1.end - range.1.start) {
+//         plotting_area.draw_pixel((x,y), &colors.get_color(val / max)).unwrap();
+//     }
+
+//     drawing_area.present().unwrap();
+// }
 
 fn colormap_nord() -> DerivedColorMap<RGBColor> {
     let blue = RGBColor{0: 37, 1: 51, 2: 67};
@@ -157,7 +172,7 @@ fn colormap_neon() -> DerivedColorMap<RGBColor> {
 
     DerivedColorMap::new(&[blue, green, orange, yellow])
 }
-fn function_set(function : &'static dyn Function, plotwidth: i32, plotheight: i32, ) -> Vec<(f64, f64, f64)> {
+fn function_set(function : &'static dyn Function, plotwidth: i32, plotheight: i32, ) -> Vec<(Point, f64)> {
     let [[x_min, x_max], [y_min, y_max]] = function.domain();
     let step = (
         (x_max - x_min) / plotwidth as f64,
@@ -169,36 +184,36 @@ fn function_set(function : &'static dyn Function, plotwidth: i32, plotheight: i3
             y_min + step.1 * (k / plotwidth) as f64,
         );
         let val = function.eval(c).unwrap();
-        (c.0, c.1, val)
+        ((c.0, c.1), val)
     }).collect()
 }
 
-#[cfg(test)]
-mod test {
+// #[cfg(test)]
+// mod test {
     
-    use crate::functions::rastrigin::Rastrigin;
-    use crate::functions::parabolla::Parabolla;
-    use crate::functions::rosenbrock::Rosenbrock;
-    use crate::functions::ackley::Ackley;
-    use super::*;
+//     use crate::functions::rastrigin::Rastrigin;
+//     use crate::functions::parabolla::Parabolla;
+//     use crate::functions::rosenbrock::Rosenbrock;
+//     use crate::functions::ackley::Ackley;
+//     use super::*;
     
-    #[test]
-    fn parabolla() {
-        plot_function(&Parabolla, "parabolla", Theme::Neon)
-    }   
+//     #[test]
+//     fn parabolla() {
+//         plot_function(&Parabolla, "parabolla", Theme::Neon)
+//     }   
 
-    #[test]
-    fn rastrigin(){
-        plot_function(&Rastrigin, "rastrigin", Theme::Neon)
-    }
+//     #[test]
+//     fn rastrigin(){
+//         plot_function(&Rastrigin, "rastrigin", Theme::Neon)
+//     }
 
-    #[test]
-    fn rosenbrock(){
-        plot_function(&Rosenbrock, "rosenbrock", Theme::Neon)
-    }
+//     #[test]
+//     fn rosenbrock(){
+//         plot_function(&Rosenbrock, "rosenbrock", Theme::Neon)
+//     }
 
-    #[test]
-    fn ackley() {
-        plot_function(&Ackley, "ackley", Theme::Neon)
-    }   
-}
+//     #[test]
+//     fn ackley() {
+//         plot_function(&Ackley, "ackley", Theme::Neon)
+//     }   
+// }

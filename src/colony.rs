@@ -1,49 +1,73 @@
 pub mod worker;
 mod genes;
 
-use worker::Worker;
+use std::borrow::BorrowMut;
+
+use plotters::series::Histogram;
+use worker::{Action, Worker};
 use rand::Rng;
 use crate::functions::{Point, Function};
 use self::genes::Genes;
-use std::sync::{Arc, Mutex};
-use super::History;
 pub struct Colony {
-    id : usize,
-    highest_worker_id : usize,
-    workers : Vec<Worker>,
-    bulletin : Arc<Mutex<(Point, f64)>>,
-    graveyard : Vec<Worker>
+    id: usize,
+    highest_worker_id: usize,
+    workers: Vec<Worker>,
+    bulletin: (Point, f64),
+    graveyard: Vec<Worker>
 }
+pub type ColonyHistory = Vec<Vec<(usize, Action)>>;
+
+
 const STARVE_PERCENTAGE : f64 = 0.4; // The worst % of workers may starve
 const REPRODUCE_PERCENTAGE : f64 = 0.1; // The best % of workers may reproduce (actually clone)
 const MAX_AGE : usize = 20;
 const MAX_COLONY_SIZE : usize = 100;
 impl Colony {
-    pub fn solve(&mut self, max_iterations : usize) {
-        for _ in 0..max_iterations{
-            self.iterate();
-        }    
-    }
 
-    pub fn solve_and_track(&mut self, max_iterations : usize, history : Arc<Mutex<History>>) {
-        for i in 0..max_iterations {
-            let mut history = history.lock().unwrap();
+    pub fn solve(&mut self, max_iterations: usize, track:bool) -> Option<ColonyHistory> {
+        let mut history = if track {
+            Some(ColonyHistory::with_capacity(max_iterations))
+        } else {
+            None
+        };
+        for _ in 0..max_iterations {
+            let mut iteration = if track {
+                Some(Vec::with_capacity(self.workers.len()))
+            } else {
+                None
+            };
             for worker in self.workers.iter_mut() {
-                history.track(self.id, i, worker.id, worker.last_action.clone());
+                let (action, value) = worker.iterate(&self.bulletin);
+                if value < self.bulletin.1 {
+                    self.bulletin = (worker.position, value)
+                }
+                if track {
+                    match &mut iteration {
+                        Some(iteration) => iteration.push((worker.id, action)),
+                        None => (),
+                    }
+                }
             }
-            self.iterate()
+            if track {
+                match &mut history {
+                    Some(history) => history.push(iteration.unwrap()),
+                    None => (),
+                }
+            }
         }
+        return history
+
     }
 
     fn iterate(&mut self) {
         // Sort the workers by their current value
-        self.workers.sort_by_key(|worker| worker.cur_val.partial_cmp(&worker.cur_val).unwrap());
+        self.workers.sort_by_key(|worker| worker.value.partial_cmp(&worker.value).unwrap());
         let mut rng = rand::thread_rng();
         let starving_nrs = self.workers.len() - self.lower_bracket();
         let mut new_borns: Vec<Worker> = Vec::new();
         let upper_bracket = self.upper_bracket();
         for (nr, worker) in self.workers.iter_mut().enumerate(){
-            worker.iterate();
+            worker.iterate(&self.bulletin);
             if nr < upper_bracket {
                 let id = self.highest_worker_id;
                 self.highest_worker_id += 1;
@@ -70,19 +94,19 @@ impl Colony {
         }
     }
 
-    pub fn new(id : usize, pop_count : usize, function : &'static dyn Function) -> Colony {
+    pub fn new(id: usize, pop_count: usize, function: &'static dyn Function) -> Colony {
         let mut workers = Vec::new();
         let mut rng = rand::thread_rng();
         let [[x_min, x_max], [y_min, y_max]] = function.domain();
-        let colony_gene_pool = Genes::new(&mut rng);
         let colony_center = (rng.gen_range(x_min..=x_max), rng.gen_range(y_min..=y_max));
         let center_val = function.eval(colony_center).unwrap(); 
-        let bulletin = Arc::new(Mutex::new((colony_center, center_val)));
-
+        let bulletin = (colony_center, center_val);
+        
         for id in 0..pop_count {
-            workers.push(Worker::new(id, colony_center, &mut rng, 10.0, function, &colony_gene_pool, Arc::clone(&bulletin)));
+            let worker_genes = Genes::new(&mut rng);
+            workers.push(Worker::new(id, colony_center, &mut rng, 10.0, function, &worker_genes));
         }
-        Colony {id, highest_worker_id : pop_count -1, workers, bulletin, graveyard : vec![]}
+        Colony {id, highest_worker_id : pop_count -1, workers, bulletin,  graveyard : vec![]}
     }
 
     fn lower_bracket(&self) -> usize {
@@ -94,8 +118,9 @@ impl Colony {
     }
 
     pub fn get_best(&self) -> (Point, f64) {
-        self.workers.iter()
-            .map(|worker| (worker.position, worker.cur_val))
+        let all_workers = self.workers.iter().chain(self.graveyard.iter());
+        all_workers.into_iter()
+            .map(|worker| (worker.position, worker.value))
             .min_by(|a,b| a.1.total_cmp(&b.1))
             .unwrap_or(((0.0,0.0),f64::INFINITY))
     }
