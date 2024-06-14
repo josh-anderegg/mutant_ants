@@ -26,18 +26,10 @@ const WIDTH : u32 = 800;
 const HEIGHT : u32 = 800;
 const MARGIN : i32 = 20;
 const LABEL_SIZE : i32 = 30;
-pub enum Theme {
-    Neon,
-    Bright,
-    Nord
-}
 
-pub fn draw_history(function : &'static dyn Function, history : &History, iteration_count: usize, theme : Theme, time: &String) {
-    let colors = match theme {
-        Theme::Neon => colormap_neon(),
-        Theme::Bright => colormap_bright(),
-        Theme::Nord => colormap_nord(),
-    };
+pub fn draw_history(function : &'static dyn Function, history : &History, iteration_count: usize, time: &String) {
+    let colors = colormap_neon();
+
     fs::create_dir(format!("outputs/{}_{time}", function.name())).unwrap();
 
     let [[x_min, x_max], [y_min, y_max]] = function.domain();
@@ -122,20 +114,21 @@ fn combine_images(name: &str, time: &String){
     
 }
 
-fn colormap_nord() -> DerivedColorMap<RGBColor> {
-    let blue = RGBColor{0: 37, 1: 51, 2: 67};
-    let yellow = RGBColor{0: 235, 1: 203, 2: 139};
+// fn colormap_nord() -> DerivedColorMap<RGBColor> {
+//     let blue = RGBColor{0: 37, 1: 51, 2: 67};
+//     let yellow = RGBColor{0: 235, 1: 203, 2: 139};
 
-    DerivedColorMap::new(&[blue, yellow])
-}
-fn colormap_bright() -> DerivedColorMap<RGBColor> {
-    let blue = RGBColor{0: 0, 1: 127, 2: 115};
-    let green = RGBColor{0: 76, 1: 205, 2: 153};
-    let orange = RGBColor{0: 255, 1: 199, 2: 0};
-    let yellow = RGBColor{0: 255, 1: 244, 2: 85};
+//     DerivedColorMap::new(&[blue, yellow])
+// }
+// fn colormap_bright() -> DerivedColorMap<RGBColor> {
+//     let blue = RGBColor{0: 0, 1: 127, 2: 115};
+//     let green = RGBColor{0: 76, 1: 205, 2: 153};
+//     let orange = RGBColor{0: 255, 1: 199, 2: 0};
+//     let yellow = RGBColor{0: 255, 1: 244, 2: 85};
 
-    DerivedColorMap::new(&[blue, green, orange, yellow])
-}
+//     DerivedColorMap::new(&[blue, green, orange, yellow])
+// }
+
 fn colormap_neon() -> DerivedColorMap<RGBColor> {
     let blue = RGBColor{0: 29, 1: 43, 2: 83};
     let green = RGBColor{0: 126, 1: 37, 2: 83};
