@@ -57,7 +57,7 @@ impl Colony {
 
     fn iterate(&mut self, track:bool) -> (f64, Option<Vec<(usize, Action)>>) {
         // Sort the workers by their current value
-        self.workers.sort_by_key(|worker| worker.value.partial_cmp(&worker.value).unwrap());
+        self.workers.sort_by(|a, b| a.value.partial_cmp(&b.value).unwrap());
         let mut rng = rand::thread_rng();
         let starving_nrs = self.workers.len() - self.lower_bracket();
         let mut new_borns: Vec<Worker> = Vec::new();
