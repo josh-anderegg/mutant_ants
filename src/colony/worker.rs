@@ -16,7 +16,9 @@ pub enum Action {
     Born(Point),
     Stall(Point),
     Move(Point, Point),
-    Die(Point)
+    Die(Point),
+    Starve,
+    Reproduce(usize)
 }
 
 impl Worker {
@@ -84,14 +86,23 @@ impl Worker {
         }
     }
 
-    pub fn new(id : usize, colony_center : Point, rng : &mut ThreadRng, spray : f64, function : &'static dyn Function, colony_gene_pool : &Genes) -> Worker {
+    pub fn new(id: usize, colony_center: Point, rng: &mut ThreadRng, spray: f64, function: &'static dyn Function, colony_gene_pool: &Genes) -> Worker {
         let x_spray = rng.gen_range(-spray..=spray);
         let y_spray = rng.gen_range(-spray..=spray);
-        let start_position = (colony_center.0 + x_spray, colony_center.1 +  y_spray);
+        let mut start_position = (colony_center.0 + x_spray, colony_center.1 +  y_spray);
+        
+        // If the point is outside of the bounds from the start retry generation
+        while !function.domain_check(start_position) {
+            let x_spray = rng.gen_range(-spray..=spray);
+            let y_spray = rng.gen_range(-spray..=spray);
+            start_position = (colony_center.0 + x_spray, colony_center.1 +  y_spray);
+        }
+
         let start_val = match function.eval(start_position) {
             Some(val) => val,
             None => std::f64::INFINITY,
         };
+
         let starting_age = rng.gen_range(1..MAX_AGE);
         Worker {
             id,

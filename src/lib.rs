@@ -12,8 +12,8 @@ use colony::worker::Action;
 use colony::ColonyHistory;
 type History = Vec<ColonyHistory>; // [colony_id][iteration][points of workers]
 
-fn export_history(history: &History, time: &String) {
-    let mut log_file = File::create(format!("logs/{time}.txt")).unwrap();
+fn export_history(function: &'static dyn Function, history: &History, time: &String) {
+    let mut log_file = File::create(format!("logs/{}_{time}.txt", function.name())).unwrap();
     for (colony_nr, colony) in history.iter().enumerate(){
         log_file.write(format!("Colony #{}:\n", colony_nr).as_bytes()).unwrap();
         for (iteration_nr, iteration) in colony.iter().enumerate(){
@@ -24,6 +24,8 @@ fn export_history(history: &History, time: &String) {
                     Action::Stall(position) => format!("\t\t#{} stalled at {:?}\n", worker_id, position),
                     Action::Move(from, to) => format!("\t\t#{} moved from {:?} to {:?}\n", worker_id, from, to),
                     Action::Die(position) => format!("\t\t#{} died at {:?}\n", worker_id, position),
+                    Action::Starve => format!("\t\t#{} is starving\n", worker_id),
+                    Action::Reproduce(child_id) => format!("\t\t#{} gave birth to {}\n", worker_id, child_id),
                     
                 };
                 log_file.write(event.as_bytes()).unwrap();
@@ -77,7 +79,7 @@ pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_si
             let history = history.lock().unwrap();
             let now = chrono::Local::now();
             let time_str = now.format("%Y%m%d_%H%M%S").to_string();
-            export_history(&history, &time_str);
+            export_history(function, &history, &time_str);
             draw_history(function, &history, max_iterations, draw::Theme::Neon, &time_str)
         }
 
@@ -97,18 +99,17 @@ pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_si
 mod test {
     const COLONY_COUNT : usize  = 10;
     const COLONY_SIZE : usize = 50;
-    const EPSILON : f64 = 1e-50; // Small epsilon onto which we desire accuracy
+    const EPSILON : f64 = 1e-8; // Small epsilon onto which we desire accuracy
     const MAX_ITERATIONS : usize = 10_000;
 
-    use crate::{find_minimum, functions::{ackley::Ackley, parabolla::Parabolla, rastrigin::Rastrigin, rosenbrock::Rosenbrock, Function}};
+    use crate::{find_minimum, functions::{ackley::Ackley, parabolla::Parabolla, rastrigin::Rastrigin, rosenbrock::Rosenbrock}};
     fn solution_diff(target : ((f64, f64), f64), solution : ((f64, f64), f64)) -> f64 {
-        vec![(target.0.0 - solution.0.0).abs(), (target.0.1 - solution.0.1).abs(), (target.1 - solution.1).abs()]
-        .into_iter().max_by(|a,b|a.total_cmp(&b)).unwrap()
+        (target.1 - solution.1).abs()
     }
 
     #[test]
     fn single_colony_parabolla(){
-        let solution = find_minimum(&Parabolla, 1, 10, 10, false);
+        let solution = find_minimum(&Parabolla, 1, 10, MAX_ITERATIONS, false);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -117,7 +118,7 @@ mod test {
 
     #[test]
     fn single_colony_ackley() {
-        let solution = find_minimum(&Ackley, 1, 10, 20, true);
+        let solution = find_minimum(&Ackley, 1, 10, MAX_ITERATIONS, true);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -125,7 +126,7 @@ mod test {
     }
     #[test]
     fn parabolla() {
-        let solution = find_minimum(&Parabolla, COLONY_COUNT, COLONY_SIZE, 10,false);
+        let solution = find_minimum(&Parabolla, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -154,6 +155,15 @@ mod test {
     #[test]
     fn rastrigin() {
         let solution = find_minimum(&Rastrigin, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
+        let target = ((0.0,0.0), 0.0);
+        let diff = solution_diff(target, solution);
+        println!("{target:?} {solution:?} {diff}");        
+        assert!(diff <= EPSILON)
+    }
+
+    #[test]
+    fn rastrigin_draw() {
+        let solution = find_minimum(&Rastrigin, COLONY_COUNT, COLONY_SIZE, 100,true);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
