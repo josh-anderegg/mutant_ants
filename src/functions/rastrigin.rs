@@ -3,7 +3,7 @@ use std::f64::consts::PI;
 pub struct Rastrigin;
 const DOMAIN : Domain = [[-5.12, 5.12], [-5.12, 5.12]];
 const MINIMUM : Point = (0.0, 0.0); 
-
+const RANGE: [f64;2] = [-5.12, 5.12];
 impl Function for Rastrigin {
     
     fn minimum(&self) -> Point {
@@ -36,6 +36,10 @@ impl Function for Rastrigin {
         
     }
     
+    fn range(&self) -> [f64;2] {
+        RANGE    
+    }
+
     fn name(&self) -> &str {
         "rastrigin"
     }
