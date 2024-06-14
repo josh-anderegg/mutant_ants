@@ -1,6 +1,7 @@
-mod functions;
+pub mod functions;
 mod colony;
 mod draw;
+
 use std::fs::File;
 use std::io::Write;
 use std::sync::{Arc, Mutex};
@@ -101,10 +102,9 @@ pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_si
 #[cfg(test)]
 mod test {
     const COLONY_COUNT: usize  = 10;
-    const COLONY_SIZE: usize = 50;
+    const COLONY_SIZE: usize = 20;
     const EPSILON: f64 = 1e-8; // Small epsilon onto which we desire accuracy
-    const MAX_ITERATIONS: usize = 10_000;
-    const MAX_DRAW_ITERATIIONS: usize = 100;
+    const MAX_ITERATIONS: usize = 100_000;
 
     use crate::{find_minimum, functions::{ackley::Ackley, parabolla::Parabolla, rastrigin::Rastrigin, rosenbrock::Rosenbrock}};
     fn solution_diff(target : ((f64, f64), f64), solution : ((f64, f64), f64)) -> f64 {
@@ -120,14 +120,6 @@ mod test {
         assert!(diff <= EPSILON)
     }
 
-    #[test]
-    fn ackley_draw() {
-        let solution = find_minimum(&Ackley, 10, 10, MAX_DRAW_ITERATIIONS, true);
-        let target = ((0.0,0.0), 0.0);
-        let diff = solution_diff(target, solution);
-        println!("{target:?} {solution:?} {diff}");        
-        assert!(diff <= EPSILON)
-    }
     #[test]
     fn parabolla() {
         let solution = find_minimum(&Parabolla, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
@@ -165,22 +157,4 @@ mod test {
         assert!(diff <= EPSILON)
     }
 
-    #[test]
-    fn rastrigin_draw() {
-        let solution = find_minimum(&Rastrigin, COLONY_COUNT, COLONY_SIZE, MAX_DRAW_ITERATIIONS,true);
-        let target = ((0.0,0.0), 0.0);
-        let diff = solution_diff(target, solution);
-        println!("{target:?} {solution:?} {diff}");        
-        assert!(diff <= EPSILON)
-    }
-
-    #[test]
-    fn rosenbrock_draw() {
-        let solution = find_minimum(&Rosenbrock, COLONY_COUNT, COLONY_SIZE, MAX_DRAW_ITERATIIONS,true);
-        let target = ((1.0,1.0), 0.0);
-        let diff = solution_diff(target, solution);
-        println!("{target:?} {solution:?} {diff}");        
-
-        assert!(diff <= EPSILON)
-    }
 }

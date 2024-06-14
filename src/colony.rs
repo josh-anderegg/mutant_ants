@@ -3,22 +3,24 @@ mod genes;
 
 use worker::{Action, Worker};
 use rand::Rng;
-use crate::functions::{Point, Function};
+use crate::functions::Function;
 use self::genes::Genes;
 use super::Solution;
+use worker::Status;
+
 pub struct Colony {
     _id: usize,
     highest_worker_id: usize,
     workers: Vec<Worker>,
-    bulletin: (Point, f64),
+    bulletin: Solution,
+    max_size: usize
 }
 pub type ColonyHistory = Vec<Vec<(usize, Action)>>;
 
 
-const STARVE_PERCENTAGE : f64 = 0.4; // The worst % of workers may starve
-const REPRODUCE_PERCENTAGE : f64 = 0.1; // The best % of workers may reproduce (actually clone)
+const STARVE_PERCENTAGE : f64 = 0.1; // The worst % of workers may starve
+const REPRODUCE_PERCENTAGE : f64 = 0.2; // The best % of workers may reproduce (actually clone)
 const MAX_AGE : usize = 20;
-const MAX_COLONY_SIZE : usize = 100;
 impl Colony {
 
     pub fn solve(&mut self, max_iterations: usize, track:bool) -> (Solution, Option<ColonyHistory>) {
@@ -34,12 +36,8 @@ impl Colony {
             None
         };
         let mut iter_nr = 0;
-        let mut min = ((0.0, 0.0), f64::MAX);
         while iter_nr < max_iterations{
-            let (solution, iteration) = self.iterate(track);
-            if solution.1 < min.1 {
-                min = solution;
-            }
+            let iteration = self.iterate(track);
             if track {
                 match &mut history {
                     Some(history) => history.push(iteration.unwrap()),
@@ -47,14 +45,14 @@ impl Colony {
                 }
             }
             iter_nr += 1;
-            if solution.1 < 1e-15{
+            if self.bulletin.1 < 1e-15{
                 break;
             }
         }
-        (min, history)
+        (self.bulletin, history)
     }
 
-    fn iterate(&mut self, track:bool) -> (Solution, Option<Vec<(usize, Action)>>) {
+    fn iterate(&mut self, track:bool) -> Option<Vec<(usize, Action)>> {
         // Sort the workers by their current value
         self.workers.sort_by(|a, b| a.value.partial_cmp(&b.value).unwrap());
         let mut rng = rand::thread_rng();
@@ -67,15 +65,19 @@ impl Colony {
             None
         };
 
-        let mut min = ((0.0, 0.0), f64::MAX);
         for (nr, worker) in self.workers.iter_mut().enumerate(){
-            let (iter_action, value) = worker.iterate(&self.bulletin);
-            if value < self.bulletin.1 {
-                self.bulletin = (worker.position, value)
+            if nr < upper_bracket {
+                worker.status = Status::Leading;
+            } else if nr >= starving_nrs {
+                worker.status = Status::Starving;
+            } else {
+                worker.status = Status::Trailing;
             }
 
-            if value < min.1 {
-                min = (worker.position, worker.value)
+            let (iter_action, value) = worker.iterate(&self.bulletin);
+
+            if value < self.bulletin.1 {
+                self.bulletin = (worker.position, value);
             }   
 
             let hunger_action = if nr < upper_bracket {
@@ -115,10 +117,10 @@ impl Colony {
         }
         
         // Add newborn workers
-        while self.workers.len() < MAX_COLONY_SIZE && new_borns.len() > 0{
+        while self.workers.len() < self.max_size && new_borns.len() > 0{
             self.workers.push(new_borns.pop().unwrap())
         }
-        (min, iteration)
+        iteration
     }
 
     pub fn new(_id: usize, pop_count: usize, function: &'static dyn Function) -> Colony {
@@ -126,14 +128,12 @@ impl Colony {
         let mut rng = rand::thread_rng();
         let [[x_min, x_max], [y_min, y_max]] = function.domain();
         let colony_center = (rng.gen_range(x_min..=x_max), rng.gen_range(y_min..=y_max));
-        let center_val = function.eval(colony_center).unwrap(); 
-        let bulletin = (colony_center, center_val);
-        
+        let function_range = function.range()[1] - function.range()[0];
         for id in 0..pop_count {
-            let worker_genes = Genes::new(&mut rng);
-            workers.push(Worker::new(id, colony_center, &mut rng, 5.0, function, &worker_genes));
+            let worker_genes = Genes::new(&mut rng, function_range);
+            workers.push(Worker::new(id, colony_center, &mut rng, function, &worker_genes));
         }
-        Colony {_id, highest_worker_id : pop_count -1, workers, bulletin}
+        Colony {_id, highest_worker_id : pop_count -1, workers, bulletin: ((f64::MAX, f64::MAX), f64::MAX), max_size: pop_count}
     }
 
     fn lower_bracket(&self) -> usize {

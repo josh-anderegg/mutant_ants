@@ -1,9 +1,9 @@
 
 #[cfg(test)]
 const COLONY_COUNT: usize  = 10;
-const COLONY_SIZE: usize = 50;
+const COLONY_SIZE: usize = 20;
 const EPSILON: f64 = 1e-8; // Small epsilon onto which we desire accuracy
-const MAX_DRAW_ITERATIIONS: usize = 100;
+const MAX_DRAW_ITERATIIONS: usize = 500;
 
 use mutant_ants::{find_minimum, functions::{ackley::Ackley, parabolla::Parabolla, rastrigin::Rastrigin, rosenbrock::Rosenbrock}};
 
@@ -23,7 +23,6 @@ fn draw_rastrigin() {
 
 #[test]
 #[ignore]
-
 fn draw_rosenbrock() {
     let solution = find_minimum(&Rosenbrock, COLONY_COUNT, COLONY_SIZE, MAX_DRAW_ITERATIIONS,true);
     let target = ((1.0,1.0), 0.0);
