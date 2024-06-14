@@ -5,12 +5,12 @@ use worker::{Action, Worker};
 use rand::Rng;
 use crate::functions::{Point, Function};
 use self::genes::Genes;
+use super::Solution;
 pub struct Colony {
-    id: usize,
+    _id: usize,
     highest_worker_id: usize,
     workers: Vec<Worker>,
     bulletin: (Point, f64),
-    graveyard: Vec<Worker>
 }
 pub type ColonyHistory = Vec<Vec<(usize, Action)>>;
 
@@ -21,7 +21,7 @@ const MAX_AGE : usize = 20;
 const MAX_COLONY_SIZE : usize = 100;
 impl Colony {
 
-    pub fn solve(&mut self, max_iterations: usize, track:bool) -> Option<ColonyHistory> {
+    pub fn solve(&mut self, max_iterations: usize, track:bool) -> (Solution, Option<ColonyHistory>) {
         let mut history = if track {
             let mut history = ColonyHistory::with_capacity(max_iterations);
             let start = self.workers.iter().enumerate()
@@ -34,11 +34,11 @@ impl Colony {
             None
         };
         let mut iter_nr = 0;
-        let mut best_value = 1.0;
+        let mut min = ((0.0, 0.0), f64::MAX);
         while iter_nr < max_iterations{
-            let (cur_value, iteration) = self.iterate(track);
-            if cur_value < best_value {
-                best_value = cur_value;
+            let (solution, iteration) = self.iterate(track);
+            if solution.1 < min.1 {
+                min = solution;
             }
             if track {
                 match &mut history {
@@ -47,15 +47,14 @@ impl Colony {
                 }
             }
             iter_nr += 1;
-            if best_value < 1e-15{
+            if solution.1 < 1e-15{
                 break;
             }
         }
-        return history
-
+        (min, history)
     }
 
-    fn iterate(&mut self, track:bool) -> (f64, Option<Vec<(usize, Action)>>) {
+    fn iterate(&mut self, track:bool) -> (Solution, Option<Vec<(usize, Action)>>) {
         // Sort the workers by their current value
         self.workers.sort_by(|a, b| a.value.partial_cmp(&b.value).unwrap());
         let mut rng = rand::thread_rng();
@@ -68,12 +67,17 @@ impl Colony {
             None
         };
 
+        let mut min = ((0.0, 0.0), f64::MAX);
         for (nr, worker) in self.workers.iter_mut().enumerate(){
             let (iter_action, value) = worker.iterate(&self.bulletin);
             if value < self.bulletin.1 {
                 self.bulletin = (worker.position, value)
             }
-            
+
+            if value < min.1 {
+                min = (worker.position, worker.value)
+            }   
+
             let hunger_action = if nr < upper_bracket {
                 let id = self.highest_worker_id;
                 self.highest_worker_id += 1;
@@ -86,6 +90,7 @@ impl Colony {
             } else {
                 Action::Die(worker.position)
             };
+
             if track {
                 match &mut iteration {
                     Some(iteration) => {
@@ -98,26 +103,25 @@ impl Colony {
                 }
             }
         }
-
-        // Remove dead workers ot the graveyard
+        
+        // Remove dead workers
         let mut i = 0 ;
         while i < self.workers.len(){
             if self.workers[i].remaining_age == 0 {
-                self.graveyard.push(self.workers.remove(i));
+                self.workers.remove(i);
             } else {
                 i += 1
             }
         }
-
+        
         // Add newborn workers
         while self.workers.len() < MAX_COLONY_SIZE && new_borns.len() > 0{
             self.workers.push(new_borns.pop().unwrap())
         }
-        let best_value = self.get_best().1;
-        (best_value, iteration)
+        (min, iteration)
     }
 
-    pub fn new(id: usize, pop_count: usize, function: &'static dyn Function) -> Colony {
+    pub fn new(_id: usize, pop_count: usize, function: &'static dyn Function) -> Colony {
         let mut workers = Vec::new();
         let mut rng = rand::thread_rng();
         let [[x_min, x_max], [y_min, y_max]] = function.domain();
@@ -129,7 +133,7 @@ impl Colony {
             let worker_genes = Genes::new(&mut rng);
             workers.push(Worker::new(id, colony_center, &mut rng, 5.0, function, &worker_genes));
         }
-        Colony {id, highest_worker_id : pop_count -1, workers, bulletin,  graveyard : vec![]}
+        Colony {_id, highest_worker_id : pop_count -1, workers, bulletin}
     }
 
     fn lower_bracket(&self) -> usize {
@@ -140,11 +144,4 @@ impl Colony {
         (self.workers.len() as f64 * REPRODUCE_PERCENTAGE) as usize
     }
 
-    pub fn get_best(&self) -> (Point, f64) {
-        let all_workers = self.workers.iter().chain(self.graveyard.iter());
-        all_workers.into_iter()
-            .map(|worker| (worker.position, worker.value))
-            .min_by(|a,b| a.1.total_cmp(&b.1))
-            .unwrap_or(((0.0,0.0),f64::INFINITY))
-    }
 }

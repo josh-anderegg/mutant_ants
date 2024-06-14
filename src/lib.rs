@@ -10,7 +10,9 @@ use draw::draw_history;
 use functions::{Function, Point};
 use colony::worker::Action;
 use colony::ColonyHistory;
+
 type History = Vec<ColonyHistory>; // [colony_id][iteration][points of workers]
+type Solution = ((f64, f64) ,f64);
 
 fn export_history(function: &'static dyn Function, history: &History, time: &String) {
     let mut log_file = File::create(format!("logs/{}_{time}.txt", function.name())).unwrap();
@@ -35,7 +37,7 @@ fn export_history(function: &'static dyn Function, history: &History, time: &Str
 }
 
 
-pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_size: usize, max_iterations: usize, track: bool) -> (Point, f64){
+pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_size: usize, max_iterations: usize, track: bool) -> Solution{
 
     let mut handles = Vec::new();
     let mut colonies = Vec::new();
@@ -45,6 +47,7 @@ pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_si
         None
     };
 
+    let min = Arc::new(Mutex::new(((0.0, 0.0), f64::MAX)));
     for colony_id in 0..colony_nr {
         let colony = Colony::new(colony_id, colony_size, function);
         let colony_reference = Arc::new(Mutex::new(colony));
@@ -52,10 +55,15 @@ pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_si
         
         let handle = {
             let colony_reference = Arc::clone(&colony_reference);
+            let min = Arc::clone(&min);
 
             thread::spawn(move || {
                 let mut colony = colony_reference.lock().unwrap();
-                let colony_history = colony.solve(max_iterations, track);
+                let (solution, colony_history) = colony.solve(max_iterations, track);
+                let mut min = min.lock().unwrap(); 
+                if solution.1 <  min.1{
+                    *min = solution
+                }
                 if track {
                     if let Some(history) = history {
                         let mut history = history.lock().unwrap();
@@ -80,27 +88,23 @@ pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_si
             let now = chrono::Local::now();
             let time_str = now.format("%Y%m%d_%H%M%S").to_string();
             export_history(function, &history, &time_str);
-            draw_history(function, &history, max_iterations, draw::Theme::Neon, &time_str)
+            draw_history(function, &history, max_iterations, &time_str)
         }
 
         
     }
-
-    colonies.iter()
-        .map(|colony| colony.lock().unwrap().get_best())
-        .min_by(|a,b| a.1.total_cmp(&b.1))
-        .unwrap_or(((0.0,0.0), std::f64::INFINITY))
-    
-    
+    let solution = min.lock().unwrap().clone();
+    solution
 
 }
 
 #[cfg(test)]
 mod test {
-    const COLONY_COUNT : usize  = 10;
-    const COLONY_SIZE : usize = 50;
-    const EPSILON : f64 = 1e-8; // Small epsilon onto which we desire accuracy
-    const MAX_ITERATIONS : usize = 10_000;
+    const COLONY_COUNT: usize  = 10;
+    const COLONY_SIZE: usize = 50;
+    const EPSILON: f64 = 1e-8; // Small epsilon onto which we desire accuracy
+    const MAX_ITERATIONS: usize = 10_000;
+    const MAX_DRAW_ITERATIIONS: usize = 100;
 
     use crate::{find_minimum, functions::{ackley::Ackley, parabolla::Parabolla, rastrigin::Rastrigin, rosenbrock::Rosenbrock}};
     fn solution_diff(target : ((f64, f64), f64), solution : ((f64, f64), f64)) -> f64 {
@@ -117,8 +121,8 @@ mod test {
     }
 
     #[test]
-    fn single_colony_ackley() {
-        let solution = find_minimum(&Ackley, 1, 10, MAX_ITERATIONS, true);
+    fn ackley_draw() {
+        let solution = find_minimum(&Ackley, 10, 10, MAX_DRAW_ITERATIIONS, true);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -163,10 +167,20 @@ mod test {
 
     #[test]
     fn rastrigin_draw() {
-        let solution = find_minimum(&Rastrigin, COLONY_COUNT, COLONY_SIZE, 100,true);
+        let solution = find_minimum(&Rastrigin, COLONY_COUNT, COLONY_SIZE, MAX_DRAW_ITERATIIONS,true);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
+        assert!(diff <= EPSILON)
+    }
+
+    #[test]
+    fn rosenbrock_draw() {
+        let solution = find_minimum(&Rosenbrock, COLONY_COUNT, COLONY_SIZE, MAX_DRAW_ITERATIIONS,true);
+        let target = ((1.0,1.0), 0.0);
+        let diff = solution_diff(target, solution);
+        println!("{target:?} {solution:?} {diff}");        
+
         assert!(diff <= EPSILON)
     }
 }

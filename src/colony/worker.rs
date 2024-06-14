@@ -24,15 +24,13 @@ pub enum Action {
 impl Worker {
     pub fn iterate(&mut self, gossip: &(Point, f64)) -> (Action, f64) {
         let prev_position = self.position;
-        // General direction into which the ant tries to migrate
-        let tendency = self.get_tendency(gossip);
 
         // Some randomization to determine the definite direction the ant will take
-        let step = self.determine_direction(tendency);
+        let step = self.get_step(gossip);
 
         // Determine next position based on the step calculated above
-        let next_position = ((self.position.0 + step.0 + self.momentum.0) * self.genes.stride, 
-                                         (self.position.1 + step.1 + self.momentum.1) * self.genes.stride);
+        let next_position = (self.position.0 + (step.0 + self.momentum.0) * self.genes.stride, 
+                                         self.position.1 + (step.1 + self.momentum.1) * self.genes.stride);
         if self.function.domain_check(next_position) {
             self.momentum = (next_position.0 - self.position.0, next_position.1 - self.position.1);
             let val = self.function.eval(next_position).unwrap();
@@ -41,48 +39,39 @@ impl Worker {
             return (Action::Move(prev_position, next_position), self.value);
         } else if self.remaining_age > 0{
             self.remaining_age -= 1;
+            self.genes.stride *= 0.5;
             return (Action::Stall(self.position), self.value);
         } else {
             return (Action::Die(self.position), self.value)
         }
     }
 
-
-    fn get_tendency(&self, gossip: &(Point, f64)) -> Point {
-        // If the gradient for the given function is defined use the gradient, otherwise assume gradient is zero
-        let gradient = match self.function.gradient(self.position) {
-            Some(gradient) => gradient,
-            None => [0.0, 0.0],
-        };
-        
-        // See if the currently best value is worse than our own best value
-        // If yes, write our value into the register and have no envy
-        // If no, the envy is the direction towards the best value
-        let envy = match gossip.1 < self.value {
-            true => [0.0, 0.0],
-            false => [gossip.0.0 - self.position.0, gossip.0.1 - self.position.1],
-        };
-
-        // The envy is combined with the gradient to return the tendency of our worker
-        (envy[0] - gradient[0], envy[1] - gradient[1])
-    }
-
-    fn determine_direction(&self, tendency: Point) -> Point {
+    fn get_step(&self, gossip: &(Point, f64)) -> Point {
         let mut rng = thread_rng();
+        let diff = (self.value - gossip.1).abs();
         
-        // Randomly decide based on the jealousy in the genes of the worker if the worker will follow the tendency, 
-        // or if the worker goes into a random direction instead
-        if rng.gen_range(0.0..1.0) < self.genes.jealousy {
-            tendency
+        if diff < 1e-10 {
+            return self.random_gradient(&mut rng)
+        }
+        
+        let rand = rng.gen_range(0.0..diff)/diff;
+        let next = if rand > self.genes.jealousy {
+            gossip.0
         } else {
-            let norm = [norm(tendency), 1.0].into_iter()
-                .max_by(|a, b| a.total_cmp(&b)).unwrap();
-        
-            let random_direction = (rng.gen_range(-norm..norm), rng.gen_range(-norm..norm));
-            // Additional model
-            // [random_direction[0] + tendency[0], random_direction[1] + tendency[1]]
-            // Total randomness
-            random_direction
+            let gradient = self.random_gradient(&mut rng);
+            (self.position.0 + gradient.0, self.position.1 + gradient.1) 
+        };
+        next
+    }
+    fn random_gradient(&self, rng: &mut  ThreadRng) -> Point {
+        let norm = self.function.range()[1] * self.genes.stride * self.genes.stride;
+        if self.genes.jealousy < 0.3 {
+            (rng.gen_range(-norm..norm), rng.gen_range(-norm..norm))
+        } else{
+            match self.function.gradient(self.position) {
+                Some(gradient) => gradient,
+                None => (rng.gen_range(-norm..norm), rng.gen_range(-norm..norm)),
+            }
         }
     }
 
@@ -120,7 +109,5 @@ impl Worker {
     }
 }
 
-fn norm(point: Point) -> f64 {
-    (point.0.powf(2.0) + point.1.powf(2.0)).sqrt()
-} 
+
 
