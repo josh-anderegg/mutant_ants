@@ -1,4 +1,3 @@
-use std::{f64::NEG_INFINITY, f64::INFINITY};
 
 pub mod rastrigin;
 pub mod ackley;
@@ -27,7 +26,7 @@ pub trait Function: Sync {
     }
 
     fn range(&self) -> [f64;2] {
-        [NEG_INFINITY, INFINITY]
+        [-MAX_DOMAIN, MAX_DOMAIN]
     }
     fn name(&self) -> &str;
 
