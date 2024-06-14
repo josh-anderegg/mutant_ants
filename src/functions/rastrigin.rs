@@ -25,11 +25,11 @@ impl Function for Rastrigin {
     }
 
    
-    fn gradient(&self, p : Point) -> Option<[f64;2]> {
+    fn gradient(&self, p : Point) -> Option<(f64, f64)> {
         if self.domain_check(p){
             let dx = 2.0 * p.0 + 20.0 * PI * (2.0 * PI * p.0).sin();
             let dy = 2.0 * p.1 + 20.0 * PI * (2.0 * PI * p.1).sin(); 
-            Some([dx,dy])
+            Some((dx,dy))
         } else {
             None
         }
@@ -65,6 +65,6 @@ mod test {
     #[test]
     fn gradient_min(){
         let rast = Rastrigin;
-        assert_eq!([0.0, 0.0], rast.gradient(rast.minimum()).unwrap())
+        assert_eq!((0.0, 0.0), rast.gradient(rast.minimum()).unwrap())
     }
 }

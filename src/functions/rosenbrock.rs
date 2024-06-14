@@ -24,11 +24,11 @@ impl Function for Rosenbrock {
     }
 
    
-    fn gradient(&self, p : Point) -> Option<[f64;2]> {
+    fn gradient(&self, p : Point) -> Option<(f64, f64)> {
         if self.domain_check(p){
             let dx = 400.0 * p.0.powf(3.0) - 400.0 * p.0 * p.1 + 2.0 * p.0 -2.0;
             let dy = 200.0 * (p.1 - p.0.powf(2.0));
-            Some([dx, dy])
+            Some((dx, dy))
         } else {
             None
         }
@@ -55,6 +55,6 @@ mod test {
     #[test]
     fn gradient_min() {
         let rose = Rosenbrock;
-        assert_eq!(rose.gradient(rose.minimum()).unwrap(), [0.0, 0.0])
+        assert_eq!(rose.gradient(rose.minimum()).unwrap(), (0.0, 0.0))
     }
 }

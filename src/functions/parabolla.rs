@@ -25,10 +25,10 @@ impl Function for Parabolla {
     }
 
    
-    fn gradient(&self, p : Point) -> Option<[f64;2]> {
+    fn gradient(&self, p : Point) -> Option<(f64, f64)> {
         let dx = 2.0 * p.0;
         let dy = 2.0 * p.1;
-        Some([dx,dy])
+        Some((dx,dy))
     }
     
     fn name(&self) -> &str {

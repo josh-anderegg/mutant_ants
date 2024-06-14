@@ -28,11 +28,6 @@ impl Function for Ackley {
         }
     }
 
-   
-    fn gradient(&self, _p : Point) -> Option<[f64;2]> {
-        None
-    }
-
     fn range(&self) -> [f64;2] {
         RANGE
     }
