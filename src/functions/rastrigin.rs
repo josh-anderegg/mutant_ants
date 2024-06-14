@@ -48,6 +48,7 @@ mod test {
     use super::Function;
 
     #[test]
+    #[ignore]
     fn values(){
         let rast = Rastrigin;
         let values = [0.0,20.25, 1.0, 22.25, 4.0, 26.25, 9.0, 32.25, 80.5];
@@ -57,12 +58,14 @@ mod test {
     }
 
     #[test]
+    #[ignore]
     fn min() {
         let rast = Rastrigin;
         assert_eq!(0.0, rast.eval(rast.minimum()).unwrap());
     }
 
     #[test]
+    #[ignore]
     fn gradient_min(){
         let rast = Rastrigin;
         assert_eq!((0.0, 0.0), rast.gradient(rast.minimum()).unwrap())

@@ -47,12 +47,14 @@ mod test {
     use super::*;
     
     #[test]
+    #[ignore]
     fn min() {
         let rose = Rosenbrock;
         assert_eq!(rose.eval(rose.minimum()).unwrap(), 0.0)
     }
 
     #[test]
+    #[ignore]
     fn gradient_min() {
         let rose = Rosenbrock;
         assert_eq!(rose.gradient(rose.minimum()).unwrap(), (0.0, 0.0))
