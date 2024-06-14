@@ -17,7 +17,9 @@ pub trait Function: Sync {
     
     fn eval(&self, p : Point) -> Option<f64>; // Given as matlab uses f64 for number precision
     
-    fn gradient(&self, p : Point) -> Option<[f64;2]>;
+    fn gradient(&self, p : Point) -> Option<(f64, f64)> {
+        None
+    }
     
     fn domain_check(&self, p : Point) -> bool {
         let domain = self.domain();
