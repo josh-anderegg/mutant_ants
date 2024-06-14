@@ -35,7 +35,11 @@ impl Function for Rastrigin {
         }
         
     }
-
+    
+    fn name(&self) -> &str {
+        "rastrigin"
+    }
+    
 }
 
 #[cfg(test)]

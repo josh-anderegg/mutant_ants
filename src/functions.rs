@@ -27,6 +27,7 @@ pub trait Function: Sync {
     fn range(&self) -> [f64;2] {
         [NEG_INFINITY, INFINITY]
     }
+    fn name(&self) -> &str;
 
 }
 

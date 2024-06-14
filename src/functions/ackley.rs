@@ -37,5 +37,9 @@ impl Function for Ackley {
         RANGE
     }
     
+    fn name(&self) -> &str {
+        "ackley"
+    }
+    
 }
 

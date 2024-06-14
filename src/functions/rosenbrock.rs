@@ -34,7 +34,11 @@ impl Function for Rosenbrock {
         }
         
     }
-
+    
+    fn name(&self) -> &str {
+        "rosenbrock"
+    }
+    
 }
 
 

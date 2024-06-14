@@ -30,6 +30,10 @@ impl Function for Parabolla {
         let dy = 2.0 * p.1;
         Some([dx,dy])
     }
-
+    
+    fn name(&self) -> &str {
+        "parabolla"
+    }
+    
 }
 
