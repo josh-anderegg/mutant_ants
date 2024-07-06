@@ -1,23 +1,17 @@
 use super::*;
 
 pub struct Parabolla;
-const DOMAIN : Domain = [[-MAX_DOMAIN, MAX_DOMAIN], [-MAX_DOMAIN, MAX_DOMAIN]];
-const MINIMUM : Point = (0.0, 0.0); 
 
 impl Function for Parabolla {
     
-    fn minimum(&self) -> Point {
-        MINIMUM
-    }
-
-    fn domain(&self) -> Domain {
-        DOMAIN
+    fn minimum(&self) -> f64 {
+        0.0
     }
 
     fn eval(&self, p : Point) -> Option<f64> {
         // x^2 + y^2 
         if  self.domain_check(p) {
-            let val = p.0.powf(2.0) + p.1.powf(2.0);
+            let val = p.0.powi(2) + p.1.powi(2);
             Some(val)
         } else {
             None

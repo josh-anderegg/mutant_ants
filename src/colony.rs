@@ -5,14 +5,14 @@ use worker::{Action, Worker};
 use rand::Rng;
 use crate::functions::Function;
 use self::genes::Genes;
-use super::Solution;
+use super::{Solution, Point};
 use worker::Status;
 
 pub struct Colony {
     _id: usize,
     highest_worker_id: usize,
     workers: Vec<Worker>,
-    bulletin: Solution,
+    bulletin: (Point, f64),
     max_size: usize,
     precision: f64
 }
@@ -50,7 +50,7 @@ impl Colony {
                 break;
             }
         }
-        (self.bulletin, history)
+        ((self.bulletin.0, self.bulletin.1, iter_nr), history)
     }
 
     fn iterate(&mut self, track:bool) -> Option<Vec<(usize, Action)>> {
@@ -129,7 +129,7 @@ impl Colony {
         let mut rng = rand::thread_rng();
         let [[x_min, x_max], [y_min, y_max]] = function.domain();
         let colony_center = (rng.gen_range(x_min..=x_max), rng.gen_range(y_min..=y_max));
-        let function_range = function.range()[1] - function.range()[0];
+        let function_range = function.norm();
         for id in 0..pop_count {
             let worker_genes = Genes::new(&mut rng, function_range);
             workers.push(Worker::new(id, colony_center, &mut rng, function, &worker_genes));

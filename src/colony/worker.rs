@@ -7,7 +7,6 @@ pub struct Worker {
     pub position: Point,
     genes: Genes,
     function: &'static dyn Function,
-    momentum: Point,
     pub value: f64,
     pub remaining_age: usize,
     pub status: Status
@@ -46,25 +45,29 @@ impl Worker {
 
     fn get_next(&self, gossip: &(Point, f64)) -> Point {
         let mut rng = thread_rng();
+
         let spray = self.genes.indecisiveness;
         let spray_x = rng.gen_range(-spray..spray);
         let spray_y = rng.gen_range(-spray..spray);
-        let norm = (self.function.range()[1] - self.function.range()[0])/100.0;
-        let rand = rng.gen_range(0.0..1.0);
+
+        let jealousy_rand = rng.gen_range(0.0..1.0);
 
         let gradient = self.function.gradient(self.position).unwrap_or((0.0, 0.0));
-        let random = (rng.gen_range(-norm..norm), rng.gen_range(-norm..norm));
         let next = if self.status == Status::Leading {
-            (self.position.0 + (self.momentum.0 - gradient.0 + spray_x) * 0.5, 
-             self.position.1 + (self.momentum.1 - gradient.1 + spray_y) * 0.5) 
-        } else if self.status == Status::Trailing && rand < self.genes.jealousy { // Trailing an jealous
+            (self.position.0 + (spray_x - gradient.0) * self.genes.stride.0, 
+             self.position.1 + (spray_y - gradient.1) * self.genes.stride.0) 
+        } else if self.status == Status::Trailing && jealousy_rand < self.genes.jealousy { // Trailing an jealous
             (gossip.0.0 + spray_x, gossip.0.1 + spray_y)
         } else if self.status == Status:: Trailing { // Trailing and not jealous
-            (self.position.0 + (self.momentum.0 + random.0 + spray_x) * 2.0, 
-             self.position.1 + (self.momentum.1 - random.1 + spray_y) * 2.0)          
+            let norm = (self.function.norm())/100.0;
+            let random_step = (rng.gen_range(-norm..norm), rng.gen_range(-norm..norm));
+            (self.position.0 + (spray_x + random_step.0) * self.genes.stride.1, 
+             self.position.1 + (spray_y + random_step.1) * self.genes.stride.1)          
         } else {
-            (self.position.0 + (self.momentum.0 - random.0 + spray_x) * 3.0, 
-             self.position.1 + (self.momentum.1 - random.1 + spray_y) * 3.0) 
+            let norm = (self.function.norm())/100.0;
+            let random_step = (rng.gen_range(-norm..norm), rng.gen_range(-norm..norm));
+            (self.position.0 + (spray_x + random_step.0) * self.genes.stride.2, 
+             self.position.1 + (spray_x + random_step.1) * self.genes.stride.2) 
         };
         next
     }
@@ -93,7 +96,6 @@ impl Worker {
             position: start_position,
             genes: colony_gene_pool.mutate(rng),
             function,
-            momentum:  (0.0,0.0),
             value: start_val,
             remaining_age : starting_age,
             status: Status::Trailing

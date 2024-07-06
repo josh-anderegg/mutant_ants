@@ -3,17 +3,14 @@ use std::f64::consts::PI;
 use std::f64::consts::E;
 
 pub struct Ackley;
-const DOMAIN : Domain = [[-5.0, 5.0], [-5.0, 5.0]];
-const MINIMUM : Point = (0.0, 0.0); 
-const RANGE : [f64; 2] = [-5.0, 5.0];
 impl Function for Ackley {
     
-    fn minimum(&self) -> Point {
-        MINIMUM
+    fn minimum(&self) -> f64{
+        0.0
     }
 
     fn domain(&self) -> Domain {
-        DOMAIN
+        [[-5.0, 5.0], [-5.0, 5.0]]
     }
 
     fn eval(&self, p : Point) -> Option<f64> {
@@ -26,10 +23,6 @@ impl Function for Ackley {
         } else {
             None
         }
-    }
-
-    fn range(&self) -> [f64;2] {
-        RANGE
     }
     
     fn name(&self) -> &str {

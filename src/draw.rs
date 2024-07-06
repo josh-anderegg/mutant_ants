@@ -29,8 +29,8 @@ const LABEL_SIZE : i32 = 30;
 
 pub fn draw_history(function : &'static dyn Function, history : &History, iteration_count: usize, time: &String) {
     let colors = colormap_neon();
-
-    fs::create_dir(format!("outputs/{}_{time}", function.name())).unwrap();
+    fs::create_dir_all(format!("target/tmp/{}_{time}", function.name())).unwrap();
+    fs::create_dir_all(format!("target/gifs")).unwrap();
 
     let [[x_min, x_max], [y_min, y_max]] = function.domain();
     let range = (MARGIN+LABEL_SIZE..(WIDTH as i32 - MARGIN), MARGIN..(HEIGHT as i32 - MARGIN - LABEL_SIZE));
@@ -44,7 +44,7 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
     
     
         'outer: for ite in 0..iteration_count{
-        let file_name = format!("outputs/{}_{time}/{ite}.png", function.name());
+        let file_name = format!("target/tmp/{}_{time}/{ite}.png", function.name());
         let drawing_area = BitMapBackend::new(file_name.as_str(), (WIDTH, HEIGHT))
             .into_drawing_area();
         drawing_area.fill(&WHITE).unwrap();
@@ -99,10 +99,10 @@ pub fn draw_history(function : &'static dyn Function, history : &History, iterat
 }
 
 fn combine_images(name: &str, time: &String){
-    // ffmpeg -framerate 30 -i outputs/temp/%d.png -c:v libx264 -r 30 -pix_fmt yuv420p output.mp4
-    // rm outputs/temp/*.png 
-    let ffmpeg_cmd = format!("ffmpeg -framerate 5 -i outputs/{name}_{time}/%d.png -r 5 -s 800x800 -pix_fmt  yuv420p outputs/{name}_{time}.gif\n
-                                        rm -r outputs/{name}_{time}");
+    // ffmpeg -framerate 30 -i target/temp/%d.png -c:v libx264 -r 30 -pix_fmt yuv420p output.mp4
+    // rm target/temp/*.png 
+    let ffmpeg_cmd = format!("ffmpeg -framerate 5 -i target/tmp/{name}_{time}/%d.png -r 5 -s 800x800 -pix_fmt  yuv420p target/gifs/{name}_{time}.gif\n
+                                        rm -r target/tmp/{name}_{time}");
     // Run the command
     Command::new("sh")
        .arg("-c")
@@ -113,21 +113,6 @@ fn combine_images(name: &str, time: &String){
        .expect("FFMPEG failed");
     
 }
-
-// fn colormap_nord() -> DerivedColorMap<RGBColor> {
-//     let blue = RGBColor{0: 37, 1: 51, 2: 67};
-//     let yellow = RGBColor{0: 235, 1: 203, 2: 139};
-
-//     DerivedColorMap::new(&[blue, yellow])
-// }
-// fn colormap_bright() -> DerivedColorMap<RGBColor> {
-//     let blue = RGBColor{0: 0, 1: 127, 2: 115};
-//     let green = RGBColor{0: 76, 1: 205, 2: 153};
-//     let orange = RGBColor{0: 255, 1: 199, 2: 0};
-//     let yellow = RGBColor{0: 255, 1: 244, 2: 85};
-
-//     DerivedColorMap::new(&[blue, green, orange, yellow])
-// }
 
 fn colormap_neon() -> DerivedColorMap<RGBColor> {
     let blue = RGBColor{0: 29, 1: 43, 2: 83};

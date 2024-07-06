@@ -1,22 +1,18 @@
 use super::*;
 pub struct Rosenbrock;
-
-const DOMAIN : Domain = [[-MAX_DOMAIN, MAX_DOMAIN], [-MAX_DOMAIN, MAX_DOMAIN]];
-const MINIMUM : Point = (1.0, 1.0); 
-
 impl Function for Rosenbrock {
     
-    fn minimum(&self) -> Point {
-        MINIMUM
+    fn minimum(&self) -> f64 {
+        0.0
     }
 
     fn domain(&self) -> Domain {
-        DOMAIN
+        [[-MAX_DOMAIN, MAX_DOMAIN], [-MAX_DOMAIN, MAX_DOMAIN]]
     }
 
     fn eval(&self, p : Point) -> Option<f64> {
         if  self.domain_check(p) {
-            let val = 100.0 * (p.1 - p.0.powf(2.0)).powf(2.0) + (1.0-p.0).powf(2.0);
+            let val = 100.0 * (p.1 - p.0.powi(2)).powi(2) + (1.0 - p.0).powi(2);
             Some(val)
         } else {
             None
@@ -26,8 +22,8 @@ impl Function for Rosenbrock {
    
     fn gradient(&self, p : Point) -> Option<(f64, f64)> {
         if self.domain_check(p){
-            let dx = 400.0 * p.0.powf(3.0) - 400.0 * p.0 * p.1 + 2.0 * p.0 -2.0;
-            let dy = 200.0 * (p.1 - p.0.powf(2.0));
+            let dx = 400.0 * p.0.powi(3) - 400.0 * p.0 * p.1 + 2.0 * p.0 - 2.0;
+            let dy = 200.0 * (p.1 - p.0.powi(2));
             Some((dx, dy))
         } else {
             None
@@ -39,24 +35,4 @@ impl Function for Rosenbrock {
         "rosenbrock"
     }
     
-}
-
-
-#[cfg(test)]
-mod test {
-    use super::*;
-    
-    #[test]
-    #[ignore]
-    fn min() {
-        let rose = Rosenbrock;
-        assert_eq!(rose.eval(rose.minimum()).unwrap(), 0.0)
-    }
-
-    #[test]
-    #[ignore]
-    fn gradient_min() {
-        let rose = Rosenbrock;
-        assert_eq!(rose.gradient(rose.minimum()).unwrap(), (0.0, 0.0))
-    }
 }

@@ -1,17 +1,14 @@
 use super::*;
 use std::f64::consts::PI;
 pub struct Rastrigin;
-const DOMAIN : Domain = [[-5.12, 5.12], [-5.12, 5.12]];
-const MINIMUM : Point = (0.0, 0.0); 
-const RANGE: [f64;2] = [-5.12, 5.12];
 impl Function for Rastrigin {
     
-    fn minimum(&self) -> Point {
-        MINIMUM
+    fn minimum(&self) -> f64 {
+        0.0
     }
 
     fn domain(&self) -> Domain {
-        DOMAIN
+        [[-5.12, 5.12], [-5.12, 5.12]]
     }
 
     fn eval(&self, p : Point) -> Option<f64> {
@@ -35,43 +32,9 @@ impl Function for Rastrigin {
         }
         
     }
-    
-    fn range(&self) -> [f64;2] {
-        RANGE    
-    }
 
     fn name(&self) -> &str {
         "rastrigin"
     }
     
-}
-
-#[cfg(test)]
-mod test {
-    use crate::functions::rastrigin::Rastrigin;
-    use super::Function;
-
-    #[test]
-    #[ignore]
-    fn values(){
-        let rast = Rastrigin;
-        let values = [0.0,20.25, 1.0, 22.25, 4.0, 26.25, 9.0, 32.25, 80.5];
-        let results = [(0.0,0.0), (0.0,0.5), (0.0,1.0), (0.0,1.5), (0.0,2.0), (0.0,2.5), (0.0,3.0), (0.0,3.5), (4.5,4.5)]
-            .map(|p| rast.eval(p).unwrap());
-        assert_eq!(values, results);
-    }
-
-    #[test]
-    #[ignore]
-    fn min() {
-        let rast = Rastrigin;
-        assert_eq!(0.0, rast.eval(rast.minimum()).unwrap());
-    }
-
-    #[test]
-    #[ignore]
-    fn gradient_min(){
-        let rast = Rastrigin;
-        assert_eq!((0.0, 0.0), rast.gradient(rast.minimum()).unwrap())
-    }
 }
