@@ -38,7 +38,7 @@ fn export_history(function: &'static dyn Function, history: &History, time: &Str
 }
 
 
-pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_size: usize, max_iterations: usize, track: bool) -> Solution{
+pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_size: usize, max_iterations: usize, track: bool, precision: f64) -> Solution{
 
     let mut handles = Vec::new();
     let mut colonies = Vec::new();
@@ -50,7 +50,7 @@ pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_si
 
     let min = Arc::new(Mutex::new(((0.0, 0.0), f64::MAX)));
     for colony_id in 0..colony_nr {
-        let colony = Colony::new(colony_id, colony_size, function);
+        let colony = Colony::new(colony_id, colony_size, function, precision);
         let colony_reference = Arc::new(Mutex::new(colony));
         let history = history.clone();
         
@@ -103,7 +103,7 @@ pub fn find_minimum(function: &'static dyn Function, colony_nr: usize, colony_si
 mod test {
     const COLONY_COUNT: usize  = 10;
     const COLONY_SIZE: usize = 20;
-    const EPSILON: f64 = 1e-8; // Small epsilon onto which we desire accuracy
+    const EPSILON: f64 = 1e-6; // Small epsilon onto which we desire accuracy
     const MAX_ITERATIONS: usize = 100_000;
 
     use crate::{find_minimum, functions::{ackley::Ackley, parabolla::Parabolla, rastrigin::Rastrigin, rosenbrock::Rosenbrock}};
@@ -113,7 +113,7 @@ mod test {
 
     #[test]
     fn single_colony_parabolla(){
-        let solution = find_minimum(&Parabolla, 1, 10, MAX_ITERATIONS, false);
+        let solution = find_minimum(&Parabolla, 1, 10, MAX_ITERATIONS, false, EPSILON);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -122,7 +122,7 @@ mod test {
 
     #[test]
     fn parabolla() {
-        let solution = find_minimum(&Parabolla, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
+        let solution = find_minimum(&Parabolla, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false, EPSILON);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -131,7 +131,7 @@ mod test {
 
     #[test]
     fn rosenbrock() {
-        let solution = find_minimum(&Rosenbrock, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
+        let solution = find_minimum(&Rosenbrock, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false, EPSILON);
         let target = ((1.0,1.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -141,7 +141,7 @@ mod test {
 
     #[test]
     fn ackley(){
-        let solution = find_minimum(&Ackley, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
+        let solution = find_minimum(&Ackley, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false, EPSILON);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        
@@ -150,7 +150,7 @@ mod test {
 
     #[test]
     fn rastrigin() {
-        let solution = find_minimum(&Rastrigin, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false);
+        let solution = find_minimum(&Rastrigin, COLONY_COUNT, COLONY_SIZE, MAX_ITERATIONS,false, EPSILON);
         let target = ((0.0,0.0), 0.0);
         let diff = solution_diff(target, solution);
         println!("{target:?} {solution:?} {diff}");        

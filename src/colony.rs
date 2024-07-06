@@ -13,7 +13,8 @@ pub struct Colony {
     highest_worker_id: usize,
     workers: Vec<Worker>,
     bulletin: Solution,
-    max_size: usize
+    max_size: usize,
+    precision: f64
 }
 pub type ColonyHistory = Vec<Vec<(usize, Action)>>;
 
@@ -45,7 +46,7 @@ impl Colony {
                 }
             }
             iter_nr += 1;
-            if self.bulletin.1 < 1e-15{
+            if self.bulletin.1 < self.precision{
                 break;
             }
         }
@@ -123,7 +124,7 @@ impl Colony {
         iteration
     }
 
-    pub fn new(_id: usize, pop_count: usize, function: &'static dyn Function) -> Colony {
+    pub fn new(_id: usize, pop_count: usize, function: &'static dyn Function, precision: f64) -> Colony {
         let mut workers = Vec::new();
         let mut rng = rand::thread_rng();
         let [[x_min, x_max], [y_min, y_max]] = function.domain();
@@ -133,7 +134,7 @@ impl Colony {
             let worker_genes = Genes::new(&mut rng, function_range);
             workers.push(Worker::new(id, colony_center, &mut rng, function, &worker_genes));
         }
-        Colony {_id, highest_worker_id : pop_count -1, workers, bulletin: ((f64::MAX, f64::MAX), f64::MAX), max_size: pop_count}
+        Colony {_id, highest_worker_id : pop_count -1, workers, bulletin: ((f64::MAX, f64::MAX), f64::MAX), max_size: pop_count, precision}
     }
 
     fn lower_bracket(&self) -> usize {
