@@ -1,6 +1,6 @@
 # Description
 
-Library for finding minimas of arbitrary functions implemented in Rust. 
+Library for finding minimas of arbitrary functions written in Rust. 
 
 ## Details
 
