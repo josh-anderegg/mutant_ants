@@ -1,0 +1,1865 @@
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+WARNING: HTML report generation will become a non-default optional feature in Criterion.rs 0.4.0.
+This feature is being moved to cargo-criterion (https://github.com/bheisler/cargo-criterion) and will be optional in a future version of Criterion.rs. To silence this warning, either switch to cargo-criterion or enable the 'html_reports' feature in your Cargo.toml.
+
+
+Warning: It is not recommended to reduce nresamples below 1000.
+Benchmarking rastrigin/1_20_10000_0.001
+Benchmarking rastrigin/1_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_20_10000_0.001: Collecting 100 samples in estimated 5.1047 s (1900 iterations)
+Benchmarking rastrigin/1_20_10000_0.001: Analyzing
+rastrigin/1_20_10000_0.001
+                        time:   [3.9293 ms 4.2096 ms 4.1991 ms]
+Benchmarking rastrigin/1_20_10000_0.000001
+Benchmarking rastrigin/1_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_20_10000_0.000001: Collecting 100 samples in estimated 5.0550 s (2100 iterations)
+Benchmarking rastrigin/1_20_10000_0.000001: Analyzing
+rastrigin/1_20_10000_0.000001
+                        time:   [4.0157 ms 4.2285 ms 4.4624 ms]
+Benchmarking rastrigin/1_20_10000_0.000000001
+Benchmarking rastrigin/1_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_20_10000_0.000000001: Collecting 100 samples in estimated 5.1549 s (1300 iterations)
+Benchmarking rastrigin/1_20_10000_0.000000001: Analyzing
+rastrigin/1_20_10000_0.000000001
+                        time:   [4.3840 ms 4.7952 ms 5.3756 ms]
+Benchmarking rastrigin/1_20_250000_0.001
+Benchmarking rastrigin/1_20_250000_0.001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_20_250000_0.001: Collecting 100 samples in estimated 5.1733 s (1700 iterations)
+Benchmarking rastrigin/1_20_250000_0.001: Analyzing
+rastrigin/1_20_250000_0.001
+                        time:   [2.7483 ms 3.1071 ms 3.3921 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+Benchmarking rastrigin/1_20_250000_0.000001
+Benchmarking rastrigin/1_20_250000_0.000001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_20_250000_0.000001: Collecting 100 samples in estimated 5.2557 s (1300 iterations)
+Benchmarking rastrigin/1_20_250000_0.000001: Analyzing
+rastrigin/1_20_250000_0.000001
+                        time:   [4.2832 ms 4.6858 ms 5.1708 ms]
+Benchmarking rastrigin/1_20_250000_0.000000001
+Benchmarking rastrigin/1_20_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_20_250000_0.000000001: Collecting 100 samples in estimated 5.2077 s (1000 iterations)
+Benchmarking rastrigin/1_20_250000_0.000000001: Analyzing
+rastrigin/1_20_250000_0.000000001
+                        time:   [4.1922 ms 4.7219 ms 5.2936 ms]
+Benchmarking rastrigin/1_50_10000_0.001
+Benchmarking rastrigin/1_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_50_10000_0.001: Collecting 100 samples in estimated 5.0627 s (1900 iterations)
+Benchmarking rastrigin/1_50_10000_0.001: Analyzing
+rastrigin/1_50_10000_0.001
+                        time:   [4.0624 ms 4.5316 ms 4.9277 ms]
+Benchmarking rastrigin/1_50_10000_0.000001
+Benchmarking rastrigin/1_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_50_10000_0.000001: Collecting 100 samples in estimated 5.1928 s (1600 iterations)
+Benchmarking rastrigin/1_50_10000_0.000001: Analyzing
+rastrigin/1_50_10000_0.000001
+                        time:   [2.9224 ms 3.5746 ms 4.1963 ms]
+Benchmarking rastrigin/1_50_10000_0.000000001
+Benchmarking rastrigin/1_50_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_50_10000_0.000000001: Collecting 100 samples in estimated 5.2776 s (1400 iterations)
+Benchmarking rastrigin/1_50_10000_0.000000001: Analyzing
+rastrigin/1_50_10000_0.000000001
+                        time:   [4.6772 ms 5.0908 ms 5.5507 ms]
+Benchmarking rastrigin/1_50_250000_0.001
+Benchmarking rastrigin/1_50_250000_0.001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_50_250000_0.001: Collecting 100 samples in estimated 5.2265 s (1700 iterations)
+Benchmarking rastrigin/1_50_250000_0.001: Analyzing
+rastrigin/1_50_250000_0.001
+                        time:   [4.3884 ms 4.9683 ms 5.3701 ms]
+Benchmarking rastrigin/1_50_250000_0.000001
+Benchmarking rastrigin/1_50_250000_0.000001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_50_250000_0.000001: Collecting 100 samples in estimated 5.0694 s (1300 iterations)
+Benchmarking rastrigin/1_50_250000_0.000001: Analyzing
+rastrigin/1_50_250000_0.000001
+                        time:   [4.1008 ms 4.4520 ms 5.1210 ms]
+Benchmarking rastrigin/1_50_250000_0.000000001
+Benchmarking rastrigin/1_50_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking rastrigin/1_50_250000_0.000000001: Collecting 100 samples in estimated 5.1844 s (1900 iterations)
+Benchmarking rastrigin/1_50_250000_0.000000001: Analyzing
+rastrigin/1_50_250000_0.000000001
+                        time:   [3.5443 ms 3.8475 ms 4.1761 ms]
+Benchmarking rastrigin/20_20_10000_0.001
+Benchmarking rastrigin/20_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_20_10000_0.001: Collecting 100 samples in estimated 5.7639 s (700 iterations)
+Benchmarking rastrigin/20_20_10000_0.001: Analyzing
+rastrigin/20_20_10000_0.001
+                        time:   [7.2951 ms 7.4680 ms 7.5978 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking rastrigin/20_20_10000_0.000001
+Benchmarking rastrigin/20_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_20_10000_0.000001: Collecting 100 samples in estimated 5.5888 s (800 iterations)
+Benchmarking rastrigin/20_20_10000_0.000001: Analyzing
+rastrigin/20_20_10000_0.000001
+                        time:   [7.0666 ms 7.2839 ms 7.4146 ms]
+Found 5 outliers among 100 measurements (5.00%)
+  1 (1.00%) low mild
+  4 (4.00%) high mild
+Benchmarking rastrigin/20_20_10000_0.000000001
+Benchmarking rastrigin/20_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_20_10000_0.000000001: Collecting 100 samples in estimated 5.2245 s (700 iterations)
+Benchmarking rastrigin/20_20_10000_0.000000001: Analyzing
+rastrigin/20_20_10000_0.000000001
+                        time:   [7.3012 ms 7.4529 ms 7.5929 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking rastrigin/20_20_250000_0.001
+Benchmarking rastrigin/20_20_250000_0.001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_20_250000_0.001: Collecting 100 samples in estimated 5.5572 s (800 iterations)
+Benchmarking rastrigin/20_20_250000_0.001: Analyzing
+rastrigin/20_20_250000_0.001
+                        time:   [7.1059 ms 7.2660 ms 7.4333 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+Benchmarking rastrigin/20_20_250000_0.000001
+Benchmarking rastrigin/20_20_250000_0.000001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_20_250000_0.000001: Collecting 100 samples in estimated 5.1018 s (700 iterations)
+Benchmarking rastrigin/20_20_250000_0.000001: Analyzing
+rastrigin/20_20_250000_0.000001
+                        time:   [6.8104 ms 7.0315 ms 7.1397 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking rastrigin/20_20_250000_0.000000001
+Benchmarking rastrigin/20_20_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_20_250000_0.000000001: Collecting 100 samples in estimated 5.2944 s (700 iterations)
+Benchmarking rastrigin/20_20_250000_0.000000001: Analyzing
+rastrigin/20_20_250000_0.000000001
+                        time:   [7.3187 ms 7.4609 ms 7.6663 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking rastrigin/20_50_10000_0.001
+Benchmarking rastrigin/20_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_50_10000_0.001: Collecting 100 samples in estimated 5.0008 s (700 iterations)
+Benchmarking rastrigin/20_50_10000_0.001: Analyzing
+rastrigin/20_50_10000_0.001
+                        time:   [6.6612 ms 6.8306 ms 7.0058 ms]
+Benchmarking rastrigin/20_50_10000_0.000001
+Benchmarking rastrigin/20_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_50_10000_0.000001: Collecting 100 samples in estimated 5.2845 s (700 iterations)
+Benchmarking rastrigin/20_50_10000_0.000001: Analyzing
+rastrigin/20_50_10000_0.000001
+                        time:   [7.0044 ms 7.1208 ms 7.2476 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  1 (1.00%) low mild
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking rastrigin/20_50_10000_0.000000001
+Benchmarking rastrigin/20_50_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_50_10000_0.000000001: Collecting 100 samples in estimated 5.5935 s (800 iterations)
+Benchmarking rastrigin/20_50_10000_0.000000001: Analyzing
+rastrigin/20_50_10000_0.000000001
+                        time:   [7.0809 ms 7.2438 ms 7.3669 ms]
+Benchmarking rastrigin/20_50_250000_0.001
+Benchmarking rastrigin/20_50_250000_0.001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_50_250000_0.001: Collecting 100 samples in estimated 5.3861 s (800 iterations)
+Benchmarking rastrigin/20_50_250000_0.001: Analyzing
+rastrigin/20_50_250000_0.001
+                        time:   [6.7462 ms 6.8808 ms 6.9692 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  1 (1.00%) low mild
+  2 (2.00%) high mild
+Benchmarking rastrigin/20_50_250000_0.000001
+Benchmarking rastrigin/20_50_250000_0.000001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_50_250000_0.000001: Collecting 100 samples in estimated 5.1864 s (800 iterations)
+Benchmarking rastrigin/20_50_250000_0.000001: Analyzing
+rastrigin/20_50_250000_0.000001
+                        time:   [7.0915 ms 7.2080 ms 7.3753 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking rastrigin/20_50_250000_0.000000001
+Benchmarking rastrigin/20_50_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking rastrigin/20_50_250000_0.000000001: Collecting 100 samples in estimated 5.2561 s (700 iterations)
+Benchmarking rastrigin/20_50_250000_0.000000001: Analyzing
+rastrigin/20_50_250000_0.000000001
+                        time:   [7.0706 ms 7.1397 ms 7.2593 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  1 (1.00%) low mild
+  2 (2.00%) high mild
+
+
+Warning: It is not recommended to reduce nresamples below 1000.
+Benchmarking parabolla/1_20_10000_0.001
+Benchmarking parabolla/1_20_10000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.3s, enable flat sampling, or reduce sample count to 50.
+Benchmarking parabolla/1_20_10000_0.001: Collecting 100 samples in estimated 9.3485 s (5050 iterations)
+Benchmarking parabolla/1_20_10000_0.001: Analyzing
+parabolla/1_20_10000_0.001
+                        time:   [2.6012 ms 2.9037 ms 3.0754 ms]
+Benchmarking parabolla/1_20_10000_0.000001
+Benchmarking parabolla/1_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking parabolla/1_20_10000_0.000001: Collecting 100 samples in estimated 5.6311 s (800 iterations)
+Benchmarking parabolla/1_20_10000_0.000001: Analyzing
+parabolla/1_20_10000_0.000001
+                        time:   [6.2383 ms 6.7212 ms 7.3781 ms]
+Found 6 outliers among 100 measurements (6.00%)
+  4 (4.00%) high mild
+  2 (2.00%) high severe
+Benchmarking parabolla/1_20_10000_0.000000001
+Benchmarking parabolla/1_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking parabolla/1_20_10000_0.000000001: Collecting 100 samples in estimated 5.9979 s (600 iterations)
+Benchmarking parabolla/1_20_10000_0.000000001: Analyzing
+parabolla/1_20_10000_0.000000001
+                        time:   [11.117 ms 11.833 ms 12.559 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking parabolla/1_20_250000_0.001
+Benchmarking parabolla/1_20_250000_0.001: Warming up for 250.00 ms
+Benchmarking parabolla/1_20_250000_0.001: Collecting 100 samples in estimated 5.1713 s (2300 iterations)
+Benchmarking parabolla/1_20_250000_0.001: Analyzing
+parabolla/1_20_250000_0.001
+                        time:   [2.7737 ms 2.9698 ms 3.1423 ms]
+Benchmarking parabolla/1_20_250000_0.000001
+Benchmarking parabolla/1_20_250000_0.000001: Warming up for 250.00 ms
+Benchmarking parabolla/1_20_250000_0.000001: Collecting 100 samples in estimated 5.4592 s (1000 iterations)
+Benchmarking parabolla/1_20_250000_0.000001: Analyzing
+parabolla/1_20_250000_0.000001
+                        time:   [6.2487 ms 6.9142 ms 7.5828 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+Benchmarking parabolla/1_20_250000_0.000000001
+Benchmarking parabolla/1_20_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking parabolla/1_20_250000_0.000000001: Collecting 100 samples in estimated 7.0818 s (300 iterations)
+Benchmarking parabolla/1_20_250000_0.000000001: Analyzing
+parabolla/1_20_250000_0.000000001
+                        time:   [20.789 ms 23.837 ms 26.314 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+Benchmarking parabolla/1_50_10000_0.001
+Benchmarking parabolla/1_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking parabolla/1_50_10000_0.001: Collecting 100 samples in estimated 5.1382 s (2200 iterations)
+Benchmarking parabolla/1_50_10000_0.001: Analyzing
+parabolla/1_50_10000_0.001
+                        time:   [1.6250 ms 1.9576 ms 2.3094 ms]
+Benchmarking parabolla/1_50_10000_0.000001
+Benchmarking parabolla/1_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking parabolla/1_50_10000_0.000001: Collecting 100 samples in estimated 5.6962 s (700 iterations)
+Benchmarking parabolla/1_50_10000_0.000001: Analyzing
+parabolla/1_50_10000_0.000001
+                        time:   [8.5121 ms 8.8897 ms 9.2002 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking parabolla/1_50_10000_0.000000001
+Benchmarking parabolla/1_50_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking parabolla/1_50_10000_0.000000001: Collecting 100 samples in estimated 7.3371 s (300 iterations)
+Benchmarking parabolla/1_50_10000_0.000000001: Analyzing
+parabolla/1_50_10000_0.000000001
+                        time:   [23.964 ms 24.512 ms 25.154 ms]
+Benchmarking parabolla/1_50_250000_0.001
+Benchmarking parabolla/1_50_250000_0.001: Warming up for 250.00 ms
+Benchmarking parabolla/1_50_250000_0.001: Collecting 100 samples in estimated 5.0327 s (2300 iterations)
+Benchmarking parabolla/1_50_250000_0.001: Analyzing
+parabolla/1_50_250000_0.001
+                        time:   [3.3748 ms 3.7000 ms 3.9931 ms]
+Benchmarking parabolla/1_50_250000_0.000001
+Benchmarking parabolla/1_50_250000_0.000001: Warming up for 250.00 ms
+Benchmarking parabolla/1_50_250000_0.000001: Collecting 100 samples in estimated 5.2459 s (600 iterations)
+Benchmarking parabolla/1_50_250000_0.000001: Analyzing
+parabolla/1_50_250000_0.000001
+                        time:   [8.0572 ms 8.8850 ms 9.4474 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking parabolla/1_50_250000_0.000000001
+Benchmarking parabolla/1_50_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking parabolla/1_50_250000_0.000000001: Collecting 100 samples in estimated 5.8995 s (200 iterations)
+Benchmarking parabolla/1_50_250000_0.000000001: Analyzing
+parabolla/1_50_250000_0.000000001
+                        time:   [40.425 ms 45.529 ms 50.147 ms]
+Found 6 outliers among 100 measurements (6.00%)
+  5 (5.00%) high mild
+  1 (1.00%) high severe
+Benchmarking parabolla/20_20_10000_0.001
+Benchmarking parabolla/20_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking parabolla/20_20_10000_0.001: Collecting 100 samples in estimated 5.2057 s (2100 iterations)
+Benchmarking parabolla/20_20_10000_0.001: Analyzing
+parabolla/20_20_10000_0.001
+                        time:   [2.5108 ms 2.5402 ms 2.5697 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  1 (1.00%) low mild
+  2 (2.00%) high mild
+  1 (1.00%) high severe
+Benchmarking parabolla/20_20_10000_0.000001
+Benchmarking parabolla/20_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking parabolla/20_20_10000_0.000001: Collecting 100 samples in estimated 6.2845 s (400 iterations)
+Benchmarking parabolla/20_20_10000_0.000001: Analyzing
+parabolla/20_20_10000_0.000001
+                        time:   [15.409 ms 15.609 ms 15.896 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking parabolla/20_20_10000_0.000000001
+Benchmarking parabolla/20_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking parabolla/20_20_10000_0.000000001: Collecting 100 samples in estimated 5.6981 s (200 iterations)
+Benchmarking parabolla/20_20_10000_0.000000001: Analyzing
+parabolla/20_20_10000_0.000000001
+                        time:   [27.218 ms 27.505 ms 27.754 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  2 (2.00%) low mild
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking parabolla/20_20_250000_0.001
+Benchmarking parabolla/20_20_250000_0.001: Warming up for 250.00 ms
+Benchmarking parabolla/20_20_250000_0.001: Collecting 100 samples in estimated 5.1873 s (2000 iterations)
+Benchmarking parabolla/20_20_250000_0.001: Analyzing
+parabolla/20_20_250000_0.001
+                        time:   [2.5332 ms 2.5721 ms 2.6018 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+Benchmarking parabolla/20_20_250000_0.000001
+Benchmarking parabolla/20_20_250000_0.000001: Warming up for 250.00 ms
+Benchmarking parabolla/20_20_250000_0.000001: Collecting 100 samples in estimated 5.7268 s (300 iterations)
+Benchmarking parabolla/20_20_250000_0.000001: Analyzing
+parabolla/20_20_250000_0.000001
+                        time:   [19.180 ms 19.606 ms 20.303 ms]
+Benchmarking parabolla/20_20_250000_0.000000001
+Benchmarking parabolla/20_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 10.6s, or reduce sample count to 40.
+Benchmarking parabolla/20_20_250000_0.000000001: Collecting 100 samples in estimated 10.589 s (100 iterations)
+Benchmarking parabolla/20_20_250000_0.000000001: Analyzing
+parabolla/20_20_250000_0.000000001
+                        time:   [95.028 ms 100.49 ms 107.07 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  1 (1.00%) high mild
+  2 (2.00%) high severe
+Benchmarking parabolla/20_50_10000_0.001
+Benchmarking parabolla/20_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking parabolla/20_50_10000_0.001: Collecting 100 samples in estimated 5.3547 s (1500 iterations)
+Benchmarking parabolla/20_50_10000_0.001: Analyzing
+parabolla/20_50_10000_0.001
+                        time:   [3.4064 ms 3.4403 ms 3.4741 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking parabolla/20_50_10000_0.000001
+Benchmarking parabolla/20_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking parabolla/20_50_10000_0.000001: Collecting 100 samples in estimated 5.6409 s (200 iterations)
+Benchmarking parabolla/20_50_10000_0.000001: Analyzing
+parabolla/20_50_10000_0.000001
+                        time:   [28.104 ms 28.662 ms 29.407 ms]
+Benchmarking parabolla/20_50_10000_0.000000001
+Benchmarking parabolla/20_50_10000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 6.9s, or reduce sample count to 70.
+Benchmarking parabolla/20_50_10000_0.000000001: Collecting 100 samples in estimated 6.9069 s (100 iterations)
+Benchmarking parabolla/20_50_10000_0.000000001: Analyzing
+parabolla/20_50_10000_0.000000001
+                        time:   [72.346 ms 73.717 ms 74.524 ms]
+Benchmarking parabolla/20_50_250000_0.001
+Benchmarking parabolla/20_50_250000_0.001: Warming up for 250.00 ms
+Benchmarking parabolla/20_50_250000_0.001: Collecting 100 samples in estimated 5.0400 s (1400 iterations)
+Benchmarking parabolla/20_50_250000_0.001: Analyzing
+parabolla/20_50_250000_0.001
+                        time:   [3.4418 ms 3.4977 ms 3.5549 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  1 (1.00%) low mild
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking parabolla/20_50_250000_0.000001
+Benchmarking parabolla/20_50_250000_0.000001: Warming up for 250.00 ms
+Benchmarking parabolla/20_50_250000_0.000001: Collecting 100 samples in estimated 7.0084 s (200 iterations)
+Benchmarking parabolla/20_50_250000_0.000001: Analyzing
+parabolla/20_50_250000_0.000001
+                        time:   [29.241 ms 29.946 ms 31.063 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking parabolla/20_50_250000_0.000000001
+Benchmarking parabolla/20_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 18.8s, or reduce sample count to 20.
+Benchmarking parabolla/20_50_250000_0.000000001: Collecting 100 samples in estimated 18.838 s (100 iterations)
+Benchmarking parabolla/20_50_250000_0.000000001: Analyzing
+parabolla/20_50_250000_0.000000001
+                        time:   [175.23 ms 183.62 ms 194.52 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  2 (2.00%) high mild
+  1 (1.00%) high severe
+
+
+Warning: It is not recommended to reduce nresamples below 1000.
+Benchmarking ackley/1_20_10000_0.001
+Benchmarking ackley/1_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking ackley/1_20_10000_0.001: Collecting 100 samples in estimated 5.1389 s (2300 iterations)
+Benchmarking ackley/1_20_10000_0.001: Analyzing
+ackley/1_20_10000_0.001 time:   [3.3827 ms 3.7632 ms 4.0728 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) low mild
+Benchmarking ackley/1_20_10000_0.000001
+Benchmarking ackley/1_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking ackley/1_20_10000_0.000001: Collecting 100 samples in estimated 5.5176 s (1000 iterations)
+Benchmarking ackley/1_20_10000_0.000001: Analyzing
+ackley/1_20_10000_0.000001
+                        time:   [5.2074 ms 5.7003 ms 6.3520 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking ackley/1_20_10000_0.000000001
+Benchmarking ackley/1_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking ackley/1_20_10000_0.000000001: Collecting 100 samples in estimated 5.8239 s (300 iterations)
+Benchmarking ackley/1_20_10000_0.000000001: Analyzing
+ackley/1_20_10000_0.000000001
+                        time:   [18.986 ms 19.032 ms 19.084 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking ackley/1_20_250000_0.001
+Benchmarking ackley/1_20_250000_0.001: Warming up for 250.00 ms
+Benchmarking ackley/1_20_250000_0.001: Collecting 100 samples in estimated 5.2260 s (2300 iterations)
+Benchmarking ackley/1_20_250000_0.001: Analyzing
+ackley/1_20_250000_0.001
+                        time:   [1.8634 ms 2.2357 ms 2.6906 ms]
+Benchmarking ackley/1_20_250000_0.000001
+Benchmarking ackley/1_20_250000_0.000001: Warming up for 250.00 ms
+Benchmarking ackley/1_20_250000_0.000001: Collecting 100 samples in estimated 5.0447 s (1000 iterations)
+Benchmarking ackley/1_20_250000_0.000001: Analyzing
+ackley/1_20_250000_0.000001
+                        time:   [5.3333 ms 5.8443 ms 6.2817 ms]
+Benchmarking ackley/1_20_250000_0.000000001
+Benchmarking ackley/1_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 23.0s, or reduce sample count to 20.
+Benchmarking ackley/1_20_250000_0.000000001: Collecting 100 samples in estimated 22.999 s (100 iterations)
+Benchmarking ackley/1_20_250000_0.000000001: Analyzing
+ackley/1_20_250000_0.000000001
+                        time:   [204.88 ms 227.14 ms 254.48 ms]
+Benchmarking ackley/1_50_10000_0.001
+Benchmarking ackley/1_50_10000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 6.2s, enable flat sampling, or reduce sample count to 60.
+Benchmarking ackley/1_50_10000_0.001: Collecting 100 samples in estimated 6.2052 s (5050 iterations)
+Benchmarking ackley/1_50_10000_0.001: Analyzing
+ackley/1_50_10000_0.001 time:   [4.3125 ms 4.6708 ms 5.0710 ms]
+Benchmarking ackley/1_50_10000_0.000001
+Benchmarking ackley/1_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking ackley/1_50_10000_0.000001: Collecting 100 samples in estimated 5.3173 s (1100 iterations)
+Benchmarking ackley/1_50_10000_0.000001: Analyzing
+ackley/1_50_10000_0.000001
+                        time:   [7.0419 ms 7.6065 ms 8.1523 ms]
+Found 5 outliers among 100 measurements (5.00%)
+  5 (5.00%) high mild
+Benchmarking ackley/1_50_10000_0.000000001
+Benchmarking ackley/1_50_10000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 5.3s, or reduce sample count to 90.
+Benchmarking ackley/1_50_10000_0.000000001: Collecting 100 samples in estimated 5.3300 s (100 iterations)
+Benchmarking ackley/1_50_10000_0.000000001: Analyzing
+ackley/1_50_10000_0.000000001
+                        time:   [52.628 ms 53.163 ms 53.628 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  1 (1.00%) low severe
+  1 (1.00%) low mild
+  2 (2.00%) high severe
+Benchmarking ackley/1_50_250000_0.001
+Benchmarking ackley/1_50_250000_0.001: Warming up for 250.00 ms
+Benchmarking ackley/1_50_250000_0.001: Collecting 100 samples in estimated 5.2518 s (1900 iterations)
+Benchmarking ackley/1_50_250000_0.001: Analyzing
+ackley/1_50_250000_0.001
+                        time:   [3.3004 ms 3.7134 ms 4.2678 ms]
+Benchmarking ackley/1_50_250000_0.000001
+Benchmarking ackley/1_50_250000_0.000001: Warming up for 250.00 ms
+Benchmarking ackley/1_50_250000_0.000001: Collecting 100 samples in estimated 5.1500 s (600 iterations)
+Benchmarking ackley/1_50_250000_0.000001: Analyzing
+ackley/1_50_250000_0.000001
+                        time:   [6.5804 ms 7.4056 ms 8.3214 ms]
+Found 9 outliers among 100 measurements (9.00%)
+  8 (8.00%) high mild
+  1 (1.00%) high severe
+Benchmarking ackley/1_50_250000_0.000000001
+Benchmarking ackley/1_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 46.5s, or reduce sample count to 10.
+Benchmarking ackley/1_50_250000_0.000000001: Collecting 100 samples in estimated 46.523 s (100 iterations)
+Benchmarking ackley/1_50_250000_0.000000001: Analyzing
+ackley/1_50_250000_0.000000001
+                        time:   [470.32 ms 535.07 ms 579.27 ms]
+Benchmarking ackley/20_20_10000_0.001
+Benchmarking ackley/20_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking ackley/20_20_10000_0.001: Collecting 100 samples in estimated 5.2464 s (1800 iterations)
+Benchmarking ackley/20_20_10000_0.001: Analyzing
+ackley/20_20_10000_0.001
+                        time:   [2.8764 ms 2.9095 ms 2.9383 ms]
+Benchmarking ackley/20_20_10000_0.000001
+Benchmarking ackley/20_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking ackley/20_20_10000_0.000001: Collecting 100 samples in estimated 5.6084 s (600 iterations)
+Benchmarking ackley/20_20_10000_0.000001: Analyzing
+ackley/20_20_10000_0.000001
+                        time:   [9.4231 ms 9.5681 ms 9.7124 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) low mild
+  1 (1.00%) high mild
+Benchmarking ackley/20_20_10000_0.000000001
+Benchmarking ackley/20_20_10000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 5.5s, or reduce sample count to 90.
+Benchmarking ackley/20_20_10000_0.000000001: Collecting 100 samples in estimated 5.5387 s (100 iterations)
+Benchmarking ackley/20_20_10000_0.000000001: Analyzing
+ackley/20_20_10000_0.000000001
+                        time:   [54.797 ms 55.231 ms 55.645 ms]
+Found 20 outliers among 100 measurements (20.00%)
+  2 (2.00%) low severe
+  15 (15.00%) high mild
+  3 (3.00%) high severe
+Benchmarking ackley/20_20_250000_0.001
+Benchmarking ackley/20_20_250000_0.001: Warming up for 250.00 ms
+Benchmarking ackley/20_20_250000_0.001: Collecting 100 samples in estimated 5.1070 s (1700 iterations)
+Benchmarking ackley/20_20_250000_0.001: Analyzing
+ackley/20_20_250000_0.001
+                        time:   [2.9216 ms 2.9507 ms 2.9833 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking ackley/20_20_250000_0.000001
+Benchmarking ackley/20_20_250000_0.000001: Warming up for 250.00 ms
+Benchmarking ackley/20_20_250000_0.000001: Collecting 100 samples in estimated 5.8035 s (600 iterations)
+Benchmarking ackley/20_20_250000_0.000001: Analyzing
+ackley/20_20_250000_0.000001
+                        time:   [9.4632 ms 9.5795 ms 9.7008 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking ackley/20_20_250000_0.000000001
+Benchmarking ackley/20_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 76.3s, or reduce sample count to 10.
+Benchmarking ackley/20_20_250000_0.000000001: Collecting 100 samples in estimated 76.290 s (100 iterations)
+Benchmarking ackley/20_20_250000_0.000000001: Analyzing
+ackley/20_20_250000_0.000000001
+                        time:   [790.43 ms 805.78 ms 822.47 ms]
+Benchmarking ackley/20_50_10000_0.001
+Benchmarking ackley/20_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking ackley/20_50_10000_0.001: Collecting 100 samples in estimated 5.0021 s (1200 iterations)
+Benchmarking ackley/20_50_10000_0.001: Analyzing
+ackley/20_50_10000_0.001
+                        time:   [4.1393 ms 4.1663 ms 4.2007 ms]
+Benchmarking ackley/20_50_10000_0.000001
+Benchmarking ackley/20_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking ackley/20_50_10000_0.000001: Collecting 100 samples in estimated 5.5288 s (400 iterations)
+Benchmarking ackley/20_50_10000_0.000001: Analyzing
+ackley/20_50_10000_0.000001
+                        time:   [14.151 ms 14.280 ms 14.607 ms]
+Benchmarking ackley/20_50_10000_0.000000001
+Benchmarking ackley/20_50_10000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 14.8s, or reduce sample count to 30.
+Benchmarking ackley/20_50_10000_0.000000001: Collecting 100 samples in estimated 14.770 s (100 iterations)
+Benchmarking ackley/20_50_10000_0.000000001: Analyzing
+ackley/20_50_10000_0.000000001
+                        time:   [156.65 ms 157.79 ms 158.78 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) low mild
+Benchmarking ackley/20_50_250000_0.001
+Benchmarking ackley/20_50_250000_0.001: Warming up for 250.00 ms
+Benchmarking ackley/20_50_250000_0.001: Collecting 100 samples in estimated 5.3142 s (1300 iterations)
+Benchmarking ackley/20_50_250000_0.001: Analyzing
+ackley/20_50_250000_0.001
+                        time:   [4.1279 ms 4.1584 ms 4.1781 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking ackley/20_50_250000_0.000001
+Benchmarking ackley/20_50_250000_0.000001: Warming up for 250.00 ms
+Benchmarking ackley/20_50_250000_0.000001: Collecting 100 samples in estimated 5.9484 s (400 iterations)
+Benchmarking ackley/20_50_250000_0.000001: Analyzing
+ackley/20_50_250000_0.000001
+                        time:   [14.089 ms 14.345 ms 14.590 ms]
+Benchmarking ackley/20_50_250000_0.000000001
+Benchmarking ackley/20_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 176.3s, or reduce sample count to 10.
+Benchmarking ackley/20_50_250000_0.000000001: Collecting 100 samples in estimated 176.30 s (100 iterations)
+Benchmarking ackley/20_50_250000_0.000000001: Analyzing
+ackley/20_50_250000_0.000000001
+                        time:   [1.6933 s 1.7380 s 1.7737 s]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) low mild
+
+
+Warning: It is not recommended to reduce nresamples below 1000.
+Benchmarking rosenbrock/1_20_10000_0.001
+Benchmarking rosenbrock/1_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking rosenbrock/1_20_10000_0.001: Collecting 100 samples in estimated 5.7507 s (600 iterations)
+Benchmarking rosenbrock/1_20_10000_0.001: Analyzing
+rosenbrock/1_20_10000_0.001
+                        time:   [9.9317 ms 10.158 ms 10.350 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) low mild
+  1 (1.00%) high mild
+Benchmarking rosenbrock/1_20_10000_0.000001
+Benchmarking rosenbrock/1_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking rosenbrock/1_20_10000_0.000001: Collecting 100 samples in estimated 5.2260 s (500 iterations)
+Benchmarking rosenbrock/1_20_10000_0.000001: Analyzing
+rosenbrock/1_20_10000_0.000001
+                        time:   [10.922 ms 11.153 ms 11.327 ms]
+Found 12 outliers among 100 measurements (12.00%)
+  11 (11.00%) high mild
+  1 (1.00%) high severe
+Benchmarking rosenbrock/1_20_10000_0.000000001
+Benchmarking rosenbrock/1_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking rosenbrock/1_20_10000_0.000000001: Collecting 100 samples in estimated 5.2727 s (500 iterations)
+Benchmarking rosenbrock/1_20_10000_0.000000001: Analyzing
+rosenbrock/1_20_10000_0.000000001
+                        time:   [10.673 ms 10.909 ms 11.138 ms]
+Found 11 outliers among 100 measurements (11.00%)
+  4 (4.00%) high mild
+  7 (7.00%) high severe
+Benchmarking rosenbrock/1_20_250000_0.001
+Benchmarking rosenbrock/1_20_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 25.7s, or reduce sample count to 10.
+Benchmarking rosenbrock/1_20_250000_0.001: Collecting 100 samples in estimated 25.703 s (100 iterations)
+Benchmarking rosenbrock/1_20_250000_0.001: Analyzing
+rosenbrock/1_20_250000_0.001
+                        time:   [178.02 ms 195.72 ms 210.70 ms]
+Found 23 outliers among 100 measurements (23.00%)
+  15 (15.00%) low severe
+  8 (8.00%) low mild
+Benchmarking rosenbrock/1_20_250000_0.000001
+Benchmarking rosenbrock/1_20_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 28.1s, or reduce sample count to 10.
+Benchmarking rosenbrock/1_20_250000_0.000001: Collecting 100 samples in estimated 28.067 s (100 iterations)
+Benchmarking rosenbrock/1_20_250000_0.000001: Analyzing
+rosenbrock/1_20_250000_0.000001
+                        time:   [163.03 ms 180.43 ms 196.51 ms]
+Benchmarking rosenbrock/1_20_250000_0.000000001
+Benchmarking rosenbrock/1_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 27.0s, or reduce sample count to 10.
+Benchmarking rosenbrock/1_20_250000_0.000000001: Collecting 100 samples in estimated 26.956 s (100 iterations)
+Benchmarking rosenbrock/1_20_250000_0.000000001: Analyzing
+rosenbrock/1_20_250000_0.000000001
+                        time:   [188.55 ms 203.80 ms 219.51 ms]
+Found 17 outliers among 100 measurements (17.00%)
+  11 (11.00%) low severe
+  6 (6.00%) low mild
+Benchmarking rosenbrock/1_50_10000_0.001
+Benchmarking rosenbrock/1_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking rosenbrock/1_50_10000_0.001: Collecting 100 samples in estimated 6.0485 s (200 iterations)
+Benchmarking rosenbrock/1_50_10000_0.001: Analyzing
+rosenbrock/1_50_10000_0.001
+                        time:   [26.675 ms 27.371 ms 28.363 ms]
+Found 24 outliers among 100 measurements (24.00%)
+  24 (24.00%) low severe
+Benchmarking rosenbrock/1_50_10000_0.000001
+Benchmarking rosenbrock/1_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking rosenbrock/1_50_10000_0.000001: Collecting 100 samples in estimated 5.8059 s (200 iterations)
+Benchmarking rosenbrock/1_50_10000_0.000001: Analyzing
+rosenbrock/1_50_10000_0.000001
+                        time:   [29.045 ms 29.390 ms 29.940 ms]
+Found 17 outliers among 100 measurements (17.00%)
+  12 (12.00%) low severe
+  3 (3.00%) low mild
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking rosenbrock/1_50_10000_0.000000001
+Benchmarking rosenbrock/1_50_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking rosenbrock/1_50_10000_0.000000001: Collecting 100 samples in estimated 6.0385 s (200 iterations)
+Benchmarking rosenbrock/1_50_10000_0.000000001: Analyzing
+rosenbrock/1_50_10000_0.000000001
+                        time:   [29.704 ms 29.953 ms 30.205 ms]
+Found 6 outliers among 100 measurements (6.00%)
+  1 (1.00%) low severe
+  1 (1.00%) low mild
+  3 (3.00%) high mild
+  1 (1.00%) high severe
+Benchmarking rosenbrock/1_50_250000_0.001
+Benchmarking rosenbrock/1_50_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 75.8s, or reduce sample count to 10.
+Benchmarking rosenbrock/1_50_250000_0.001: Collecting 100 samples in estimated 75.764 s (100 iterations)
+Benchmarking rosenbrock/1_50_250000_0.001: Analyzing
+rosenbrock/1_50_250000_0.001
+                        time:   [433.83 ms 473.82 ms 520.65 ms]
+Benchmarking rosenbrock/1_50_250000_0.000001
+Benchmarking rosenbrock/1_50_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 76.0s, or reduce sample count to 10.
+Benchmarking rosenbrock/1_50_250000_0.000001: Collecting 100 samples in estimated 75.980 s (100 iterations)
+Benchmarking rosenbrock/1_50_250000_0.000001: Analyzing
+rosenbrock/1_50_250000_0.000001
+                        time:   [464.04 ms 504.97 ms 570.27 ms]
+Benchmarking rosenbrock/1_50_250000_0.000000001
+Benchmarking rosenbrock/1_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 73.7s, or reduce sample count to 10.
+Benchmarking rosenbrock/1_50_250000_0.000000001: Collecting 100 samples in estimated 73.719 s (100 iterations)
+Benchmarking rosenbrock/1_50_250000_0.000000001: Analyzing
+rosenbrock/1_50_250000_0.000000001
+                        time:   [502.15 ms 551.76 ms 594.06 ms]
+Benchmarking rosenbrock/20_20_10000_0.001
+Benchmarking rosenbrock/20_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking rosenbrock/20_20_10000_0.001: Collecting 100 samples in estimated 6.1575 s (200 iterations)
+Benchmarking rosenbrock/20_20_10000_0.001: Analyzing
+rosenbrock/20_20_10000_0.001
+                        time:   [30.481 ms 30.747 ms 30.930 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  1 (1.00%) low mild
+  3 (3.00%) high mild
+Benchmarking rosenbrock/20_20_10000_0.000001
+Benchmarking rosenbrock/20_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking rosenbrock/20_20_10000_0.000001: Collecting 100 samples in estimated 6.4496 s (200 iterations)
+Benchmarking rosenbrock/20_20_10000_0.000001: Analyzing
+rosenbrock/20_20_10000_0.000001
+                        time:   [31.747 ms 32.041 ms 32.381 ms]
+Benchmarking rosenbrock/20_20_10000_0.000000001
+Benchmarking rosenbrock/20_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking rosenbrock/20_20_10000_0.000000001: Collecting 100 samples in estimated 6.4586 s (200 iterations)
+Benchmarking rosenbrock/20_20_10000_0.000000001: Analyzing
+rosenbrock/20_20_10000_0.000000001
+                        time:   [32.236 ms 32.424 ms 32.685 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking rosenbrock/20_20_250000_0.001
+Benchmarking rosenbrock/20_20_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 47.6s, or reduce sample count to 10.
+Benchmarking rosenbrock/20_20_250000_0.001: Collecting 100 samples in estimated 47.603 s (100 iterations)
+Benchmarking rosenbrock/20_20_250000_0.001: Analyzing
+rosenbrock/20_20_250000_0.001
+                        time:   [565.33 ms 576.83 ms 588.63 ms]
+Benchmarking rosenbrock/20_20_250000_0.000001
+Benchmarking rosenbrock/20_20_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 59.0s, or reduce sample count to 10.
+Benchmarking rosenbrock/20_20_250000_0.000001: Collecting 100 samples in estimated 59.045 s (100 iterations)
+Benchmarking rosenbrock/20_20_250000_0.000001: Analyzing
+rosenbrock/20_20_250000_0.000001
+                        time:   [571.97 ms 583.37 ms 593.51 ms]
+Benchmarking rosenbrock/20_20_250000_0.000000001
+Benchmarking rosenbrock/20_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 74.9s, or reduce sample count to 10.
+Benchmarking rosenbrock/20_20_250000_0.000000001: Collecting 100 samples in estimated 74.869 s (100 iterations)
+Benchmarking rosenbrock/20_20_250000_0.000000001: Analyzing
+rosenbrock/20_20_250000_0.000000001
+                        time:   [589.90 ms 598.94 ms 607.30 ms]
+Benchmarking rosenbrock/20_50_10000_0.001
+Benchmarking rosenbrock/20_50_10000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 8.3s, or reduce sample count to 60.
+Benchmarking rosenbrock/20_50_10000_0.001: Collecting 100 samples in estimated 8.3126 s (100 iterations)
+Benchmarking rosenbrock/20_50_10000_0.001: Analyzing
+rosenbrock/20_50_10000_0.001
+                        time:   [84.339 ms 85.605 ms 87.009 ms]
+Benchmarking rosenbrock/20_50_10000_0.000001
+Benchmarking rosenbrock/20_50_10000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.3s, or reduce sample count to 50.
+Benchmarking rosenbrock/20_50_10000_0.000001: Collecting 100 samples in estimated 9.2987 s (100 iterations)
+Benchmarking rosenbrock/20_50_10000_0.000001: Analyzing
+rosenbrock/20_50_10000_0.000001
+                        time:   [90.360 ms 91.522 ms 92.623 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking rosenbrock/20_50_10000_0.000000001
+Benchmarking rosenbrock/20_50_10000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.6s, or reduce sample count to 50.
+Benchmarking rosenbrock/20_50_10000_0.000000001: Collecting 100 samples in estimated 9.5859 s (100 iterations)
+Benchmarking rosenbrock/20_50_10000_0.000000001: Analyzing
+rosenbrock/20_50_10000_0.000000001
+                        time:   [95.436 ms 95.878 ms 96.304 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  1 (1.00%) low severe
+  2 (2.00%) low mild
+  1 (1.00%) high mild
+Benchmarking rosenbrock/20_50_250000_0.001
+Benchmarking rosenbrock/20_50_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 149.3s, or reduce sample count to 10.
+Benchmarking rosenbrock/20_50_250000_0.001: Collecting 100 samples in estimated 149.25 s (100 iterations)
+Benchmarking rosenbrock/20_50_250000_0.001: Analyzing
+rosenbrock/20_50_250000_0.001
+                        time:   [1.3996 s 1.4204 s 1.4482 s]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) low mild
+Benchmarking rosenbrock/20_50_250000_0.000001
+Benchmarking rosenbrock/20_50_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 140.4s, or reduce sample count to 10.
+Benchmarking rosenbrock/20_50_250000_0.000001: Collecting 100 samples in estimated 140.44 s (100 iterations)
+Benchmarking rosenbrock/20_50_250000_0.000001: Analyzing
+rosenbrock/20_50_250000_0.000001
+                        time:   [1.4118 s 1.4390 s 1.4714 s]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking rosenbrock/20_50_250000_0.000000001
+Benchmarking rosenbrock/20_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 147.0s, or reduce sample count to 10.
+Benchmarking rosenbrock/20_50_250000_0.000000001: Collecting 100 samples in estimated 146.98 s (100 iterations)
+Benchmarking rosenbrock/20_50_250000_0.000000001: Analyzing
+rosenbrock/20_50_250000_0.000000001
+                        time:   [1.4647 s 1.4828 s 1.5138 s]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+
+
+Warning: It is not recommended to reduce nresamples below 1000.
+Benchmarking egg_contour/1_20_10000_0.001
+Benchmarking egg_contour/1_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking egg_contour/1_20_10000_0.001: Collecting 100 samples in estimated 5.9348 s (400 iterations)
+Benchmarking egg_contour/1_20_10000_0.001: Analyzing
+egg_contour/1_20_10000_0.001
+                        time:   [13.840 ms 14.132 ms 14.433 ms]
+Benchmarking egg_contour/1_20_10000_0.000001
+Benchmarking egg_contour/1_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking egg_contour/1_20_10000_0.000001: Collecting 100 samples in estimated 6.3949 s (400 iterations)
+Benchmarking egg_contour/1_20_10000_0.000001: Analyzing
+egg_contour/1_20_10000_0.000001
+                        time:   [15.637 ms 15.724 ms 15.812 ms]
+Found 8 outliers among 100 measurements (8.00%)
+  8 (8.00%) high mild
+Benchmarking egg_contour/1_20_10000_0.000000001
+Benchmarking egg_contour/1_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking egg_contour/1_20_10000_0.000000001: Collecting 100 samples in estimated 6.2789 s (400 iterations)
+Benchmarking egg_contour/1_20_10000_0.000000001: Analyzing
+egg_contour/1_20_10000_0.000000001
+                        time:   [15.669 ms 15.777 ms 15.888 ms]
+Found 9 outliers among 100 measurements (9.00%)
+  7 (7.00%) high mild
+  2 (2.00%) high severe
+Benchmarking egg_contour/1_20_250000_0.001
+Benchmarking egg_contour/1_20_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 25.6s, or reduce sample count to 10.
+Benchmarking egg_contour/1_20_250000_0.001: Collecting 100 samples in estimated 25.619 s (100 iterations)
+Benchmarking egg_contour/1_20_250000_0.001: Analyzing
+egg_contour/1_20_250000_0.001
+                        time:   [219.88 ms 254.39 ms 282.59 ms]
+Benchmarking egg_contour/1_20_250000_0.000001
+Benchmarking egg_contour/1_20_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 36.9s, or reduce sample count to 10.
+Benchmarking egg_contour/1_20_250000_0.000001: Collecting 100 samples in estimated 36.916 s (100 iterations)
+Benchmarking egg_contour/1_20_250000_0.000001: Analyzing
+egg_contour/1_20_250000_0.000001
+                        time:   [363.34 ms 364.46 ms 365.15 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  2 (2.00%) low mild
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking egg_contour/1_20_250000_0.000000001
+Benchmarking egg_contour/1_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 36.3s, or reduce sample count to 10.
+Benchmarking egg_contour/1_20_250000_0.000000001: Collecting 100 samples in estimated 36.323 s (100 iterations)
+Benchmarking egg_contour/1_20_250000_0.000000001: Analyzing
+egg_contour/1_20_250000_0.000000001
+                        time:   [363.43 ms 364.21 ms 365.34 ms]
+Found 7 outliers among 100 measurements (7.00%)
+  3 (3.00%) low mild
+  3 (3.00%) high mild
+  1 (1.00%) high severe
+Benchmarking egg_contour/1_50_10000_0.001
+Benchmarking egg_contour/1_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking egg_contour/1_50_10000_0.001: Collecting 100 samples in estimated 8.7328 s (200 iterations)
+Benchmarking egg_contour/1_50_10000_0.001: Analyzing
+egg_contour/1_50_10000_0.001
+                        time:   [34.104 ms 35.818 ms 37.756 ms]
+Benchmarking egg_contour/1_50_10000_0.000001
+Benchmarking egg_contour/1_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking egg_contour/1_50_10000_0.000001: Collecting 100 samples in estimated 8.8132 s (200 iterations)
+Benchmarking egg_contour/1_50_10000_0.000001: Analyzing
+egg_contour/1_50_10000_0.000001
+                        time:   [42.684 ms 42.801 ms 42.965 ms]
+Found 5 outliers among 100 measurements (5.00%)
+  4 (4.00%) high mild
+  1 (1.00%) high severe
+Benchmarking egg_contour/1_50_10000_0.000000001
+Benchmarking egg_contour/1_50_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking egg_contour/1_50_10000_0.000000001: Collecting 100 samples in estimated 8.6683 s (200 iterations)
+Benchmarking egg_contour/1_50_10000_0.000000001: Analyzing
+egg_contour/1_50_10000_0.000000001
+                        time:   [42.707 ms 42.845 ms 42.982 ms]
+Found 11 outliers among 100 measurements (11.00%)
+  10 (10.00%) high mild
+  1 (1.00%) high severe
+Benchmarking egg_contour/1_50_250000_0.001
+Benchmarking egg_contour/1_50_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 106.5s, or reduce sample count to 10.
+Benchmarking egg_contour/1_50_250000_0.001: Collecting 100 samples in estimated 106.49 s (100 iterations)
+Benchmarking egg_contour/1_50_250000_0.001: Analyzing
+egg_contour/1_50_250000_0.001
+                        time:   [753.62 ms 831.56 ms 892.27 ms]
+Found 21 outliers among 100 measurements (21.00%)
+  21 (21.00%) low severe
+Benchmarking egg_contour/1_50_250000_0.000001
+Benchmarking egg_contour/1_50_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 105.4s, or reduce sample count to 10.
+Benchmarking egg_contour/1_50_250000_0.000001: Collecting 100 samples in estimated 105.42 s (100 iterations)
+Benchmarking egg_contour/1_50_250000_0.000001: Analyzing
+egg_contour/1_50_250000_0.000001
+                        time:   [1.0378 s 1.0398 s 1.0418 s]
+Benchmarking egg_contour/1_50_250000_0.000000001
+Benchmarking egg_contour/1_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 104.0s, or reduce sample count to 10.
+Benchmarking egg_contour/1_50_250000_0.000000001: Collecting 100 samples in estimated 104.01 s (100 iterations)
+Benchmarking egg_contour/1_50_250000_0.000000001: Analyzing
+egg_contour/1_50_250000_0.000000001
+                        time:   [1.0344 s 1.0376 s 1.0397 s]
+Benchmarking egg_contour/20_20_10000_0.001
+Benchmarking egg_contour/20_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking egg_contour/20_20_10000_0.001: Collecting 100 samples in estimated 7.9892 s (200 iterations)
+Benchmarking egg_contour/20_20_10000_0.001: Analyzing
+egg_contour/20_20_10000_0.001
+                        time:   [39.981 ms 40.420 ms 40.899 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) low mild
+Benchmarking egg_contour/20_20_10000_0.000001
+Benchmarking egg_contour/20_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking egg_contour/20_20_10000_0.000001: Collecting 100 samples in estimated 8.8068 s (200 iterations)
+Benchmarking egg_contour/20_20_10000_0.000001: Analyzing
+egg_contour/20_20_10000_0.000001
+                        time:   [44.263 ms 44.670 ms 45.008 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking egg_contour/20_20_10000_0.000000001
+Benchmarking egg_contour/20_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking egg_contour/20_20_10000_0.000000001: Collecting 100 samples in estimated 8.9404 s (200 iterations)
+Benchmarking egg_contour/20_20_10000_0.000000001: Analyzing
+egg_contour/20_20_10000_0.000000001
+                        time:   [44.523 ms 44.909 ms 45.287 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking egg_contour/20_20_250000_0.001
+Benchmarking egg_contour/20_20_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 80.6s, or reduce sample count to 10.
+Benchmarking egg_contour/20_20_250000_0.001: Collecting 100 samples in estimated 80.643 s (100 iterations)
+Benchmarking egg_contour/20_20_250000_0.001: Analyzing
+egg_contour/20_20_250000_0.001
+                        time:   [762.27 ms 779.39 ms 797.25 ms]
+Found 5 outliers among 100 measurements (5.00%)
+  5 (5.00%) high mild
+Benchmarking egg_contour/20_20_250000_0.000001
+Benchmarking egg_contour/20_20_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 105.4s, or reduce sample count to 10.
+Benchmarking egg_contour/20_20_250000_0.000001: Collecting 100 samples in estimated 105.44 s (100 iterations)
+Benchmarking egg_contour/20_20_250000_0.000001: Analyzing
+egg_contour/20_20_250000_0.000001
+                        time:   [1.0240 s 1.0271 s 1.0291 s]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking egg_contour/20_20_250000_0.000000001
+Benchmarking egg_contour/20_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 106.0s, or reduce sample count to 10.
+Benchmarking egg_contour/20_20_250000_0.000000001: Collecting 100 samples in estimated 105.95 s (100 iterations)
+Benchmarking egg_contour/20_20_250000_0.000000001: Analyzing
+egg_contour/20_20_250000_0.000000001
+                        time:   [1.0219 s 1.0252 s 1.0274 s]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) low mild
+  1 (1.00%) high mild
+Benchmarking egg_contour/20_50_10000_0.001
+Benchmarking egg_contour/20_50_10000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 11.1s, or reduce sample count to 40.
+Benchmarking egg_contour/20_50_10000_0.001: Collecting 100 samples in estimated 11.084 s (100 iterations)
+Benchmarking egg_contour/20_50_10000_0.001: Analyzing
+egg_contour/20_50_10000_0.001
+                        time:   [103.65 ms 105.38 ms 106.85 ms]
+Benchmarking egg_contour/20_50_10000_0.000001
+Benchmarking egg_contour/20_50_10000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 13.0s, or reduce sample count to 30.
+Benchmarking egg_contour/20_50_10000_0.000001: Collecting 100 samples in estimated 13.023 s (100 iterations)
+Benchmarking egg_contour/20_50_10000_0.000001: Analyzing
+egg_contour/20_50_10000_0.000001
+                        time:   [127.61 ms 128.44 ms 128.98 ms]
+Found 13 outliers among 100 measurements (13.00%)
+  3 (3.00%) low severe
+  10 (10.00%) low mild
+Benchmarking egg_contour/20_50_10000_0.000000001
+Benchmarking egg_contour/20_50_10000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 13.0s, or reduce sample count to 30.
+Benchmarking egg_contour/20_50_10000_0.000000001: Collecting 100 samples in estimated 12.955 s (100 iterations)
+Benchmarking egg_contour/20_50_10000_0.000000001: Analyzing
+egg_contour/20_50_10000_0.000000001
+                        time:   [127.40 ms 128.70 ms 129.65 ms]
+Found 12 outliers among 100 measurements (12.00%)
+  2 (2.00%) low severe
+  10 (10.00%) low mild
+Benchmarking egg_contour/20_50_250000_0.001
+Benchmarking egg_contour/20_50_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 238.9s, or reduce sample count to 10.
+Benchmarking egg_contour/20_50_250000_0.001: Collecting 100 samples in estimated 238.94 s (100 iterations)
+Benchmarking egg_contour/20_50_250000_0.001: Analyzing
+egg_contour/20_50_250000_0.001
+                        time:   [1.9975 s 2.0421 s 2.0701 s]
+Found 15 outliers among 100 measurements (15.00%)
+  1 (1.00%) low severe
+  6 (6.00%) low mild
+  4 (4.00%) high mild
+  4 (4.00%) high severe
+Benchmarking egg_contour/20_50_250000_0.000001
+Benchmarking egg_contour/20_50_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 284.4s, or reduce sample count to 10.
+Benchmarking egg_contour/20_50_250000_0.000001: Collecting 100 samples in estimated 284.39 s (100 iterations)
+Benchmarking egg_contour/20_50_250000_0.000001: Analyzing
+egg_contour/20_50_250000_0.000001
+                        time:   [2.7976 s 2.8050 s 2.8112 s]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) low mild
+Benchmarking egg_contour/20_50_250000_0.000000001
+Benchmarking egg_contour/20_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 284.3s, or reduce sample count to 10.
+Benchmarking egg_contour/20_50_250000_0.000000001: Collecting 100 samples in estimated 284.26 s (100 iterations)
+Benchmarking egg_contour/20_50_250000_0.000000001: Analyzing
+egg_contour/20_50_250000_0.000000001
+                        time:   [2.8027 s 2.8114 s 2.8188 s]
+
+
+Warning: It is not recommended to reduce nresamples below 1000.
+Benchmarking goldstein_price/1_20_10000_0.001
+Benchmarking goldstein_price/1_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking goldstein_price/1_20_10000_0.001: Collecting 100 samples in estimated 5.8265 s (500 iterations)
+Benchmarking goldstein_price/1_20_10000_0.001: Analyzing
+goldstein_price/1_20_10000_0.001
+                        time:   [12.201 ms 12.513 ms 12.926 ms]
+Benchmarking goldstein_price/1_20_10000_0.000001
+Benchmarking goldstein_price/1_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking goldstein_price/1_20_10000_0.000001: Collecting 100 samples in estimated 5.7103 s (400 iterations)
+Benchmarking goldstein_price/1_20_10000_0.000001: Analyzing
+goldstein_price/1_20_10000_0.000001
+                        time:   [12.049 ms 12.438 ms 12.896 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+Benchmarking goldstein_price/1_20_10000_0.000000001
+Benchmarking goldstein_price/1_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking goldstein_price/1_20_10000_0.000000001: Collecting 100 samples in estimated 5.6715 s (500 iterations)
+Benchmarking goldstein_price/1_20_10000_0.000000001: Analyzing
+goldstein_price/1_20_10000_0.000000001
+                        time:   [12.074 ms 12.375 ms 12.816 ms]
+Found 5 outliers among 100 measurements (5.00%)
+  5 (5.00%) high mild
+Benchmarking goldstein_price/1_20_250000_0.001
+Benchmarking goldstein_price/1_20_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 25.2s, or reduce sample count to 10.
+Benchmarking goldstein_price/1_20_250000_0.001: Collecting 100 samples in estimated 25.213 s (100 iterations)
+Benchmarking goldstein_price/1_20_250000_0.001: Analyzing
+goldstein_price/1_20_250000_0.001
+                        time:   [247.46 ms 248.63 ms 249.25 ms]
+Found 8 outliers among 100 measurements (8.00%)
+  4 (4.00%) high mild
+  4 (4.00%) high severe
+Benchmarking goldstein_price/1_20_250000_0.000001
+Benchmarking goldstein_price/1_20_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 25.2s, or reduce sample count to 10.
+Benchmarking goldstein_price/1_20_250000_0.000001: Collecting 100 samples in estimated 25.246 s (100 iterations)
+Benchmarking goldstein_price/1_20_250000_0.000001: Analyzing
+goldstein_price/1_20_250000_0.000001
+                        time:   [247.45 ms 247.94 ms 248.49 ms]
+Found 5 outliers among 100 measurements (5.00%)
+  5 (5.00%) high mild
+Benchmarking goldstein_price/1_20_250000_0.000000001
+Benchmarking goldstein_price/1_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 25.1s, or reduce sample count to 10.
+Benchmarking goldstein_price/1_20_250000_0.000000001: Collecting 100 samples in estimated 25.109 s (100 iterations)
+Benchmarking goldstein_price/1_20_250000_0.000000001: Analyzing
+goldstein_price/1_20_250000_0.000000001
+                        time:   [247.54 ms 248.06 ms 248.51 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking goldstein_price/1_50_10000_0.001
+Benchmarking goldstein_price/1_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking goldstein_price/1_50_10000_0.001: Collecting 100 samples in estimated 6.2808 s (200 iterations)
+Benchmarking goldstein_price/1_50_10000_0.001: Analyzing
+goldstein_price/1_50_10000_0.001
+                        time:   [30.904 ms 30.992 ms 31.072 ms]
+Found 8 outliers among 100 measurements (8.00%)
+  5 (5.00%) high mild
+  3 (3.00%) high severe
+Benchmarking goldstein_price/1_50_10000_0.000001
+Benchmarking goldstein_price/1_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking goldstein_price/1_50_10000_0.000001: Collecting 100 samples in estimated 6.2361 s (200 iterations)
+Benchmarking goldstein_price/1_50_10000_0.000001: Analyzing
+goldstein_price/1_50_10000_0.000001
+                        time:   [31.003 ms 31.096 ms 31.188 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+Benchmarking goldstein_price/1_50_10000_0.000000001
+Benchmarking goldstein_price/1_50_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking goldstein_price/1_50_10000_0.000000001: Collecting 100 samples in estimated 6.3946 s (200 iterations)
+Benchmarking goldstein_price/1_50_10000_0.000000001: Analyzing
+goldstein_price/1_50_10000_0.000000001
+                        time:   [30.988 ms 31.114 ms 31.248 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  1 (1.00%) high mild
+  2 (2.00%) high severe
+Benchmarking goldstein_price/1_50_250000_0.001
+Benchmarking goldstein_price/1_50_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 76.7s, or reduce sample count to 10.
+Benchmarking goldstein_price/1_50_250000_0.001: Collecting 100 samples in estimated 76.731 s (100 iterations)
+Benchmarking goldstein_price/1_50_250000_0.001: Analyzing
+goldstein_price/1_50_250000_0.001
+                        time:   [753.60 ms 754.81 ms 756.53 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+Benchmarking goldstein_price/1_50_250000_0.000001
+Benchmarking goldstein_price/1_50_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 76.7s, or reduce sample count to 10.
+Benchmarking goldstein_price/1_50_250000_0.000001: Collecting 100 samples in estimated 76.657 s (100 iterations)
+Benchmarking goldstein_price/1_50_250000_0.000001: Analyzing
+goldstein_price/1_50_250000_0.000001
+                        time:   [753.55 ms 755.01 ms 756.10 ms]
+Benchmarking goldstein_price/1_50_250000_0.000000001
+Benchmarking goldstein_price/1_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 77.6s, or reduce sample count to 10.
+Benchmarking goldstein_price/1_50_250000_0.000000001: Collecting 100 samples in estimated 77.556 s (100 iterations)
+Benchmarking goldstein_price/1_50_250000_0.000000001: Analyzing
+goldstein_price/1_50_250000_0.000000001
+                        time:   [755.06 ms 755.94 ms 756.95 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+Benchmarking goldstein_price/20_20_10000_0.001
+Benchmarking goldstein_price/20_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking goldstein_price/20_20_10000_0.001: Collecting 100 samples in estimated 6.3675 s (200 iterations)
+Benchmarking goldstein_price/20_20_10000_0.001: Analyzing
+goldstein_price/20_20_10000_0.001
+                        time:   [32.262 ms 32.480 ms 32.671 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  1 (1.00%) low mild
+  2 (2.00%) high mild
+Benchmarking goldstein_price/20_20_10000_0.000001
+Benchmarking goldstein_price/20_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking goldstein_price/20_20_10000_0.000001: Collecting 100 samples in estimated 6.5185 s (200 iterations)
+Benchmarking goldstein_price/20_20_10000_0.000001: Analyzing
+goldstein_price/20_20_10000_0.000001
+                        time:   [32.087 ms 32.285 ms 32.570 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking goldstein_price/20_20_10000_0.000000001
+Benchmarking goldstein_price/20_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking goldstein_price/20_20_10000_0.000000001: Collecting 100 samples in estimated 6.3630 s (200 iterations)
+Benchmarking goldstein_price/20_20_10000_0.000000001: Analyzing
+goldstein_price/20_20_10000_0.000000001
+                        time:   [32.097 ms 32.299 ms 32.484 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+Benchmarking goldstein_price/20_20_250000_0.001
+Benchmarking goldstein_price/20_20_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 68.1s, or reduce sample count to 10.
+Benchmarking goldstein_price/20_20_250000_0.001: Collecting 100 samples in estimated 68.144 s (100 iterations)
+Benchmarking goldstein_price/20_20_250000_0.001: Analyzing
+goldstein_price/20_20_250000_0.001
+                        time:   [736.56 ms 739.14 ms 742.01 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) low severe
+Benchmarking goldstein_price/20_20_250000_0.000001
+Benchmarking goldstein_price/20_20_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 71.5s, or reduce sample count to 10.
+Benchmarking goldstein_price/20_20_250000_0.000001: Collecting 100 samples in estimated 71.502 s (100 iterations)
+Benchmarking goldstein_price/20_20_250000_0.000001: Analyzing
+goldstein_price/20_20_250000_0.000001
+                        time:   [738.32 ms 740.18 ms 741.67 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking goldstein_price/20_20_250000_0.000000001
+Benchmarking goldstein_price/20_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 73.4s, or reduce sample count to 10.
+Benchmarking goldstein_price/20_20_250000_0.000000001: Collecting 100 samples in estimated 73.373 s (100 iterations)
+Benchmarking goldstein_price/20_20_250000_0.000000001: Analyzing
+goldstein_price/20_20_250000_0.000000001
+                        time:   [735.16 ms 737.12 ms 739.60 ms]
+Benchmarking goldstein_price/20_50_10000_0.001
+Benchmarking goldstein_price/20_50_10000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.8s, or reduce sample count to 50.
+Benchmarking goldstein_price/20_50_10000_0.001: Collecting 100 samples in estimated 9.7765 s (100 iterations)
+Benchmarking goldstein_price/20_50_10000_0.001: Analyzing
+goldstein_price/20_50_10000_0.001
+                        time:   [96.053 ms 96.777 ms 97.343 ms]
+Found 11 outliers among 100 measurements (11.00%)
+  4 (4.00%) low severe
+  6 (6.00%) low mild
+  1 (1.00%) high mild
+Benchmarking goldstein_price/20_50_10000_0.000001
+Benchmarking goldstein_price/20_50_10000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.7s, or reduce sample count to 50.
+Benchmarking goldstein_price/20_50_10000_0.000001: Collecting 100 samples in estimated 9.6988 s (100 iterations)
+Benchmarking goldstein_price/20_50_10000_0.000001: Analyzing
+goldstein_price/20_50_10000_0.000001
+                        time:   [96.925 ms 97.544 ms 97.980 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) low mild
+Benchmarking goldstein_price/20_50_10000_0.000000001
+Benchmarking goldstein_price/20_50_10000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.9s, or reduce sample count to 50.
+Benchmarking goldstein_price/20_50_10000_0.000000001: Collecting 100 samples in estimated 9.9195 s (100 iterations)
+Benchmarking goldstein_price/20_50_10000_0.000000001: Analyzing
+goldstein_price/20_50_10000_0.000000001
+                        time:   [95.948 ms 97.095 ms 97.769 ms]
+Found 9 outliers among 100 measurements (9.00%)
+  8 (8.00%) low mild
+  1 (1.00%) high severe
+Benchmarking goldstein_price/20_50_250000_0.001
+Benchmarking goldstein_price/20_50_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 214.3s, or reduce sample count to 10.
+Benchmarking goldstein_price/20_50_250000_0.001: Collecting 100 samples in estimated 214.32 s (100 iterations)
+Benchmarking goldstein_price/20_50_250000_0.001: Analyzing
+goldstein_price/20_50_250000_0.001
+                        time:   [2.1226 s 2.1245 s 2.1293 s]
+Benchmarking goldstein_price/20_50_250000_0.000001
+Benchmarking goldstein_price/20_50_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 210.8s, or reduce sample count to 10.
+Benchmarking goldstein_price/20_50_250000_0.000001: Collecting 100 samples in estimated 210.78 s (100 iterations)
+Benchmarking goldstein_price/20_50_250000_0.000001: Analyzing
+goldstein_price/20_50_250000_0.000001
+                        time:   [2.1165 s 2.1219 s 2.1271 s]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) low mild
+Benchmarking goldstein_price/20_50_250000_0.000000001
+Benchmarking goldstein_price/20_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 209.5s, or reduce sample count to 10.
+Benchmarking goldstein_price/20_50_250000_0.000000001: Collecting 100 samples in estimated 209.47 s (100 iterations)
+Benchmarking goldstein_price/20_50_250000_0.000000001: Analyzing
+goldstein_price/20_50_250000_0.000000001
+                        time:   [2.1188 s 2.1239 s 2.1279 s]
+Found 7 outliers among 100 measurements (7.00%)
+  1 (1.00%) low severe
+  4 (4.00%) low mild
+  2 (2.00%) high mild
+
+
+Warning: It is not recommended to reduce nresamples below 1000.
+Benchmarking himmelblau/1_20_10000_0.001
+Benchmarking himmelblau/1_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_20_10000_0.001: Collecting 100 samples in estimated 6.0996 s (20k iterations)
+Benchmarking himmelblau/1_20_10000_0.001: Analyzing
+himmelblau/1_20_10000_0.001
+                        time:   [184.81 µs 263.14 µs 344.84 µs]
+Benchmarking himmelblau/1_20_10000_0.000001
+Benchmarking himmelblau/1_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_20_10000_0.000001: Collecting 100 samples in estimated 7.1881 s (15k iterations)
+Benchmarking himmelblau/1_20_10000_0.000001: Analyzing
+himmelblau/1_20_10000_0.000001
+                        time:   [261.22 µs 322.39 µs 393.62 µs]
+Benchmarking himmelblau/1_20_10000_0.000000001
+Benchmarking himmelblau/1_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_20_10000_0.000000001: Collecting 100 samples in estimated 5.2858 s (10k iterations)
+Benchmarking himmelblau/1_20_10000_0.000000001: Analyzing
+himmelblau/1_20_10000_0.000000001
+                        time:   [868.03 µs 965.24 µs 1.0710 ms]
+Benchmarking himmelblau/1_20_250000_0.001
+Benchmarking himmelblau/1_20_250000_0.001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_20_250000_0.001: Collecting 100 samples in estimated 6.1641 s (20k iterations)
+Benchmarking himmelblau/1_20_250000_0.001: Analyzing
+himmelblau/1_20_250000_0.001
+                        time:   [217.78 µs 270.83 µs 351.74 µs]
+Benchmarking himmelblau/1_20_250000_0.000001
+Benchmarking himmelblau/1_20_250000_0.000001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_20_250000_0.000001: Collecting 100 samples in estimated 5.3404 s (10k iterations)
+Benchmarking himmelblau/1_20_250000_0.000001: Analyzing
+himmelblau/1_20_250000_0.000001
+                        time:   [447.10 µs 506.38 µs 568.23 µs]
+Benchmarking himmelblau/1_20_250000_0.000000001
+Benchmarking himmelblau/1_20_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_20_250000_0.000000001: Collecting 100 samples in estimated 5.0208 s (10k iterations)
+Benchmarking himmelblau/1_20_250000_0.000000001: Analyzing
+himmelblau/1_20_250000_0.000000001
+                        time:   [670.09 µs 787.28 µs 873.60 µs]
+Benchmarking himmelblau/1_50_10000_0.001
+Benchmarking himmelblau/1_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_50_10000_0.001: Collecting 100 samples in estimated 7.1714 s (15k iterations)
+Benchmarking himmelblau/1_50_10000_0.001: Analyzing
+himmelblau/1_50_10000_0.001
+                        time:   [276.56 µs 327.13 µs 378.43 µs]
+Benchmarking himmelblau/1_50_10000_0.000001
+Benchmarking himmelblau/1_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_50_10000_0.000001: Collecting 100 samples in estimated 5.8819 s (30k iterations)
+Benchmarking himmelblau/1_50_10000_0.000001: Analyzing
+himmelblau/1_50_10000_0.000001
+                        time:   [513.40 µs 583.05 µs 687.85 µs]
+Benchmarking himmelblau/1_50_10000_0.000000001
+Benchmarking himmelblau/1_50_10000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 5.4s, enable flat sampling, or reduce sample count to 60.
+Benchmarking himmelblau/1_50_10000_0.000000001: Collecting 100 samples in estimated 5.3910 s (5050 iterations)
+Benchmarking himmelblau/1_50_10000_0.000000001: Analyzing
+himmelblau/1_50_10000_0.000000001
+                        time:   [1.2436 ms 1.3819 ms 1.4983 ms]
+Benchmarking himmelblau/1_50_250000_0.001
+Benchmarking himmelblau/1_50_250000_0.001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_50_250000_0.001: Collecting 100 samples in estimated 7.4792 s (15k iterations)
+Benchmarking himmelblau/1_50_250000_0.001: Analyzing
+himmelblau/1_50_250000_0.001
+                        time:   [589.75 µs 669.12 µs 792.17 µs]
+Benchmarking himmelblau/1_50_250000_0.000001
+Benchmarking himmelblau/1_50_250000_0.000001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_50_250000_0.000001: Collecting 100 samples in estimated 5.8676 s (10k iterations)
+Benchmarking himmelblau/1_50_250000_0.000001: Analyzing
+himmelblau/1_50_250000_0.000001
+                        time:   [320.08 µs 432.18 µs 496.84 µs]
+Benchmarking himmelblau/1_50_250000_0.000000001
+Benchmarking himmelblau/1_50_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking himmelblau/1_50_250000_0.000000001: Collecting 100 samples in estimated 6.9856 s (10k iterations)
+Benchmarking himmelblau/1_50_250000_0.000000001: Analyzing
+himmelblau/1_50_250000_0.000000001
+                        time:   [1.0740 ms 1.3510 ms 1.4627 ms]
+Benchmarking himmelblau/20_20_10000_0.001
+Benchmarking himmelblau/20_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking himmelblau/20_20_10000_0.001: Collecting 100 samples in estimated 6.1555 s (15k iterations)
+Benchmarking himmelblau/20_20_10000_0.001: Analyzing
+himmelblau/20_20_10000_0.001
+                        time:   [406.55 µs 407.34 µs 408.12 µs]
+Found 5 outliers among 100 measurements (5.00%)
+  5 (5.00%) high mild
+Benchmarking himmelblau/20_20_10000_0.000001
+Benchmarking himmelblau/20_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking himmelblau/20_20_10000_0.000001: Collecting 100 samples in estimated 6.4242 s (15k iterations)
+Benchmarking himmelblau/20_20_10000_0.000001: Analyzing
+himmelblau/20_20_10000_0.000001
+                        time:   [423.37 µs 424.07 µs 424.51 µs]
+Found 12 outliers among 100 measurements (12.00%)
+  1 (1.00%) low severe
+  3 (3.00%) low mild
+  6 (6.00%) high mild
+  2 (2.00%) high severe
+Benchmarking himmelblau/20_20_10000_0.000000001
+Benchmarking himmelblau/20_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking himmelblau/20_20_10000_0.000000001: Collecting 100 samples in estimated 7.2197 s (10k iterations)
+Benchmarking himmelblau/20_20_10000_0.000000001: Analyzing
+himmelblau/20_20_10000_0.000000001
+                        time:   [701.54 µs 703.68 µs 706.88 µs]
+Found 7 outliers among 100 measurements (7.00%)
+  2 (2.00%) low mild
+  3 (3.00%) high mild
+  2 (2.00%) high severe
+Benchmarking himmelblau/20_20_250000_0.001
+Benchmarking himmelblau/20_20_250000_0.001: Warming up for 250.00 ms
+Benchmarking himmelblau/20_20_250000_0.001: Collecting 100 samples in estimated 6.2089 s (15k iterations)
+Benchmarking himmelblau/20_20_250000_0.001: Analyzing
+himmelblau/20_20_250000_0.001
+                        time:   [406.84 µs 407.61 µs 408.60 µs]
+Found 12 outliers among 100 measurements (12.00%)
+  2 (2.00%) low mild
+  7 (7.00%) high mild
+  3 (3.00%) high severe
+Benchmarking himmelblau/20_20_250000_0.000001
+Benchmarking himmelblau/20_20_250000_0.000001: Warming up for 250.00 ms
+Benchmarking himmelblau/20_20_250000_0.000001: Collecting 100 samples in estimated 6.3832 s (15k iterations)
+Benchmarking himmelblau/20_20_250000_0.000001: Analyzing
+himmelblau/20_20_250000_0.000001
+                        time:   [422.33 µs 423.52 µs 424.98 µs]
+Found 7 outliers among 100 measurements (7.00%)
+  2 (2.00%) low mild
+  4 (4.00%) high mild
+  1 (1.00%) high severe
+Benchmarking himmelblau/20_20_250000_0.000000001
+Benchmarking himmelblau/20_20_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking himmelblau/20_20_250000_0.000000001: Collecting 100 samples in estimated 7.1184 s (10k iterations)
+Benchmarking himmelblau/20_20_250000_0.000000001: Analyzing
+himmelblau/20_20_250000_0.000000001
+                        time:   [704.22 µs 705.76 µs 708.86 µs]
+Found 6 outliers among 100 measurements (6.00%)
+  3 (3.00%) low mild
+  2 (2.00%) high mild
+  1 (1.00%) high severe
+Benchmarking himmelblau/20_50_10000_0.001
+Benchmarking himmelblau/20_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking himmelblau/20_50_10000_0.001: Collecting 100 samples in estimated 5.9288 s (10k iterations)
+Benchmarking himmelblau/20_50_10000_0.001: Analyzing
+himmelblau/20_50_10000_0.001
+                        time:   [603.32 µs 610.33 µs 614.34 µs]
+Benchmarking himmelblau/20_50_10000_0.000001
+Benchmarking himmelblau/20_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking himmelblau/20_50_10000_0.000001: Collecting 100 samples in estimated 6.5038 s (10k iterations)
+Benchmarking himmelblau/20_50_10000_0.000001: Analyzing
+himmelblau/20_50_10000_0.000001
+                        time:   [645.51 µs 646.76 µs 648.24 µs]
+Found 6 outliers among 100 measurements (6.00%)
+  1 (1.00%) low severe
+  1 (1.00%) low mild
+  3 (3.00%) high mild
+  1 (1.00%) high severe
+Benchmarking himmelblau/20_50_10000_0.000000001
+Benchmarking himmelblau/20_50_10000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 5.5s, enable flat sampling, or reduce sample count to 60.
+Benchmarking himmelblau/20_50_10000_0.000000001: Collecting 100 samples in estimated 5.4681 s (5050 iterations)
+Benchmarking himmelblau/20_50_10000_0.000000001: Analyzing
+himmelblau/20_50_10000_0.000000001
+                        time:   [1.0764 ms 1.0821 ms 1.0857 ms]
+Found 7 outliers among 100 measurements (7.00%)
+  1 (1.00%) low severe
+  2 (2.00%) low mild
+  2 (2.00%) high mild
+  2 (2.00%) high severe
+Benchmarking himmelblau/20_50_250000_0.001
+Benchmarking himmelblau/20_50_250000_0.001: Warming up for 250.00 ms
+Benchmarking himmelblau/20_50_250000_0.001: Collecting 100 samples in estimated 6.3404 s (10k iterations)
+Benchmarking himmelblau/20_50_250000_0.001: Analyzing
+himmelblau/20_50_250000_0.001
+                        time:   [624.87 µs 625.93 µs 626.81 µs]
+Found 6 outliers among 100 measurements (6.00%)
+  1 (1.00%) low mild
+  4 (4.00%) high mild
+  1 (1.00%) high severe
+Benchmarking himmelblau/20_50_250000_0.000001
+Benchmarking himmelblau/20_50_250000_0.000001: Warming up for 250.00 ms
+Benchmarking himmelblau/20_50_250000_0.000001: Collecting 100 samples in estimated 6.5596 s (10k iterations)
+Benchmarking himmelblau/20_50_250000_0.000001: Analyzing
+himmelblau/20_50_250000_0.000001
+                        time:   [605.19 µs 606.76 µs 608.30 µs]
+Found 18 outliers among 100 measurements (18.00%)
+  8 (8.00%) high mild
+  10 (10.00%) high severe
+Benchmarking himmelblau/20_50_250000_0.000000001
+Benchmarking himmelblau/20_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 5.1s, enable flat sampling, or reduce sample count to 60.
+Benchmarking himmelblau/20_50_250000_0.000000001: Collecting 100 samples in estimated 5.1346 s (5050 iterations)
+Benchmarking himmelblau/20_50_250000_0.000000001: Analyzing
+himmelblau/20_50_250000_0.000000001
+                        time:   [1.0591 ms 1.0628 ms 1.0691 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) low mild
+  1 (1.00%) high mild
+
+
+Warning: It is not recommended to reduce nresamples below 1000.
+Benchmarking levi/1_20_10000_0.001
+Benchmarking levi/1_20_10000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 5.5s, enable flat sampling, or reduce sample count to 60.
+Benchmarking levi/1_20_10000_0.001: Collecting 100 samples in estimated 5.5394 s (5050 iterations)
+Benchmarking levi/1_20_10000_0.001: Analyzing
+levi/1_20_10000_0.001   time:   [1.5463 ms 1.7685 ms 1.9516 ms]
+Benchmarking levi/1_20_10000_0.000001
+Benchmarking levi/1_20_10000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 8.0s, enable flat sampling, or reduce sample count to 50.
+Benchmarking levi/1_20_10000_0.000001: Collecting 100 samples in estimated 7.9951 s (5050 iterations)
+Benchmarking levi/1_20_10000_0.000001: Analyzing
+levi/1_20_10000_0.000001
+                        time:   [1.7902 ms 1.9433 ms 2.1339 ms]
+Benchmarking levi/1_20_10000_0.000000001
+Benchmarking levi/1_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking levi/1_20_10000_0.000000001: Collecting 100 samples in estimated 5.0720 s (2500 iterations)
+Benchmarking levi/1_20_10000_0.000000001: Analyzing
+levi/1_20_10000_0.000000001
+                        time:   [2.2382 ms 2.4452 ms 2.6778 ms]
+Benchmarking levi/1_20_250000_0.001
+Benchmarking levi/1_20_250000_0.001: Warming up for 250.00 ms
+Benchmarking levi/1_20_250000_0.001: Collecting 100 samples in estimated 9.9522 s (10k iterations)
+Benchmarking levi/1_20_250000_0.001: Analyzing
+levi/1_20_250000_0.001  time:   [1.5895 ms 1.7299 ms 1.8709 ms]
+Benchmarking levi/1_20_250000_0.000001
+Benchmarking levi/1_20_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 5.9s, enable flat sampling, or reduce sample count to 60.
+Benchmarking levi/1_20_250000_0.000001: Collecting 100 samples in estimated 5.8918 s (5050 iterations)
+Benchmarking levi/1_20_250000_0.000001: Analyzing
+levi/1_20_250000_0.000001
+                        time:   [1.8273 ms 1.9242 ms 2.1247 ms]
+Benchmarking levi/1_20_250000_0.000000001
+Benchmarking levi/1_20_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking levi/1_20_250000_0.000000001: Collecting 100 samples in estimated 5.1086 s (2400 iterations)
+Benchmarking levi/1_20_250000_0.000000001: Analyzing
+levi/1_20_250000_0.000000001
+                        time:   [1.9416 ms 2.1578 ms 2.3906 ms]
+Benchmarking levi/1_50_10000_0.001
+Benchmarking levi/1_50_10000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.8s, enable flat sampling, or reduce sample count to 50.
+Benchmarking levi/1_50_10000_0.001: Collecting 100 samples in estimated 9.7628 s (5050 iterations)
+Benchmarking levi/1_50_10000_0.001: Analyzing
+levi/1_50_10000_0.001   time:   [2.4942 ms 2.7475 ms 3.0294 ms]
+Benchmarking levi/1_50_10000_0.000001
+Benchmarking levi/1_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking levi/1_50_10000_0.000001: Collecting 100 samples in estimated 5.1123 s (2300 iterations)
+Benchmarking levi/1_50_10000_0.000001: Analyzing
+levi/1_50_10000_0.000001
+                        time:   [2.4819 ms 2.7673 ms 3.0527 ms]
+Benchmarking levi/1_50_10000_0.000000001
+Benchmarking levi/1_50_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking levi/1_50_10000_0.000000001: Collecting 100 samples in estimated 5.0399 s (2400 iterations)
+Benchmarking levi/1_50_10000_0.000000001: Analyzing
+levi/1_50_10000_0.000000001
+                        time:   [3.2502 ms 3.5549 ms 3.8541 ms]
+Benchmarking levi/1_50_250000_0.001
+Benchmarking levi/1_50_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.5s, enable flat sampling, or reduce sample count to 50.
+Benchmarking levi/1_50_250000_0.001: Collecting 100 samples in estimated 9.4936 s (5050 iterations)
+Benchmarking levi/1_50_250000_0.001: Analyzing
+levi/1_50_250000_0.001  time:   [2.4645 ms 2.7510 ms 2.9803 ms]
+Benchmarking levi/1_50_250000_0.000001
+Benchmarking levi/1_50_250000_0.000001: Warming up for 250.00 ms
+Benchmarking levi/1_50_250000_0.000001: Collecting 100 samples in estimated 5.0568 s (2200 iterations)
+Benchmarking levi/1_50_250000_0.000001: Analyzing
+levi/1_50_250000_0.000001
+                        time:   [2.5887 ms 2.8471 ms 3.1204 ms]
+Benchmarking levi/1_50_250000_0.000000001
+Benchmarking levi/1_50_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking levi/1_50_250000_0.000000001: Collecting 100 samples in estimated 5.2292 s (2100 iterations)
+Benchmarking levi/1_50_250000_0.000000001: Analyzing
+levi/1_50_250000_0.000000001
+                        time:   [3.1739 ms 3.4373 ms 3.7884 ms]
+Benchmarking levi/20_20_10000_0.001
+Benchmarking levi/20_20_10000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 7.0s, enable flat sampling, or reduce sample count to 50.
+Benchmarking levi/20_20_10000_0.001: Collecting 100 samples in estimated 7.0003 s (5050 iterations)
+Benchmarking levi/20_20_10000_0.001: Analyzing
+levi/20_20_10000_0.001  time:   [1.3448 ms 1.3495 ms 1.3560 ms]
+Found 6 outliers among 100 measurements (6.00%)
+  1 (1.00%) low mild
+  4 (4.00%) high mild
+  1 (1.00%) high severe
+Benchmarking levi/20_20_10000_0.000001
+Benchmarking levi/20_20_10000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 7.6s, enable flat sampling, or reduce sample count to 50.
+Benchmarking levi/20_20_10000_0.000001: Collecting 100 samples in estimated 7.5799 s (5050 iterations)
+Benchmarking levi/20_20_10000_0.000001: Analyzing
+levi/20_20_10000_0.000001
+                        time:   [1.4807 ms 1.4873 ms 1.4934 ms]
+Found 7 outliers among 100 measurements (7.00%)
+  1 (1.00%) low severe
+  3 (3.00%) low mild
+  2 (2.00%) high mild
+  1 (1.00%) high severe
+Benchmarking levi/20_20_10000_0.000000001
+Benchmarking levi/20_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking levi/20_20_10000_0.000000001: Collecting 100 samples in estimated 5.0891 s (2500 iterations)
+Benchmarking levi/20_20_10000_0.000000001: Analyzing
+levi/20_20_10000_0.000000001
+                        time:   [2.0167 ms 2.0285 ms 2.0396 ms]
+Found 5 outliers among 100 measurements (5.00%)
+  2 (2.00%) low mild
+  3 (3.00%) high mild
+Benchmarking levi/20_20_250000_0.001
+Benchmarking levi/20_20_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 6.8s, enable flat sampling, or reduce sample count to 60.
+Benchmarking levi/20_20_250000_0.001: Collecting 100 samples in estimated 6.8229 s (5050 iterations)
+Benchmarking levi/20_20_250000_0.001: Analyzing
+levi/20_20_250000_0.001 time:   [1.3454 ms 1.3511 ms 1.3561 ms]
+Found 6 outliers among 100 measurements (6.00%)
+  2 (2.00%) low mild
+  3 (3.00%) high mild
+  1 (1.00%) high severe
+Benchmarking levi/20_20_250000_0.000001
+Benchmarking levi/20_20_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 7.6s, enable flat sampling, or reduce sample count to 50.
+Benchmarking levi/20_20_250000_0.000001: Collecting 100 samples in estimated 7.5704 s (5050 iterations)
+Benchmarking levi/20_20_250000_0.000001: Analyzing
+levi/20_20_250000_0.000001
+                        time:   [1.4822 ms 1.4875 ms 1.4933 ms]
+Found 9 outliers among 100 measurements (9.00%)
+  1 (1.00%) low severe
+  3 (3.00%) low mild
+  5 (5.00%) high mild
+Benchmarking levi/20_20_250000_0.000000001
+Benchmarking levi/20_20_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking levi/20_20_250000_0.000000001: Collecting 100 samples in estimated 5.1453 s (2500 iterations)
+Benchmarking levi/20_20_250000_0.000000001: Analyzing
+levi/20_20_250000_0.000000001
+                        time:   [2.0119 ms 2.0281 ms 2.0480 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking levi/20_50_10000_0.001
+Benchmarking levi/20_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking levi/20_50_10000_0.001: Collecting 100 samples in estimated 5.0637 s (2300 iterations)
+Benchmarking levi/20_50_10000_0.001: Analyzing
+levi/20_50_10000_0.001  time:   [2.1858 ms 2.2001 ms 2.2165 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  2 (2.00%) low mild
+  1 (1.00%) high mild
+Benchmarking levi/20_50_10000_0.000001
+Benchmarking levi/20_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking levi/20_50_10000_0.000001: Collecting 100 samples in estimated 5.1872 s (2200 iterations)
+Benchmarking levi/20_50_10000_0.000001: Analyzing
+levi/20_50_10000_0.000001
+                        time:   [2.3799 ms 2.3911 ms 2.4044 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking levi/20_50_10000_0.000000001
+Benchmarking levi/20_50_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking levi/20_50_10000_0.000000001: Collecting 100 samples in estimated 5.0639 s (1700 iterations)
+Benchmarking levi/20_50_10000_0.000000001: Analyzing
+levi/20_50_10000_0.000000001
+                        time:   [2.9997 ms 3.0196 ms 3.0316 ms]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) low mild
+  1 (1.00%) high mild
+Benchmarking levi/20_50_250000_0.001
+Benchmarking levi/20_50_250000_0.001: Warming up for 250.00 ms
+Benchmarking levi/20_50_250000_0.001: Collecting 100 samples in estimated 5.1173 s (2300 iterations)
+Benchmarking levi/20_50_250000_0.001: Analyzing
+levi/20_50_250000_0.001 time:   [2.2734 ms 2.2892 ms 2.3014 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) low mild
+Benchmarking levi/20_50_250000_0.000001
+Benchmarking levi/20_50_250000_0.000001: Warming up for 250.00 ms
+Benchmarking levi/20_50_250000_0.000001: Collecting 100 samples in estimated 5.0500 s (2000 iterations)
+Benchmarking levi/20_50_250000_0.000001: Analyzing
+levi/20_50_250000_0.000001
+                        time:   [2.4810 ms 2.4987 ms 2.5110 ms]
+Benchmarking levi/20_50_250000_0.000000001
+Benchmarking levi/20_50_250000_0.000000001: Warming up for 250.00 ms
+Benchmarking levi/20_50_250000_0.000000001: Collecting 100 samples in estimated 5.3014 s (1700 iterations)
+Benchmarking levi/20_50_250000_0.000000001: Analyzing
+levi/20_50_250000_0.000000001
+                        time:   [3.1211 ms 3.1394 ms 3.1575 ms]
+Found 3 outliers among 100 measurements (3.00%)
+  2 (2.00%) low mild
+  1 (1.00%) high mild
+
+
+Warning: It is not recommended to reduce nresamples below 1000.
+Benchmarking schaffer2/1_20_10000_0.001
+Benchmarking schaffer2/1_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking schaffer2/1_20_10000_0.001: Collecting 100 samples in estimated 6.3815 s (400 iterations)
+Benchmarking schaffer2/1_20_10000_0.001: Analyzing
+schaffer2/1_20_10000_0.001
+                        time:   [16.055 ms 16.168 ms 16.292 ms]
+Found 10 outliers among 100 measurements (10.00%)
+  5 (5.00%) high mild
+  5 (5.00%) high severe
+Benchmarking schaffer2/1_20_10000_0.000001
+Benchmarking schaffer2/1_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking schaffer2/1_20_10000_0.000001: Collecting 100 samples in estimated 5.0073 s (300 iterations)
+Benchmarking schaffer2/1_20_10000_0.000001: Analyzing
+schaffer2/1_20_10000_0.000001
+                        time:   [16.039 ms 16.194 ms 16.283 ms]
+Found 14 outliers among 100 measurements (14.00%)
+  12 (12.00%) high mild
+  2 (2.00%) high severe
+Benchmarking schaffer2/1_20_10000_0.000000001
+Benchmarking schaffer2/1_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking schaffer2/1_20_10000_0.000000001: Collecting 100 samples in estimated 6.4435 s (400 iterations)
+Benchmarking schaffer2/1_20_10000_0.000000001: Analyzing
+schaffer2/1_20_10000_0.000000001
+                        time:   [16.057 ms 16.129 ms 16.210 ms]
+Found 9 outliers among 100 measurements (9.00%)
+  9 (9.00%) high mild
+Benchmarking schaffer2/1_20_250000_0.001
+Benchmarking schaffer2/1_20_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 37.9s, or reduce sample count to 10.
+Benchmarking schaffer2/1_20_250000_0.001: Collecting 100 samples in estimated 37.855 s (100 iterations)
+Benchmarking schaffer2/1_20_250000_0.001: Analyzing
+schaffer2/1_20_250000_0.001
+                        time:   [375.08 ms 375.66 ms 376.16 ms]
+Found 15 outliers among 100 measurements (15.00%)
+  12 (12.00%) high mild
+  3 (3.00%) high severe
+Benchmarking schaffer2/1_20_250000_0.000001
+Benchmarking schaffer2/1_20_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 38.7s, or reduce sample count to 10.
+Benchmarking schaffer2/1_20_250000_0.000001: Collecting 100 samples in estimated 38.689 s (100 iterations)
+Benchmarking schaffer2/1_20_250000_0.000001: Analyzing
+schaffer2/1_20_250000_0.000001
+                        time:   [375.21 ms 375.71 ms 376.13 ms]
+Found 13 outliers among 100 measurements (13.00%)
+  11 (11.00%) high mild
+  2 (2.00%) high severe
+Benchmarking schaffer2/1_20_250000_0.000000001
+Benchmarking schaffer2/1_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 38.2s, or reduce sample count to 10.
+Benchmarking schaffer2/1_20_250000_0.000000001: Collecting 100 samples in estimated 38.171 s (100 iterations)
+Benchmarking schaffer2/1_20_250000_0.000000001: Analyzing
+schaffer2/1_20_250000_0.000000001
+                        time:   [375.12 ms 375.68 ms 376.41 ms]
+Found 12 outliers among 100 measurements (12.00%)
+  10 (10.00%) high mild
+  2 (2.00%) high severe
+Benchmarking schaffer2/1_50_10000_0.001
+Benchmarking schaffer2/1_50_10000_0.001: Warming up for 250.00 ms
+Benchmarking schaffer2/1_50_10000_0.001: Collecting 100 samples in estimated 8.9349 s (200 iterations)
+Benchmarking schaffer2/1_50_10000_0.001: Analyzing
+schaffer2/1_50_10000_0.001
+                        time:   [43.694 ms 43.770 ms 43.916 ms]
+Found 14 outliers among 100 measurements (14.00%)
+  3 (3.00%) high mild
+  11 (11.00%) high severe
+Benchmarking schaffer2/1_50_10000_0.000001
+Benchmarking schaffer2/1_50_10000_0.000001: Warming up for 250.00 ms
+Benchmarking schaffer2/1_50_10000_0.000001: Collecting 100 samples in estimated 8.9807 s (200 iterations)
+Benchmarking schaffer2/1_50_10000_0.000001: Analyzing
+schaffer2/1_50_10000_0.000001
+                        time:   [43.751 ms 43.861 ms 44.034 ms]
+Found 12 outliers among 100 measurements (12.00%)
+  5 (5.00%) high mild
+  7 (7.00%) high severe
+Benchmarking schaffer2/1_50_10000_0.000000001
+Benchmarking schaffer2/1_50_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking schaffer2/1_50_10000_0.000000001: Collecting 100 samples in estimated 8.9170 s (200 iterations)
+Benchmarking schaffer2/1_50_10000_0.000000001: Analyzing
+schaffer2/1_50_10000_0.000000001
+                        time:   [43.771 ms 43.890 ms 44.072 ms]
+Found 14 outliers among 100 measurements (14.00%)
+  7 (7.00%) high mild
+  7 (7.00%) high severe
+Benchmarking schaffer2/1_50_250000_0.001
+Benchmarking schaffer2/1_50_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 107.5s, or reduce sample count to 10.
+Benchmarking schaffer2/1_50_250000_0.001: Collecting 100 samples in estimated 107.53 s (100 iterations)
+Benchmarking schaffer2/1_50_250000_0.001: Analyzing
+schaffer2/1_50_250000_0.001
+                        time:   [1.0651 s 1.0658 s 1.0665 s]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking schaffer2/1_50_250000_0.000001
+Benchmarking schaffer2/1_50_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 108.8s, or reduce sample count to 10.
+Benchmarking schaffer2/1_50_250000_0.000001: Collecting 100 samples in estimated 108.82 s (100 iterations)
+Benchmarking schaffer2/1_50_250000_0.000001: Analyzing
+schaffer2/1_50_250000_0.000001
+                        time:   [1.0648 s 1.0656 s 1.0661 s]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking schaffer2/1_50_250000_0.000000001
+Benchmarking schaffer2/1_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 108.2s, or reduce sample count to 10.
+Benchmarking schaffer2/1_50_250000_0.000000001: Collecting 100 samples in estimated 108.22 s (100 iterations)
+Benchmarking schaffer2/1_50_250000_0.000000001: Analyzing
+schaffer2/1_50_250000_0.000000001
+                        time:   [1.0653 s 1.0662 s 1.0674 s]
+Found 3 outliers among 100 measurements (3.00%)
+  1 (1.00%) high mild
+  2 (2.00%) high severe
+Benchmarking schaffer2/20_20_10000_0.001
+Benchmarking schaffer2/20_20_10000_0.001: Warming up for 250.00 ms
+Benchmarking schaffer2/20_20_10000_0.001: Collecting 100 samples in estimated 8.8221 s (200 iterations)
+Benchmarking schaffer2/20_20_10000_0.001: Analyzing
+schaffer2/20_20_10000_0.001
+                        time:   [43.545 ms 43.834 ms 44.155 ms]
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+Benchmarking schaffer2/20_20_10000_0.000001
+Benchmarking schaffer2/20_20_10000_0.000001: Warming up for 250.00 ms
+Benchmarking schaffer2/20_20_10000_0.000001: Collecting 100 samples in estimated 8.9261 s (200 iterations)
+Benchmarking schaffer2/20_20_10000_0.000001: Analyzing
+schaffer2/20_20_10000_0.000001
+                        time:   [43.590 ms 43.864 ms 44.207 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking schaffer2/20_20_10000_0.000000001
+Benchmarking schaffer2/20_20_10000_0.000000001: Warming up for 250.00 ms
+Benchmarking schaffer2/20_20_10000_0.000000001: Collecting 100 samples in estimated 8.6804 s (200 iterations)
+Benchmarking schaffer2/20_20_10000_0.000000001: Analyzing
+schaffer2/20_20_10000_0.000000001
+                        time:   [43.395 ms 43.741 ms 44.059 ms]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking schaffer2/20_20_250000_0.001
+Benchmarking schaffer2/20_20_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 101.2s, or reduce sample count to 10.
+Benchmarking schaffer2/20_20_250000_0.001: Collecting 100 samples in estimated 101.16 s (100 iterations)
+Benchmarking schaffer2/20_20_250000_0.001: Analyzing
+schaffer2/20_20_250000_0.001
+                        time:   [1.0096 s 1.0111 s 1.0128 s]
+Found 5 outliers among 100 measurements (5.00%)
+  4 (4.00%) high mild
+  1 (1.00%) high severe
+Benchmarking schaffer2/20_20_250000_0.000001
+Benchmarking schaffer2/20_20_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 102.0s, or reduce sample count to 10.
+Benchmarking schaffer2/20_20_250000_0.000001: Collecting 100 samples in estimated 101.96 s (100 iterations)
+Benchmarking schaffer2/20_20_250000_0.000001: Analyzing
+schaffer2/20_20_250000_0.000001
+                        time:   [1.0117 s 1.0145 s 1.0175 s]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking schaffer2/20_20_250000_0.000000001
+Benchmarking schaffer2/20_20_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 105.5s, or reduce sample count to 10.
+Benchmarking schaffer2/20_20_250000_0.000000001: Collecting 100 samples in estimated 105.48 s (100 iterations)
+Benchmarking schaffer2/20_20_250000_0.000000001: Analyzing
+schaffer2/20_20_250000_0.000000001
+                        time:   [1.0097 s 1.0122 s 1.0141 s]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking schaffer2/20_50_10000_0.001
+Benchmarking schaffer2/20_50_10000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 12.7s, or reduce sample count to 30.
+Benchmarking schaffer2/20_50_10000_0.001: Collecting 100 samples in estimated 12.689 s (100 iterations)
+Benchmarking schaffer2/20_50_10000_0.001: Analyzing
+schaffer2/20_50_10000_0.001
+                        time:   [125.45 ms 126.30 ms 127.15 ms]
+Found 16 outliers among 100 measurements (16.00%)
+  4 (4.00%) low severe
+  12 (12.00%) low mild
+Benchmarking schaffer2/20_50_10000_0.000001
+Benchmarking schaffer2/20_50_10000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 12.7s, or reduce sample count to 30.
+Benchmarking schaffer2/20_50_10000_0.000001: Collecting 100 samples in estimated 12.684 s (100 iterations)
+Benchmarking schaffer2/20_50_10000_0.000001: Analyzing
+schaffer2/20_50_10000_0.000001
+                        time:   [124.89 ms 125.84 ms 126.87 ms]
+Found 9 outliers among 100 measurements (9.00%)
+  9 (9.00%) low mild
+Benchmarking schaffer2/20_50_10000_0.000000001
+Benchmarking schaffer2/20_50_10000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 12.9s, or reduce sample count to 30.
+Benchmarking schaffer2/20_50_10000_0.000000001: Collecting 100 samples in estimated 12.936 s (100 iterations)
+Benchmarking schaffer2/20_50_10000_0.000000001: Analyzing
+schaffer2/20_50_10000_0.000000001
+                        time:   [125.70 ms 126.31 ms 127.27 ms]
+Found 11 outliers among 100 measurements (11.00%)
+  11 (11.00%) low mild
+Benchmarking schaffer2/20_50_250000_0.001
+Benchmarking schaffer2/20_50_250000_0.001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 270.2s, or reduce sample count to 10.
+Benchmarking schaffer2/20_50_250000_0.001: Collecting 100 samples in estimated 270.21 s (100 iterations)
+Benchmarking schaffer2/20_50_250000_0.001: Analyzing
+schaffer2/20_50_250000_0.001
+                        time:   [2.7439 s 2.7498 s 2.7556 s]
+Benchmarking schaffer2/20_50_250000_0.000001
+Benchmarking schaffer2/20_50_250000_0.000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 280.9s, or reduce sample count to 10.
+Benchmarking schaffer2/20_50_250000_0.000001: Collecting 100 samples in estimated 280.92 s (100 iterations)
+Benchmarking schaffer2/20_50_250000_0.000001: Analyzing
+schaffer2/20_50_250000_0.000001
+                        time:   [2.7523 s 2.7597 s 2.7685 s]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) low mild
+Benchmarking schaffer2/20_50_250000_0.000000001
+Benchmarking schaffer2/20_50_250000_0.000000001: Warming up for 250.00 ms
+
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 274.0s, or reduce sample count to 10.
+Benchmarking schaffer2/20_50_250000_0.000000001: Collecting 100 samples in estimated 273.95 s (100 iterations)
+Benchmarking schaffer2/20_50_250000_0.000000001: Analyzing
+schaffer2/20_50_250000_0.000000001
+                        time:   [2.7493 s 2.7561 s 2.7654 s]
+
