@@ -2,6 +2,7 @@
 
 Library for finding minimas of arbitrary functions written in Rust. 
 
+![Example run for Rastrigin function](example.gif)
 ## Details
 
 This library uses the following paradigms:
