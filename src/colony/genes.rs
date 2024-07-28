@@ -11,7 +11,7 @@ impl Genes {
     pub fn new(rng: &mut ThreadRng, function_range: f64) -> Genes {
         let stride = (rng.gen_range(0.001..1.0), rng.gen_range(1.0..2.0), rng.gen_range(2.0..4.0));
         let jealousy =  rng.gen_range(0.0..1.0);
-        let indecisiveness = rng.gen_range(0.0..(function_range/1_000.0));
+        let indecisiveness = rng.gen_range(0.0..(function_range/10_000.0));
         Genes {stride , jealousy, indecisiveness, function_range}
     }
 
